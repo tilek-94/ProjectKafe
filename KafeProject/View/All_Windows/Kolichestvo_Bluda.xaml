@@ -1,0 +1,35 @@
+﻿<Window x:Class="Kafe.All_Windows.Kolichestvo_Bluda"
+        x:Name="Kol_Bluda"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Height="400" Width="800" Background="{x:Null}"
+        AllowsTransparency="True" WindowStyle="None" 
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        Topmost="{Binding Source={x:Static Application.Current},
+    Path=MainWindow.IsActive,Mode=OneWay}">
+    <Grid>
+        
+        <Grid Margin="15,15,15,15" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="15" Opacity="0.5" ShadowDepth="7" Direction="272"/>
+            </Grid.Effect>
+            <TextBlock Text="Количество" FontSize="25" VerticalAlignment="Bottom" Width="200" HorizontalAlignment="Left" Margin="30,0,0,320"/>
+            <TextBlock x:Name="Text_Kolichestvo" Text="0" FontSize="60" VerticalAlignment="Bottom" Width="200" HorizontalAlignment="Left" Margin="285,0,0,180" TextAlignment="Center"/>
+            <StackPanel Margin="64,0,64,15" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <Button  Style="{DynamicResource Button_Yellow}" Height="40"  Width="320" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Принять" FontSize="22" Margin="0,0,3,0" Command="{Binding Path=Priniyt}" CommandParameter="{Binding ElementName=Kol_Bluda}"/>
+                <Button  Style="{DynamicResource Button_B}" Height="40"  Width="320" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Отмена" FontSize="22" Command="{Binding Path=Otmena}" CommandParameter="{Binding ElementName=Kol_Bluda}"/>
+            </StackPanel>
+            <Button x:Name="Plus_Button"  Style="{DynamicResource Button_Plus}" Height="78"  Width="78" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="22" Margin="460,112,232,0" Command="{Binding Plus}" CommandParameter="{Binding ElementName=Text_Kolichestvo}"/>
+            <Button x:Name="Minus_Button"  Style="{DynamicResource Button_Minus}" Height="78"  Width="78" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="22" Margin="227,112,465,0" Command="{Binding Minus}" CommandParameter="{Binding ElementName=Text_Kolichestvo}"/>
+            <Button x:Name="Plus_Button_Copy1"  Style="{DynamicResource Menu_Button}" Content="+10" Height="78"  Width="78" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30" Margin="682,10,10,0" Command="{Binding Plus10}" CommandParameter="{Binding ElementName=Text_Kolichestvo}"/>
+            <Button x:Name="Minus_Button_Copy1"  Style="{DynamicResource Menu_Button}" Content="-10" Height="78"  Width="78" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30" Margin="599,10,93,0" Command="{Binding Minus10}" CommandParameter="{Binding ElementName=Text_Kolichestvo}"/>
+
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,93 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\ergegqegqer.png" />
+    <None Remove="Images\FoodImage\fg.jpg" />
+    <None Remove="Images\FoodImage\se.png" />
+    <None Remove="Images\Icon\3Menu.png" />
+    <None Remove="Images\Icon\Black_Menu.png" />
+    <None Remove="Images\Icon\Bottom.png" />
+    <None Remove="Images\Icon\Clear.png" />
+    <None Remove="Images\Icon\Close1.png" />
+    <None Remove="Images\Icon\Decrement.png" />
+    <None Remove="Images\Icon\Down.png" />
+    <None Remove="Images\Icon\Down1.png" />
+    <None Remove="Images\Icon\fon.tif" />
+    <None Remove="Images\Icon\Kategory.png" />
+    <None Remove="Images\Icon\lock.png" />
+    <None Remove="Images\Icon\menu.png" />
+    <None Remove="Images\Icon\Minus.png" />
+    <None Remove="Images\Icon\Minus1.png" />
+    <None Remove="Images\Icon\Percent.png" />
+    <None Remove="Images\Icon\Plus.png" />
+    <None Remove="Images\Icon\Plus1.png" />
+    <None Remove="Images\Icon\Print1.png" />
+    <None Remove="Images\Icon\Remove.png" />
+    <None Remove="Images\Icon\Stoll.png" />
+    <None Remove="Images\Icon\Stoll1.png" />
+    <None Remove="Images\Icon\Stoll11.png" />
+    <None Remove="Images\Icon\Stoll2.png" />
+    <None Remove="Images\Icon\table.png" />
+    <None Remove="Images\Icon\Ukazatel.png" />
+    <None Remove="Images\Icon\Up.png" />
+    <None Remove="Images\Icon\Up1.png" />
+    <None Remove="Images\Icon\zp1.png" />
+    <None Remove="Images\Untitled-12.png" />
+    <None Remove="Images\wrfwqfrqw.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Class\" />
+    <Folder Include="Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\ergegqegqer.png" />
+    <Resource Include="Images\FoodImage\fg.jpg" />
+    <Resource Include="Images\FoodImage\se.png" />
+    <Resource Include="Images\Icon\3Menu.png" />
+    <Resource Include="Images\Icon\Black_Menu.png" />
+    <Resource Include="Images\Icon\Bottom.png" />
+    <Resource Include="Images\Icon\Clear.png" />
+    <Resource Include="Images\Icon\Close1.png" />
+    <Resource Include="Images\Icon\Decrement.png" />
+    <Resource Include="Images\Icon\Down.png" />
+    <Resource Include="Images\Icon\Down1.png" />
+    <Resource Include="Images\Icon\fon.tif">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Icon\Kategory.png" />
+    <Resource Include="Images\Icon\lock.png" />
+    <Resource Include="Images\Icon\menu.png" />
+    <Resource Include="Images\Icon\Minus.png" />
+    <Resource Include="Images\Icon\Minus1.png" />
+    <Resource Include="Images\Icon\Percent.png" />
+    <Resource Include="Images\Icon\Plus.png" />
+    <Resource Include="Images\Icon\Plus1.png" />
+    <Resource Include="Images\Icon\Print1.png" />
+    <Resource Include="Images\Icon\Remove.png" />
+    <Resource Include="Images\Icon\Stoll.png" />
+    <Resource Include="Images\Icon\Stoll1.png" />
+    <Resource Include="Images\Icon\Stoll11.png" />
+    <Resource Include="Images\Icon\Stoll2.png" />
+    <Resource Include="Images\Icon\table.png" />
+    <Resource Include="Images\Icon\Ukazatel.png" />
+    <Resource Include="Images\Icon\Up.png" />
+    <Resource Include="Images\Icon\Up1.png" />
+    <Resource Include="Images\Icon\zp1.png" />
+    <Resource Include="Images\Untitled-12.png" />
+    <Resource Include="Images\wrfwqfrqw.png" />
+  </ItemGroup>
+
+</Project>

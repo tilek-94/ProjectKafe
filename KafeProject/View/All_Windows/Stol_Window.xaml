@@ -1,0 +1,60 @@
+﻿<Window x:Class="Kafe.All_Windows.Stol_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       
+        mc:Ignorable="d"
+           Title="StolWindow"  Height="650" Width="1000"  WindowStyle="None" WindowStartupLocation="CenterScreen" WindowState="Maximized" Loaded="Window_Loaded">
+    <Grid>
+        
+        <Grid.Background>
+            <ImageBrush ImageSource="../../Images/Icon/fon.tif"/>
+        </Grid.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid  Grid.Row="0" Background="#FF555555" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="60">
+                <Button Style="{DynamicResource Heyder_Butoon}"  Foreground="White" FontSize="25" Padding="0,-20,0,0" Content="Стол" Width="90" Margin="130,0" VerticalAlignment="Stretch"  HorizontalAlignment="Left"/>
+                <Button  MaxWidth="300" Style="{DynamicResource Heyder_Butoon}" HorizontalAlignment="Left" VerticalAlignment="Stretch"   Margin="407,0,0,0" MinWidth="130">
+                    <StackPanel   Orientation="Horizontal"  Margin="5,0">
+                        <TextBlock Text="Чек №" MaxWidth="250" FontSize="18"  Foreground="White" VerticalAlignment="Center"  TextTrimming="CharacterEllipsis" HorizontalAlignment="Center"></TextBlock>
+                        <Image VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Images/Icon/Bottom.png" Height="40" Width="40" ></Image>
+                    </StackPanel>
+                </Button>
+                <StackPanel  x:Name="a5" Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Stretch"   Margin="0,0,2,0" >
+                    <Button  Width="60" Style="{DynamicResource Heyder_Butoon}" HorizontalAlignment="Center">
+                        <Image x:Name="image" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Images/Icon/menu.png" Height="22" Width="22" Margin="8,0"  ></Image>
+                    </Button>
+                    <Button  MaxWidth="120" Style="{DynamicResource Heyder_Butoon}" HorizontalAlignment="Center" MinWidth="60" Click="Button_Click">
+                        <StackPanel   Orientation="Horizontal"   Margin="5,0">
+                            <Label Content="{Binding OffName}" MaxWidth="85" FontSize="18"  Foreground="White" VerticalAlignment="Center"  HorizontalAlignment="Center"></Label>
+                            <Image VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Images/Icon/lock.png" Height="40" Width="40" ></Image>
+                        </StackPanel>
+                    </Button>
+                    <Button  Width="75" Style="{DynamicResource Heyder_Butoon}" HorizontalAlignment="Center" Click="Button_Click">
+                        <StackPanel   Orientation="Horizontal">
+                            <Image VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Images/Icon/Close1.png" Height="60" Width="60" ></Image>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ScrollViewer  CanContentScroll="False"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Visible" Grid.Row="0">
+                    <WrapPanel x:Name="Stol_Category" Grid.Row="0" Margin="75,10,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Button x:Name="Vse_Tovar" VerticalAlignment="Center" Height="42" HorizontalAlignment="Left" Margin="-10,0,11,0"  Width="50"  Style="{DynamicResource Button_Kategory_stol}"/>
+                    </WrapPanel>
+                </ScrollViewer>
+                <ScrollViewer  CanContentScroll="False"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                    <WrapPanel x:Name="Stol_Panel" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,0,10,0"/>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

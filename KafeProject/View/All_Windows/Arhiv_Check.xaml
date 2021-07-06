@@ -1,0 +1,167 @@
+﻿<Window x:Class="Kafe.All_Windows.Arhiv_Check"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kafe.All_Windows"
+        mc:Ignorable="d"
+        Title="Arhiv_Check" Height="650" Width="1200" Background="{x:Null}" AllowsTransparency="True" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"  Topmost="{Binding Source={x:Static Application.Current},Path=MainWindow.IsActive,Mode=OneWay}">
+    <Window.Resources>
+        <DataTemplate x:Key="listTemplate">
+            <Button Tag="{Binding ElementName=CheckMame,Path=Text}" Width="430" Height="60" Style="{DynamicResource Menu_Button}">
+                <Grid Height="60" Width="420">
+                    <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Top">
+                        <Ellipse Height="10" Width="10" Margin="3,3,3,3" Fill="#FFF5C7C7"/>
+                        <TextBlock x:Name="CheckMame" Text="№1433653213" Width="165" TextTrimming="CharacterEllipsis" FontSize="16" VerticalAlignment="Center"/>
+                        <TextBlock Text="Стол 10" Width="100" TextAlignment="Center" TextTrimming="CharacterEllipsis" FontSize="18" VerticalAlignment="Center"/>
+                        <TextBlock Text="5000 сом" HorizontalAlignment="Right" Width="135" TextAlignment="Right" Padding="0,0,5,0" TextTrimming="CharacterEllipsis" FontSize="14" FontWeight="Bold"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Bottom">
+                        <TextBlock Text="Манты, Шорпо, Пельмен, Кочо аш, Чучвара, БыстроГанов" TextTrimming="CharacterEllipsis" FontSize="15" Margin="3,0,3,0" Width="420" />
+                    </StackPanel>
+                </Grid>
+            </Button>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid Background="White" Margin="10,10,10,10">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="15" Opacity="0.5" ShadowDepth="7" Direction="272"/>
+            </Grid.Effect>
+            <TabControl Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FFF7F7F7" BorderThickness="0">
+                <TabItem Header="Все чеки " FontSize="20" Height="50" Width="130" Style="{DynamicResource TabControl}">
+                    <StackPanel Orientation="Horizontal">
+                        <ListBox x:Name="Check_List" VerticalAlignment="Stretch" HorizontalAlignment="Left"  ItemTemplate="{StaticResource listTemplate}">
+                        </ListBox>
+                            <StackPanel Width="430" Margin="0,20,0,10">
+                            <Button Width="430" Height="60" Style="{DynamicResource Menu_Button}">
+                                <Grid Height="60" Width="420">
+                                    <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Top">
+                                        <Ellipse Height="10" Width="10" Margin="3,3,3,3" Fill="#FFF5C7C7"/>
+                                        <TextBlock Text="№1433653213" Width="165" TextTrimming="CharacterEllipsis" FontSize="16" VerticalAlignment="Center"/>
+                                        <TextBlock Text="Стол 10" Width="100" TextAlignment="Center" TextTrimming="CharacterEllipsis" FontSize="18" VerticalAlignment="Center"/>
+                                        <TextBlock Text="5000 сом" HorizontalAlignment="Right" Width="135" TextAlignment="Right" Padding="0,0,5,0" TextTrimming="CharacterEllipsis" FontSize="14" FontWeight="Bold"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Bottom">
+                                        <TextBlock Text="Манты, Шорпо, Пельмен, Кочо аш, Чучвара, БыстроГанов" TextTrimming="CharacterEllipsis" FontSize="15" Margin="3,0,3,0" Width="420" />
+                                    </StackPanel>
+                                </Grid>
+                            </Button>
+                            </StackPanel>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="60"/>
+                            </Grid.RowDefinitions>
+                            <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Left" VerticalScrollBarVisibility="Visible" Grid.Row="0" >
+                                <StackPanel Width="705" Grid.Row="0">
+
+                                </StackPanel>
+                            </ScrollViewer>
+                            <Button x:Name="Otpravka_Kuxne" Grid.Row="1" Style="{DynamicResource Button_Yellow}" Content="Печать" FontSize="17" Height="40" Width="200" HorizontalAlignment="Right" Margin="0,0,25,0"/>
+                        </Grid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Наличными" FontSize="20" Height="50" Width="130" Style="{DynamicResource TabControl}">
+                    <StackPanel Orientation="Horizontal">
+                        <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Left">
+                            <StackPanel Width="430" Margin="0,20,0,10">
+                                <Button Width="430" Height="60" Style="{DynamicResource Menu_Button}">
+                                    <Grid Height="60" Width="420">
+                                        <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Top">
+                                            <Ellipse Height="10" Width="10" Margin="3,3,3,3" Fill="#FFF5C7C7"/>
+                                            <TextBlock Text="№1433653213" Width="165" TextTrimming="CharacterEllipsis" FontSize="16" VerticalAlignment="Center"/>
+                                            <TextBlock Text="Стол 10" Width="100" TextAlignment="Center" TextTrimming="CharacterEllipsis" FontSize="18" VerticalAlignment="Center"/>
+                                            <TextBlock Text="5000 сом" HorizontalAlignment="Right" Width="135" TextAlignment="Right" Padding="0,0,5,0" TextTrimming="CharacterEllipsis" FontSize="14" FontWeight="Bold"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Bottom">
+                                            <TextBlock Text="Манты, Шорпо, Пельмен, Кочо аш, Чучвара, БыстроГанов" TextTrimming="CharacterEllipsis" FontSize="15" Margin="3,0,3,0" Width="420" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Button>
+                                <Button Width="430" Height="60" Style="{DynamicResource Menu_Button}">
+                                    <Grid Height="60" Width="420">
+                                        <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Top">
+                                            <Ellipse Height="10" Width="10" Margin="3,3,3,3" Fill="#FFF5C7C7"/>
+                                            <TextBlock Text="№1433653213" Width="165" TextTrimming="CharacterEllipsis" FontSize="16" VerticalAlignment="Center"/>
+                                            <TextBlock Text="Стол 10" Width="100" TextAlignment="Center" TextTrimming="CharacterEllipsis" FontSize="18" VerticalAlignment="Center"/>
+                                            <TextBlock Text="5000 сом" HorizontalAlignment="Right" Width="135" TextAlignment="Right" Padding="0,0,5,0" TextTrimming="CharacterEllipsis" FontSize="14" FontWeight="Bold"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Bottom">
+                                            <TextBlock Text="Манты, Шорпо, Пельмен, Кочо аш, Чучвара, БыстроГанов" TextTrimming="CharacterEllipsis" FontSize="15" Margin="3,0,3,0" Width="420" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Button>
+                            </StackPanel>
+                        </ScrollViewer>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="60"/>
+                            </Grid.RowDefinitions>
+                            <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Left" VerticalScrollBarVisibility="Visible" Grid.Row="0" >
+                                <StackPanel Width="705" Grid.Row="0">
+
+                                </StackPanel>
+                            </ScrollViewer>
+                            <Button  Grid.Row="1" Style="{DynamicResource Button_Yellow}" Content="Печать" FontSize="17" Height="40" Width="200" HorizontalAlignment="Right" Margin="0,0,25,0"/>
+                        </Grid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Возвраты  " FontSize="20" Height="50" Width="130" Style="{DynamicResource TabControl}">
+                    <StackPanel Orientation="Horizontal">
+                        <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Left">
+                            <StackPanel Width="430" Margin="0,20,0,10">
+                                <Button Width="430" Height="60" Style="{DynamicResource Menu_Button}">
+                                    <Grid Height="60" Width="420">
+                                        <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Top">
+                                            <Ellipse Height="10" Width="10" Margin="3,3,3,3" Fill="#FFF5C7C7"/>
+                                            <TextBlock Text="№1433653213" Width="165" TextTrimming="CharacterEllipsis" FontSize="16" VerticalAlignment="Center"/>
+                                            <TextBlock Text="Стол 10" Width="100" TextAlignment="Center" TextTrimming="CharacterEllipsis" FontSize="18" VerticalAlignment="Center"/>
+                                            <TextBlock Text="5000 сом" HorizontalAlignment="Right" Width="135" TextAlignment="Right" Padding="0,0,5,0" TextTrimming="CharacterEllipsis" FontSize="14" FontWeight="Bold"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Bottom">
+                                            <TextBlock Text="Манты, Шорпо, Пельмен, Кочо аш, Чучвара, БыстроГанов" TextTrimming="CharacterEllipsis" FontSize="15" Margin="3,0,3,0" Width="420" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Button>
+                                <Button Width="430" Height="60" Style="{DynamicResource Menu_Button}">
+                                    <Grid Height="60" Width="420">
+                                        <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Top">
+                                            <Ellipse Height="10" Width="10" Margin="3,3,3,3" Fill="#FFF5C7C7"/>
+                                            <TextBlock Text="№1433653213" Width="165" TextTrimming="CharacterEllipsis" FontSize="16" VerticalAlignment="Center"/>
+                                            <TextBlock Text="Стол 10" Width="100" TextAlignment="Center" TextTrimming="CharacterEllipsis" FontSize="18" VerticalAlignment="Center"/>
+                                            <TextBlock Text="5000 сом" HorizontalAlignment="Right" Width="135" TextAlignment="Right" Padding="0,0,5,0" TextTrimming="CharacterEllipsis" FontSize="14" FontWeight="Bold"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Bottom">
+                                            <TextBlock Text="Манты, Шорпо, Пельмен, Кочо аш, Чучвара, БыстроГанов" TextTrimming="CharacterEllipsis" FontSize="15" Margin="3,0,3,0" Width="420" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Button>
+                            </StackPanel>
+                        </ScrollViewer>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="60"/>
+                            </Grid.RowDefinitions>
+                            <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Left" VerticalScrollBarVisibility="Visible" Grid.Row="0" >
+                                <StackPanel Width="705" Grid.Row="0">
+
+                                </StackPanel>
+                            </ScrollViewer>
+                            <Button  Grid.Row="1" Style="{DynamicResource Button_Yellow}" Content="Печать" FontSize="17" Height="40" Width="200" HorizontalAlignment="Right" Margin="0,0,25,0"/>
+                        </Grid>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+            <Button  Width="75" Background="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource Button_Remov_Row}" HorizontalAlignment="Right" Click="Button_Click" VerticalAlignment="Top" Margin="0,4">
+                <StackPanel   Orientation="Horizontal">
+                    <Image VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Images/Icon/Close1.png" Height="60" Width="60" ></Image>
+                </StackPanel>
+            </Button>
+            <Button x:Name="Otpravka_Kuxne_Copy" Style="{DynamicResource Button_Yellow}" Content="Настроить дату" FontSize="17" Height="30" Width="200" HorizontalAlignment="Right" Margin="0,-55,70,515" Click="Otpravka_Kuxne_Copy_Click"/>
+        </Grid>
+    </Grid>
+</Window>

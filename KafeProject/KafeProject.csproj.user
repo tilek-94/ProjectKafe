@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Styles_Folder\Style1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\All_Windows\Arhiv_Check.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\All_Windows\Calendar_Window.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\All_Windows\Chasy.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\All_Windows\Error.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\All_Windows\Klaviatura.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\All_Windows\Kolichestvo_Bluda.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\All_Windows\Parol_Window.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\All_Windows\Razdelit_Window.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\All_Windows\Sostavit_Otchet.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\All_Windows\Stol_Window.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\User_Menu\Komentary.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\User_Menu\NaKuxne.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\User_Menu\Oplatit.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\User_Menu\User_Check.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\User_Menu\User_Menu1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\User_Menu\User_Ofissiant.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\User_Menu\User_Window_Menu.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

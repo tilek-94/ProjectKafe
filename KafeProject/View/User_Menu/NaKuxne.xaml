@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="Kafe.User_Menu.NaKuxne"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kafe.User_Menu"
+        mc:Ignorable="d"
+        Height="550" Width="900" Background="{x:Null}" Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid Background="White" Margin="15,15,15,15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="15" Opacity="0.5" ShadowDepth="7" Direction="272"/>
+            </Grid.Effect>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <TextBlock Text="Кухня" FontSize="30" VerticalAlignment="Bottom" Width="100" HorizontalAlignment="Left" Margin="40,0"/>
+                    <TextBlock Text="Добавить коментарий" FontSize="20" VerticalAlignment="Bottom" Width="250" Height="55" HorizontalAlignment="Right" Margin="0,0" Foreground="#FF00A0B0" Padding="0,25"  MouseDown="TextBlock_MouseDown"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <DataGrid FontSize="12" Style="{DynamicResource grid_Kuxne}"
+                  BorderBrush="{x:Null}"
+                  ColumnHeaderStyle="{DynamicResource hederstyle_Kuxne}"
+                  HeadersVisibility="None"
+                  HorizontalScrollBarVisibility="Hidden"
+                  VerticalGridLinesBrush="{x:Null}"
+                  ItemsSource="{Binding}" Margin="35,0,35,0"
+                  VerticalScrollBarVisibility="Auto"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserResizeColumns="False"
+                  x:Name="Datagrid_Kuxne" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Наименование" Binding="{Binding marka}" Width="700" FontSize="15" Foreground="Black"/>
+                            <DataGridTemplateColumn Width="100" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button  Style="{DynamicResource Button_Remov_Row}" x:Name="x1" Cursor="Hand" VerticalAlignment="Center">
+                                            <Image Source="pack://application:,,,/Images/Icon/Remove.png" Width="45" Height="45"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
