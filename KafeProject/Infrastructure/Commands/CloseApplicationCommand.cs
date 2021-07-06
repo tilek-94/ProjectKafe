@@ -10,7 +10,7 @@ namespace CV19.Infrastructure.Commands
     internal class CloseApplicationCommand : Command
     {
         public override bool CanExecute(object parameter) => true;
-
+        //TEst
         public override void Execute(object parameter) => Application.Current.Shutdown();
     }
 }
