@@ -17,7 +17,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="235"/>
+                <RowDefinition Height="265"/>
             </Grid.RowDefinitions>
             <!--Header колонка-->
             <Grid Grid.Row="0" Background="#FF555555" Grid.ColumnSpan="2" Margin="0">
@@ -103,8 +103,8 @@
             <!--Официанттын панели-->
             <Grid Grid.Row="2" Grid.Column="1" Background="#FFF7F7F7">
                 <StackPanel Height="Auto" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
-                    <Button x:Name="Otpravit_Kuxne" Command="{Binding AllClosses_B}" CommandParameter="{Binding ElementName=Popup_Kuxne}" Style="{DynamicResource Button_Yellow}" Height="40"  Width="365" Margin="0,0,0,10" VerticalAlignment="Top" HorizontalAlignment="Center" Click="Otpravit_Kuxne_Click">
-                        <StackPanel  Height="37" Orientation="Horizontal"   Width="365" >
+                    <Button x:Name="Otpravit_Kuxne" Command="{Binding AllClosses_B}" CommandParameter="{Binding ElementName=Popup_Kuxne}" Style="{DynamicResource Button_Yellow}" Height="60"  Width="365" Margin="0,0,0,15" VerticalAlignment="Top" HorizontalAlignment="Center" Click="Otpravit_Kuxne_Click">
+                        <StackPanel  Height="60" Orientation="Horizontal"   Width="365" >
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="30,0" >
                                 <TextBlock Text="Отправить на кухню" FontSize="22"  Foreground="White" Height="28.263" ></TextBlock>
                             </StackPanel>
@@ -135,7 +135,7 @@
                             <DropShadowEffect BlurRadius="10" Opacity="0.7" ShadowDepth="2" Direction="310"/>
                         </Grid.Effect>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="100" Margin="0,0,3,12" Background="#FFF7F7F7">
-                            <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,25,0,0">
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0">
                                 <Grid.Effect>
                                     <DropShadowEffect BlurRadius="5" Opacity="0.4" ShadowDepth="5" Direction="272" RenderingBias="Quality"/>
                                 </Grid.Effect>
@@ -143,7 +143,7 @@
                                     <Image  Height="50" Width="50" Source="../Images/Icon/Black_Menu.png" VerticalAlignment="Center"/>
                                 </Button>
                             </Grid>
-                            <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,25,0,0">
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0">
                                 <Grid.Effect>
                                     <DropShadowEffect BlurRadius="5" Opacity="0.4" ShadowDepth="5" Direction="272" RenderingBias="Quality"/>
                                 </Grid.Effect>
@@ -151,7 +151,7 @@
                                     <Image  Height="50" Width="50" Source="../Images/Icon/Print1.png" VerticalAlignment="Center"/>
                                 </Button>
                             </Grid>
-                            <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,25,0,0">
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0">
                                 <Grid.Effect>
                                     <DropShadowEffect BlurRadius="5" Opacity="0.4" ShadowDepth="5" Direction="272" RenderingBias="Quality"/>
                                 </Grid.Effect>

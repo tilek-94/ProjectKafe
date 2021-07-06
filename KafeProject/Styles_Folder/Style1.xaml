@@ -7,7 +7,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border x:Name="buttonBorder" CornerRadius="10"
+                    <Border x:Name="buttonBorder" CornerRadius="3"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
                 Background="{TemplateBinding Background}"
@@ -129,7 +129,7 @@ Content="{TemplateBinding Content}" />
 
     <!--Официант панелиндеги кнопкаларына стиль-->
     <Style x:Key="Button_Icon" TargetType="Button">
-        <Setter Property="Height" Value="45"/>
+        <Setter Property="Height" Value="80"/>
         <Setter Property="Width" Value="60"/>
         <Setter Property="Template">
             <Setter.Value>
