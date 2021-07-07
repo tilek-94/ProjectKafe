@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\project\Project_Kafe\KafeProject\KafeProject\obj\Debug\net5.0-windows\
+X:\Project\kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\
 KafeProject
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-D:\project\Project_Kafe\KafeProject\KafeProject\App.xaml
-19-1430590590
+X:\Project\kafe\ProjectKafe\KafeProject\App.xaml
+19861363640
 
-26-681802888
-207-25787988
+26-180840792
+193-1891726104
 Styles_Folder\Style1.xaml;View\All_Windows\Arhiv_Check.xaml;View\All_Windows\Calendar_Window.xaml;View\All_Windows\Chasy.xaml;View\All_Windows\Error.xaml;View\All_Windows\Klaviatura.xaml;View\All_Windows\Kolichestvo_Bluda.xaml;View\All_Windows\Parol_Window.xaml;View\All_Windows\Razdelit_Window.xaml;View\All_Windows\Sostavit_Otchet.xaml;View\All_Windows\Stol_Window.xaml;View\MainWindow.xaml;View\User_Menu\Komentary.xaml;View\User_Menu\NaKuxne.xaml;View\User_Menu\Oplatit.xaml;View\User_Menu\User_Check.xaml;View\User_Menu\User_Menu1.xaml;View\User_Menu\User_Ofissiant.xaml;View\User_Menu\User_Window_Menu.xaml;
 
 True
