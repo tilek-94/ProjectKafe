@@ -7,7 +7,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border x:Name="buttonBorder" CornerRadius="10"
+                    <Border x:Name="buttonBorder" CornerRadius="3"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
                 Background="{TemplateBinding Background}"
@@ -129,7 +129,7 @@ Content="{TemplateBinding Content}" />
 
     <!--Официант панелиндеги кнопкаларына стиль-->
     <Style x:Key="Button_Icon" TargetType="Button">
-        <Setter Property="Height" Value="45"/>
+        <Setter Property="Height" Value="80"/>
         <Setter Property="Width" Value="60"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -674,7 +674,7 @@ Content="{TemplateBinding Content}" />
                 Height="{TemplateBinding Height}"
                 Width="{TemplateBinding Width}" >
                         <Grid VerticalAlignment="Center" Height="42" HorizontalAlignment="Center" Width="135">
-                            <Path x:Name="border" Data="M429.75,65 L430,104.75 544,105 559.5,84.75 542.5,65 z" Fill="#FF068D31"  Height="40"  Stretch="Fill" VerticalAlignment="Center" Width="135" HorizontalAlignment="Center" />
+                            <Path x:Name="border" Data="M429.75,65 L430,104.75 544,105 559.5,84.75 542.5,65 z" Fill="#FF068D31"  Height="55"  Stretch="Fill" VerticalAlignment="Center" Width="135" HorizontalAlignment="Center" />
                             <TextBlock Margin="3,0,5,0" Text="Все категории" Foreground="White" FontSize="18" TextAlignment="Center"   VerticalAlignment="Center"  HorizontalAlignment="Center"></TextBlock>
                         </Grid>
                         <ContentControl Margin="{TemplateBinding Padding}"
