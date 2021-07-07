@@ -147,3 +147,9 @@ X:\Project\kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.dll
 X:\Project\kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\ref\KafeProject.dll
 X:\Project\kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.pdb
 X:\Project\kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.genruntimeconfig.cache
+X:\Project\kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\MenuFood.g.cs
+X:\Project\kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\MenuStol.g.cs
+X:\Project\kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\MenuFood.baml
+X:\Project\kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\MenuStol.baml
+X:\Project\kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\MenuCheck.g.cs
+X:\Project\kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\MenuCheck.baml

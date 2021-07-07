@@ -101,7 +101,7 @@ namespace Kafe.All_Windows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/KafeProject;component/view/all_windows/razdelit_window.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/KafeProject;V1.0.0.0;component/view/all_windows/razdelit_window.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\All_Windows\Razdelit_Window.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

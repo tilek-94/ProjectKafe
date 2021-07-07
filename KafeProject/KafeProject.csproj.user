@@ -7,6 +7,17 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="View\All_Windows\MenuCheck.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\User_Menu\MenuFood.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\User_Menu\MenuStol.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Styles_Folder\Style1.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -28,6 +39,9 @@
     <Page Update="View\All_Windows\Kolichestvo_Bluda.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\All_Windows\MenuCheck.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\All_Windows\Parol_Window.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -44,6 +58,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\User_Menu\Komentary.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\User_Menu\MenuFood.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\User_Menu\MenuStol.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\User_Menu\NaKuxne.xaml">
