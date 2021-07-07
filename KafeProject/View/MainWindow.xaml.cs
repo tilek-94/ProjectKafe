@@ -7,7 +7,7 @@ using System.Windows.Media.Imaging;
 using System.Data;
 using Kafe.User_Menu;
 using Kafe.All_Windows;
-
+using KafeProject.Date;
 
 namespace KafeProject
 {
@@ -62,6 +62,10 @@ namespace KafeProject
             //dataadap.Fill(dta1);
             //dataGridView1.ItemsSource = dta1.DefaultView;
             //connection.Close();
+            using(ApplicationContext db=new ApplicationContext())
+            {
+
+            } 
         }
 
         private void Otpravit_Kuxne_Click(object sender, RoutedEventArgs e)

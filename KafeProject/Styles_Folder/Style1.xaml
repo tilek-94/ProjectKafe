@@ -546,29 +546,7 @@ Content="{TemplateBinding Content}" />
     <Style x:Key="Button_Increment" TargetType="Button">
         <Setter Property="Height" Value="100"/>
         <Setter Property="Width" Value="100"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Grid x:Name="buttonBorder"
-                            Background="{x:Null}"
-                            Width="{TemplateBinding Width}" >
-                        <Image x:Name="img" HorizontalAlignment="Center" Height="100"  VerticalAlignment="Center" Width="100" Source="/Kafe;component/Images/Icon/Up1.png"/>
-                        <ContentControl Margin="{TemplateBinding Padding}"
-                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-Content="{TemplateBinding Content}" />
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsPressed" Value="true">
-                            <Setter  TargetName="img" Property="Source" Value="/Kafe;component/Images/Icon/Up.png"/>
-                            <Setter  TargetName="img" Property="Height" Value="120"/>
-                            <Setter  TargetName="img" Property="Width" Value="120"/>
-                            <Setter TargetName="buttonBorder" Property="Background" Value="#3FE8E8E8"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        
     </Style>
 
 
@@ -576,30 +554,7 @@ Content="{TemplateBinding Content}" />
     <Style x:Key="Button_Decrement" TargetType="Button">
         <Setter Property="Height" Value="100"/>
         <Setter Property="Width" Value="100"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Grid x:Name="buttonBorder"
-                            Background="{x:Null}"
-                            Width="{TemplateBinding Width}" >
-                        <Image x:Name="img" HorizontalAlignment="Center" Height="100"  VerticalAlignment="Center" Width="100" Source="/Kafe;component/Images/Icon/Down1.png"/>
-                        <ContentControl Margin="{TemplateBinding Padding}"
-                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-Content="{TemplateBinding Content}" />
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsPressed" Value="true">
-                            <Setter  TargetName="img" Property="Source" Value="/Kafe;component/Images/Icon/Down.png"/>
-                            <Setter  TargetName="img" Property="Height" Value="120"/>
-                            <Setter  TargetName="img" Property="Width" Value="120"/>
-                            <Setter  TargetName="img" Property="Margin" Value="0,20,0,0"/>
-                            <Setter TargetName="buttonBorder" Property="Background" Value="#3FE8E8E8"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        
     </Style>
 
 

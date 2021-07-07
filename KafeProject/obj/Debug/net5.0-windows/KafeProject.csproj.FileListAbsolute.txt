@@ -72,3 +72,6 @@ D:\project\Project_Kafe\KafeProject\KafeProject\obj\Debug\net5.0-windows\View\Ma
 D:\project\Project_Kafe\KafeProject\KafeProject\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
 D:\project\Project_Kafe\KafeProject\KafeProject\obj\Debug\net5.0-windows\View\MainWindow.baml
 D:\project\Project_Kafe\KafeProject\KafeProject\obj\Debug\net5.0-windows\App.baml
+D:\project\Project_Kafe\KafeProject\KafeProject\obj\Debug\net5.0-windows\KafeProject.csprojAssemblyReference.cache
+D:\project\Project_Kafe\KafeProject\KafeProject\bin\Debug\net5.0-windows\Humanizer.dll
+D:\project\Project_Kafe\KafeProject\KafeProject\bin\Debug\net5.0-windows\Microsoft.EntityFrameworkCore.Design.dll
