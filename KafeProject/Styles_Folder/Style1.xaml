@@ -548,7 +548,7 @@ Content="{TemplateBinding Content}" />
         <Setter Property="Width" Value="100"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
+                <ControlTemplate TargetType="{x:Type Button}">
                     <Grid x:Name="buttonBorder"
                             Background="{x:Null}"
                             Width="{TemplateBinding Width}" >
@@ -560,7 +560,7 @@ Content="{TemplateBinding Content}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter  TargetName="img" Property="Source" Value="/Kafe;component/Images/Icon/Up.png"/>
+                            <Setter  TargetName="img" Property="Source" Value="/KafeProject;component/Images/Icon/Up.png"/>
                             <Setter  TargetName="img" Property="Height" Value="120"/>
                             <Setter  TargetName="img" Property="Width" Value="120"/>
                             <Setter TargetName="buttonBorder" Property="Background" Value="#3FE8E8E8"/>
@@ -590,7 +590,7 @@ Content="{TemplateBinding Content}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter  TargetName="img" Property="Source" Value="/Kafe;component/Images/Icon/Down.png"/>
+                            <Setter  TargetName="img" Property="Source" Value="/KafeProject;component/Images/Icon/Down.png"/>
                             <Setter  TargetName="img" Property="Height" Value="120"/>
                             <Setter  TargetName="img" Property="Width" Value="120"/>
                             <Setter  TargetName="img" Property="Margin" Value="0,20,0,0"/>
@@ -613,7 +613,7 @@ Content="{TemplateBinding Content}" />
                     <Grid x:Name="buttonBorder"
                             Background="{x:Null}"
                             Width="{TemplateBinding Width}" >
-                        <Image x:Name="img" HorizontalAlignment="Center" Height="100"  VerticalAlignment="Center" Width="100" Source="/Kafe;component/Images/Icon/Plus.png"/>
+                        <Image x:Name="img" HorizontalAlignment="Center" Height="100"  VerticalAlignment="Center" Width="100" Source="/KafeProject;component/Images/Icon/Plus.png"/>
                         <ContentControl Margin="{TemplateBinding Padding}"
                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -621,7 +621,7 @@ Content="{TemplateBinding Content}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter  TargetName="img" Property="Source" Value="/Kafe;component/Images/Icon/Plus1.png"/>
+                            <Setter  TargetName="img" Property="Source" Value="/KafeProject;component/Images/Icon/Plus1.png"/>
                             <Setter  TargetName="img" Property="Height" Value="120"/>
                             <Setter  TargetName="img" Property="Width" Value="120"/>
                             <Setter TargetName="buttonBorder" Property="Background" Value="#3FE8E8E8"/>
@@ -631,8 +631,7 @@ Content="{TemplateBinding Content}" />
             </Setter.Value>
         </Setter>
     </Style>
-
-
+    
     <Style x:Key="Button_Minus" TargetType="Button">
         <Setter Property="Height" Value="100"/>
         <Setter Property="Width" Value="100"/>
@@ -642,7 +641,7 @@ Content="{TemplateBinding Content}" />
                     <Grid x:Name="buttonBorder"
                             Background="{x:Null}"
                             Width="{TemplateBinding Width}" >
-                        <Image x:Name="img" HorizontalAlignment="Center" Height="100"  VerticalAlignment="Center" Width="100" Source="/Kafe;component/Images/Icon/Minus.png"/>
+                        <Image x:Name="img" HorizontalAlignment="Center" Height="100"  VerticalAlignment="Center" Width="100" Source="/KafeProject;component/Images/Icon/Minus.png"/>
                         <ContentControl Margin="{TemplateBinding Padding}"
                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
