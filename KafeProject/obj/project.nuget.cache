@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jxcuGR7YPI1iJ42JSJ2CSB3oQZ567KPDOK3q2CCvaQhnWA2kCST/XpyYpCta+MQBHXTOrHoZ2pfY/EsUhAq98w==",
+  "dgSpecHash": "Na8Cn1O7V3sQwxbWKP1xezXQKExB04HoqEcKuJJUnRlSI69AtPGORcIkvhioz4FX/H+UCRICWv41dq0qkCIbMA==",
   "success": true,
-  "projectFilePath": "D:\\project\\Project_Kafe\\KafeProject\\KafeProject\\KafeProject.csproj",
+  "projectFilePath": "D:\\project\\Project_Kafe\\2\\ProjectKafe\\KafeProject\\KafeProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

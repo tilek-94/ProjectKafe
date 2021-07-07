@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\project\\Project_Kafe\\KafeProject\\KafeProject\\KafeProject.csproj": {}
+    "D:\\project\\Project_Kafe\\2\\ProjectKafe\\KafeProject\\KafeProject.csproj": {}
   },
   "projects": {
-    "D:\\project\\Project_Kafe\\KafeProject\\KafeProject\\KafeProject.csproj": {
+    "D:\\project\\Project_Kafe\\2\\ProjectKafe\\KafeProject\\KafeProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\project\\Project_Kafe\\KafeProject\\KafeProject\\KafeProject.csproj",
+        "projectUniqueName": "D:\\project\\Project_Kafe\\2\\ProjectKafe\\KafeProject\\KafeProject.csproj",
         "projectName": "KafeProject",
-        "projectPath": "D:\\project\\Project_Kafe\\KafeProject\\KafeProject\\KafeProject.csproj",
+        "projectPath": "D:\\project\\Project_Kafe\\2\\ProjectKafe\\KafeProject\\KafeProject.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\project\\Project_Kafe\\KafeProject\\KafeProject\\obj\\",
+        "outputPath": "D:\\project\\Project_Kafe\\2\\ProjectKafe\\KafeProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
