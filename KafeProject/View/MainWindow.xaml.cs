@@ -9,6 +9,7 @@ using Kafe.User_Menu;
 using Kafe.All_Windows;
 using KafeProject.Date;
 using KafeProject.Models;
+using KafeProject.View.User_Menu;
 
 namespace KafeProject
 {
@@ -20,6 +21,7 @@ namespace KafeProject
         public MainWindow()
         {
             InitializeComponent();
+            GlawMenu.Children.Add(new MenuFood());
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

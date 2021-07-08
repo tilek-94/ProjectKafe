@@ -8,7 +8,7 @@ namespace KafeProject.Models
 {
     public class Food:StandartAbstract
     {
-       public decimal Price { get; set; }
+       public double Price { get; set; }
        public string Image { get; set; }
        public int ParentCategoryId { get; set; }
     }

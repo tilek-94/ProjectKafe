@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KafeProject.View.User_Menu" xmlns:local1="clr-namespace:Kafe.User_Menu"
+             xmlns:vm="clr-namespace:KafeProject.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="590" d:DesignWidth="1000">
+    <UserControl.DataContext>
+        <vm:MenuFoodViewModel/>
+    </UserControl.DataContext>
     <Grid x:Name="Prog_Border">
         <Grid Background="Gainsboro">
             <Grid.ColumnDefinitions>
@@ -63,18 +67,18 @@
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   CanUserResizeColumns="False"
-                  x:Name="dataGridView1" SelectionChanged="dataGridView1_SelectionChanged" >
+                  x:Name="dataGridView1" ItemsSource="{Binding FoodList, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="dataGridView1_SelectionChanged" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Наименование"  Width="250" FontSize="15" Foreground="Black"/>
-                        <DataGridTextColumn Header="Кол-во"  Width="50" FontSize="15" Foreground="Black"/>
-                        <DataGridTextColumn Header="Цена" Width="97" FontSize="15" Foreground="Black"/>
+                        <DataGridTextColumn Binding="{Binding Name}" Header="Наименование"  Width="250" FontSize="15" Foreground="Black"/>
+                        <DataGridTextColumn Binding="{Binding Count}" Header="Кол-во"  Width="50" FontSize="15" Foreground="Black"/>
+                        <DataGridTextColumn Binding="{Binding Price}" Header="Цена" Width="97" FontSize="15" Foreground="Black"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
             <!--Официанттын панели-->
             <Grid Grid.Row="1" Grid.Column="1" Background="#FFF7F7F7">
                 <StackPanel Height="Auto" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
-                    <Button x:Name="Otpravit_Kuxne" Command="{Binding AllClosses_B}" CommandParameter="{Binding ElementName=Popup_Kuxne}" Style="{DynamicResource Button_Yellow}" Height="60"  Width="365" Margin="0,0,0,15" VerticalAlignment="Top" HorizontalAlignment="Center" Click="Otpravit_Kuxne_Click">
+                    <Button x:Name="Otpravit_Kuxne" Command="{Binding TestCommand}" CommandParameter="{Binding ElementName=Button_Oplatit,Path=Content}" Style="{DynamicResource Button_Yellow}" Height="60"  Width="365" Margin="0,0,0,15" VerticalAlignment="Top" HorizontalAlignment="Center" Click="Otpravit_Kuxne_Click">
                         <StackPanel  Height="60" Orientation="Horizontal"   Width="365" >
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="30,0" >
                                 <TextBlock Text="Отправить на кухню" FontSize="22"  Foreground="White" Height="28.263" ></TextBlock>

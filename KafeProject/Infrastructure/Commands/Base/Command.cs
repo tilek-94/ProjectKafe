@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace CV19.Infrastructure.Commands.Base
+namespace KafeProject.Infrastructure.Commands.Base
 {
    internal abstract class Command : ICommand
     {

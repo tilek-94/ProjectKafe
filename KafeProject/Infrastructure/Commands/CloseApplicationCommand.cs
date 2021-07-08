@@ -1,13 +1,12 @@
-﻿using CV19.Infrastructure.Commands.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
 
-namespace CV19.Infrastructure.Commands
+namespace KafeProject.Infrastructure.Commands
 {
-    internal class CloseApplicationCommand : Command
+    internal class CloseApplicationCommand : Base.Command
     {
         public override bool CanExecute(object parameter) => true;
 

@@ -38,8 +38,8 @@ namespace Kafe.User_Menu
         {
             if (textboxx != null)
             {
-                Button button = sender as Button;
-                textboxx.Text += button.Content.ToString();
+                
+                textboxx.Text += (sender as Button).Content.ToString();
             }
 
         }

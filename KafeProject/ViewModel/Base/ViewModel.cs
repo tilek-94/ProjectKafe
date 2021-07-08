@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace CV19.ViewModels.Base
+namespace KafeProject.ViewModels.Base
 {
-  internal abstract  class ViewModel:INotifyPropertyChanged
+  internal abstract class ViewModel:INotifyPropertyChanged
     {
       public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName=null)

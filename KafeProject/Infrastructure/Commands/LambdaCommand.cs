@@ -1,11 +1,10 @@
-﻿using CV19.Infrastructure.Commands.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CV19.Infrastructure.Commands
+namespace KafeProject.Infrastructure.Commands
 {
-   internal class LambdaCommand:Command
+   internal class LambdaCommand:Base.Command
     {
         private readonly Action<object> _Execate;
         private readonly Func<object,bool> _CanExecate;
