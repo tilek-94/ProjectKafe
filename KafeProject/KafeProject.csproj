@@ -8,17 +8,9 @@
 
   <ItemGroup>
     <Compile Remove="Class\**" />
-    <Compile Remove="Data\**" />
-    <Compile Remove="Models\**" />
     <EmbeddedResource Remove="Class\**" />
-    <EmbeddedResource Remove="Data\**" />
-    <EmbeddedResource Remove="Models\**" />
     <None Remove="Class\**" />
-    <None Remove="Data\**" />
-    <None Remove="Models\**" />
     <Page Remove="Class\**" />
-    <Page Remove="Data\**" />
-    <Page Remove="Models\**" />
   </ItemGroup>
 
   <ItemGroup>
