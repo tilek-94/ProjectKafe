@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1B3DqP+6uvGC49l4/OhXkYSgrXdtn2j/5azas0cJlwWiAHnq9vsP9xYE7OZoWBEGc/h+Y6PUG2iDwPt8kmqJdA==",
+  "dgSpecHash": "GU9nVfNqlxkf8rRdmqZ1nV1bs2oaCQ2KQ3UmcU6+FW/icGg5AnAlX6ANgn4/WFN6rhU+uIP//s6+E0ivK5/LLQ==",
   "success": true,
-  "projectFilePath": "X:\\Project\\kafe\\ProjectKafe\\KafeProject\\KafeProject.csproj",
+  "projectFilePath": "D:\\project\\Project_Kafe\\ProjectKafe\\KafeProject\\KafeProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.7\\microsoft.entityframeworkcore.5.0.7.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.7\\microsoft.entityframeworkcore.abstractions.5.0.7.nupkg.sha512",
