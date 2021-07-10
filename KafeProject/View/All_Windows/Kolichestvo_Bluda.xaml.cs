@@ -9,21 +9,25 @@ namespace Kafe.All_Windows
     /// </summary>
     public partial class Kolichestvo_Bluda : Window
     {
-        public Kolichestvo_Bluda()
+        public Kolichestvo_Bluda(int userId, int tableId)
         {
             InitializeComponent();
         }
 
-        private void Plus_Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Button button = (Button)sender;
+            this.Close();
+        }
+
+        private void Plus_Button_Click_1(object sender, RoutedEventArgs e)
+        {
             int count = Convert.ToInt32(Text_Kolichestvo.Text);
-            if (button.Name == "Plus_Button")
+            if ((sender as Button).Name == "Plus_Button")
             {
                 count++;
                 Text_Kolichestvo.Text = count.ToString();
             }
-            else if (button.Name == "Minus_Button")
+            else if ((sender as Button).Name == "Minus_Button")
             {
                 if (count > 0)
                 {
@@ -31,30 +35,24 @@ namespace Kafe.All_Windows
                     Text_Kolichestvo.Text = count.ToString();
                 }
             }
-        }
-
-        private void Plus_Button_Copy(object sender, RoutedEventArgs e)
-        {
-            Button button = (Button)sender;
-            int count = Convert.ToInt32(Text_Kolichestvo.Text);
-            if (button.Name == "Plus_Button_Copy1")
+            else if ((sender as Button).Name == "Plus_Button_Copy1")
             {
-                count+=10;
+                count += 10;
                 Text_Kolichestvo.Text = count.ToString();
             }
-            else if (button.Name == "Minus_Button_Copy1")
+            else if ((sender as Button).Name == "Minus_Button_Copy1")
             {
                 if (count > 10)
                 {
-                    count-=10;
+                    count -= 10;
                     Text_Kolichestvo.Text = count.ToString();
                 }
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Close();
+
         }
     }
 }

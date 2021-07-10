@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KafeProject.View.User_Menu"
              mc:Ignorable="d" 
-             d:DesignHeight="590" d:DesignWidth="1000">
+             d:DesignHeight="590" d:DesignWidth="1000" Loaded="Window_Loaded">
     <Grid>
 
         <Grid.Background>
@@ -23,10 +23,13 @@
                 <ScrollViewer  CanContentScroll="False"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Visible" Grid.Row="0">
                     <WrapPanel x:Name="Stol_Category" Grid.Row="0" Margin="75,10,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                         <Button x:Name="Vse_Tovar" VerticalAlignment="Center" Height="60" HorizontalAlignment="Left" Margin="-10,0,11,0"  Width="50"  Style="{DynamicResource Button_Kategory_stol}"/>
+                        <!--<Button Style="{DynamicResource Button_Kategory1}" Content="xlfbnklxfnbjkfnbjcbncbn"/>-->
                     </WrapPanel>
                 </ScrollViewer>
                 <ScrollViewer  CanContentScroll="False"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" Grid.Row="1">
-                    <WrapPanel x:Name="Stol_Panel" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,0,10,0"/>
+                    <WrapPanel x:Name="Stol_Panel" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,0,10,0">
+                        <!--<Button Style="{DynamicResource Button_Dynamik_Stol}" Uid="-2" Content="xlfbnklxfnbjkfnbjcbncbn"/>-->
+                    </WrapPanel>
                 </ScrollViewer>
             </Grid>
         </Grid>
