@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kafe.User_Menu"
+        xmlns:vm="clr-namespace:KafeProject.ViewModel"
         mc:Ignorable="d"
         Height="550" Width="900" Background="{x:Null}" Loaded="UserControl_Loaded">
+    <UserControl.DataContext>
+        <vm:NaKuxneViewModel/>
+    </UserControl.DataContext>
     <Grid>
         <Grid Background="White" Margin="15,15,15,15">
             <Grid.RowDefinitions>
@@ -31,14 +35,16 @@
                   HeadersVisibility="None"
                   HorizontalScrollBarVisibility="Hidden"
                   VerticalGridLinesBrush="{x:Null}"
-                  ItemsSource="{Binding}" Margin="35,0,35,0"
+                  ItemsSource="{Binding FoodList}" Margin="35,0,35,0"
                   VerticalScrollBarVisibility="Auto"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   CanUserResizeColumns="False"
                   x:Name="Datagrid_Kuxne" >
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Наименование" Binding="{Binding marka}" Width="700" FontSize="15" Foreground="Black"/>
+                            <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="700" FontSize="15" Foreground="Black"/>
+                            <DataGridTextColumn Header="Количество" Binding="{Binding Count}" Width="700" FontSize="15" Foreground="Black"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Price}" Width="700" FontSize="15" Foreground="Black"/>
                             <DataGridTemplateColumn Width="100" >
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>

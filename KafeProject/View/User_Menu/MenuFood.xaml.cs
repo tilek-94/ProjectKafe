@@ -1,4 +1,5 @@
-﻿using Kafe.All_Windows;
+﻿using KafeProject.User_Menu;
+using KafeProject.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -92,7 +93,7 @@ namespace KafeProject.View.User_Menu
 
         private void dataGridView1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try
+            /*try
             {
                 DataGrid dt = sender as DataGrid;
                 DataRowView selection = dt.SelectedItem as DataRowView;
@@ -108,7 +109,7 @@ namespace KafeProject.View.User_Menu
             catch (Exception)
             {
                 throw;
-            }
+            }*/
         }
 
         private void Vse_Tovar_Click(object sender, RoutedEventArgs e)
@@ -156,9 +157,15 @@ namespace KafeProject.View.User_Menu
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        {/*
             Parol_Window parol = new Parol_Window();
-            parol.Show();       
+            parol.Show();  */     
+        }
+
+        private void OpenOplatitWindow(object sender, RoutedEventArgs e)
+        {
+            Oplatit oplatitwindow = new Oplatit(ItogSumma.Text);
+            oplatitwindow.Show();
         }
     }
 }

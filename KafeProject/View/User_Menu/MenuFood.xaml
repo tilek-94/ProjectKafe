@@ -78,7 +78,7 @@
             <!--Официанттын панели-->
             <Grid Grid.Row="1" Grid.Column="1" Background="#FFF7F7F7">
                 <StackPanel Height="Auto" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
-                    <Button x:Name="Otpravit_Kuxne" Command="{Binding TestCommand}" CommandParameter="{Binding ElementName=Button_Oplatit,Path=Content}" Style="{DynamicResource Button_Yellow}" Height="60"  Width="365" Margin="0,0,0,15" VerticalAlignment="Top" HorizontalAlignment="Center" Click="Otpravit_Kuxne_Click">
+                    <Button x:Name="Otpravit_Kuxne" Command="{Binding SendCheckCommand}" Style="{DynamicResource Button_Yellow}" Height="60"  Width="365" Margin="0,0,0,15" VerticalAlignment="Top" HorizontalAlignment="Center" Click="Otpravit_Kuxne_Click">
                         <StackPanel  Height="60" Orientation="Horizontal"   Width="365" >
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="30,0" >
                                 <TextBlock Text="Отправить на кухню" FontSize="22"  Foreground="White" Height="28.263" ></TextBlock>
@@ -92,7 +92,7 @@
                     <StackPanel  VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="35" Margin="10,0,0,0" >
                         <Grid>
                             <TextBlock Text="Итого" FontSize="17" VerticalAlignment="Center" Margin="13,0" HorizontalAlignment="Left"></TextBlock>
-                            <TextBlock Text="0.00сом" FontSize="17" VerticalAlignment="Center" Margin="60,0,80,0" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{Binding ItogSum}" x:Name="ItogSumma" FontSize="17" VerticalAlignment="Center" Margin="60,0,80,0" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
                             <TextBlock Text="К оплате" FontSize="17" VerticalAlignment="Center" Margin="0,0,20,0" HorizontalAlignment="Right" FontWeight="Bold"></TextBlock>
                         </Grid>
                     </StackPanel>
@@ -101,7 +101,7 @@
                         <Grid>
                             <TextBlock Text="Обслуживание" FontSize="17" VerticalAlignment="Center" Margin="13,0" HorizontalAlignment="Left"></TextBlock>
                             <TextBlock Text="-%" FontSize="17" VerticalAlignment="Center" Margin="60,0,80,0" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
-                            <TextBlock Text="0.00сом" FontSize="17" VerticalAlignment="Center"  HorizontalAlignment="Right" FontWeight="Bold" Margin="0,0,27,0"></TextBlock>
+                            <TextBlock Text="{Binding ObsSum}" FontSize="17" VerticalAlignment="Center"  HorizontalAlignment="Right" FontWeight="Bold" Margin="0,0,27,0"></TextBlock>
                         </Grid>
                     </StackPanel>
                     <!--Печать просент оплатить панели-->
@@ -122,7 +122,7 @@
                                 <Grid.Effect>
                                     <DropShadowEffect BlurRadius="5" Opacity="0.4" ShadowDepth="5" Direction="272" RenderingBias="Quality"/>
                                 </Grid.Effect>
-                                <Button Style="{DynamicResource Button_Icon}" >
+                                <Button Style="{DynamicResource Button_Icon}" Command="{Binding CheckPrintCommand}" >
                                     <Image  Height="50" Width="50" Source="/Images/Icon/Print1.png" VerticalAlignment="Center"/>
                                 </Button>
                             </Grid>
@@ -134,7 +134,7 @@
                                     <Image  Height="40" Width="40" Source="/Images/Icon/Percent.png" VerticalAlignment="Center"/>
                                 </Button>
                             </Grid>
-                            <Button x:Name="Button_Oplatit" Command="{Binding Oplatit_B}" Style="{DynamicResource Button_Yellow}" Height="80" FontSize="23" Width="190" Margin="7,0,100,0" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Оплатить" />
+                            <Button x:Name="Button_Oplatit" Click="OpenOplatitWindow"  Style="{DynamicResource Button_Yellow}" Height="80" FontSize="23" Width="190" Margin="7,0,100,0" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Оплатить" />
                         </StackPanel>
                     </Grid>
                 </StackPanel>

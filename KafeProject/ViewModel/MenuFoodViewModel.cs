@@ -10,17 +10,50 @@ namespace KafeProject.ViewModel
 {
     class MenuFoodViewModel  : ViewModels.Base.ViewModel
     {
-        private ObservableCollection<MenuFoodParams> _FoodList = new ObservableCollection<MenuFoodParams>();        public ObservableCollection<MenuFoodParams> FoodList
+
+        #region Prop
+
+        private ObservableCollection<MenuFoodParams> _FoodList = new ObservableCollection<MenuFoodParams>();
+        public ObservableCollection<MenuFoodParams> FoodList
         {
             get { return _FoodList; }
             set { Set(ref _FoodList, value); }
         }
 
+        private double _ItogSum = 0.00;
+        public double ItogSum
+        {
+            get { return _ItogSum; }
+            set { Set(ref _ItogSum, value); }
+        }
+
+        private double _ObsSum = 0.00;
+        public double ObsSum
+        {
+            get { return _ObsSum; }
+            set { Set(ref _ObsSum, value); }
+        }
+
+        private double _PercentSum = 10.00;
+        public double PercentSum
+        {
+            get { return _PercentSum; }
+            set { Set(ref _PercentSum, value); }
+        }
+
+
+        #endregion
+
         public MenuFoodViewModel()
         {
+           // string checkStatus;
+            ObsSum = 0.00;
+            ItogSum = 0.00;
             FoodList = new ObservableCollection<MenuFoodParams>();
             using (ApplicationContext db = new ApplicationContext())
             {
+               // checkStatus = db.Checks.Where(b => b.TableId == 1).OrderBy(t => t.Id).LastOrDefault().Status.ToString() ?? "";
+
                 var ord = db.Orders.Where(d => d.CheckId == 1);
 
                 var result = ord.Join(db.Foods,
@@ -30,24 +63,58 @@ namespace KafeProject.ViewModel
 
                 foreach (var s in result)
                 {
+                    ItogSum += s.Count * s.Price;
+                    ObsSum += ((s.Count * s.Price) / 10) * (PercentSum/10);
                     FoodList.Add(new MenuFoodParams { Name = s.Name, Count = s.Count, Price = s.Count * s.Price });
+                    NaKuxneViewModel._FoodList.Add(new MenuFoodParams { Name = s.Name, Count = s.Count, Price = s.Count * s.Price }); ;
                 }
+                ItogSum += ObsSum;
+                //string checkStatus = db.Checks.Where(b => b.TableId == t.Id).OrderBy(t => t.Id).LastOrDefault().Status ?? "";
             }
+           // MessageBox.Show(checkStatus);
         }
+        #region Commands
 
-        private LambdaCommand _TestCommand;
-        public LambdaCommand TestCommand =>
-            _TestCommand ?? (_TestCommand = new LambdaCommand(ExecuteCommandName, CanExecuteCommandName));
+        #region Check
 
-        void ExecuteCommandName(object p)
+        private LambdaCommand _SendCheckCommand;
+        public LambdaCommand SendCheckCommand =>
+            _SendCheckCommand ?? (_SendCheckCommand = new LambdaCommand(ExecuteSendCheckCommand, CanExecuteSendCheckCommand));
+
+        void ExecuteSendCheckCommand(object p)
         {
             Application.Current.Shutdown();
         }
-        
-        bool CanExecuteCommandName(object p)
+
+        bool CanExecuteSendCheckCommand(object p)
         {
             return true;
 
         }
+
+
+        #endregion
+
+        #region Send
+
+        private LambdaCommand _CheckPrintCommand;
+        public LambdaCommand CheckPrintCommand =>
+            _CheckPrintCommand ?? (_CheckPrintCommand = new LambdaCommand(ExecuteCheckPrintCommand, CanExecuteCheckPrintCommand));
+
+        void ExecuteCheckPrintCommand(object p)
+        {
+
+        }
+
+        bool CanExecuteCheckPrintCommand(object p)
+        {
+            return true;
+        }
+
+        #endregion
+
+        #endregion
+
+
     }
 }

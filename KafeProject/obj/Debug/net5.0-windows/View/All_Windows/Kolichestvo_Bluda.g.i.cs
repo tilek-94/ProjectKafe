@@ -100,7 +100,7 @@ namespace Kafe.All_Windows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/KafeProject;component/view/all_windows/kolichestvo_bluda.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/KafeProject;V1.0.0.0;component/view/all_windows/kolichestvo_bluda.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\All_Windows\Kolichestvo_Bluda.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

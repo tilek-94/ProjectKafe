@@ -1,4 +1,4 @@
-﻿<Window x:Class="Kafe.User_Menu.Oplatit"
+﻿<Window x:Class="KafeProject.User_Menu.Oplatit"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,6 @@
         mc:Ignorable="d"
               Height="750" Width="1300" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
-        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="750"/>
             <ColumnDefinition Width="*"/>
@@ -15,21 +14,21 @@
             <StackPanel Width="600" Height="550">
                 <Grid Height="100">
                     <TextBlock Text="К оплате" FontSize="30" FontWeight="Bold"  HorizontalAlignment="Left" Height="50" VerticalAlignment="Top"></TextBlock>
-                    <TextBlock x:Name="K_Oplate" Text="5000" FontSize="30" FontWeight="Bold"  HorizontalAlignment="Right" Height="50" VerticalAlignment="Top" Margin="0,0,50,0"></TextBlock>
+                    <TextBlock x:Name="K_Oplate" FontSize="30" FontWeight="Bold"  HorizontalAlignment="Right" Height="50" VerticalAlignment="Top" Margin="0,0,50,0"></TextBlock>
                     <TextBlock Text="Сом" FontSize="20" FontWeight="Bold"  HorizontalAlignment="Right" Height="50" VerticalAlignment="Top" Margin="0,10,0,0"></TextBlock>
                 </Grid>
                 <StackPanel x:Name="Oplatit1" Visibility="Visible">
                     <Grid Height="60">
                         <TextBlock Text="Наличными" FontSize="25" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"></TextBlock>
-                        <TextBox Text="{Binding TextBox_1,UpdateSourceTrigger=PropertyChanged}" FontSize="25" HorizontalAlignment="Right" Height="40" VerticalAlignment="Top" Width="286" HorizontalContentAlignment="Right"  BorderThickness="0,0,0,3"  BorderBrush="#FFBDBDBD" PreviewMouseDown="TextBox_MouseDoubleClick" TextChanged="TextBox_TextChanged"></TextBox>
+                        <TextBox Text="0" x:Name="NalichText" FontSize="25" HorizontalAlignment="Right" Height="40" VerticalAlignment="Top" Width="286" HorizontalContentAlignment="Right"  BorderThickness="0,0,0,3"  BorderBrush="#FFBDBDBD" PreviewMouseDown="TextBox_MouseDoubleClick" TextChanged="TextBox_TextChanged"></TextBox>
                     </Grid>
                     <Grid Height="60">
                         <TextBlock Text="Карточкой" FontSize="25" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"></TextBlock>
-                        <TextBox Text="{Binding TextBox_2,UpdateSourceTrigger=PropertyChanged}" FontSize="25"  HorizontalAlignment="Right" Height="40" VerticalAlignment="Top" Width="286" HorizontalContentAlignment="Right"  BorderThickness="0,0,0,3"  BorderBrush="#FFBDBDBD" PreviewMouseDown="TextBox_MouseDoubleClick" TextChanged="TextBox_TextChanged"></TextBox>
+                        <TextBox Text="0" x:Name="CardText" FontSize="25"  HorizontalAlignment="Right" Height="40" VerticalAlignment="Top" Width="286" HorizontalContentAlignment="Right"  BorderThickness="0,0,0,3"  BorderBrush="#FFBDBDBD" PreviewMouseDown="TextBox_MouseDoubleClick" TextChanged="TextBox_TextChanged"></TextBox>
                     </Grid>
                     <Grid Height="60">
                         <TextBlock Text="Сдача" FontSize="25" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"></TextBlock>
-                        <TextBox x:Name="Sdacha" Text="{Binding TextBox_3,UpdateSourceTrigger=PropertyChanged}" FontSize="25"  HorizontalAlignment="Right" Height="40" VerticalAlignment="Top" Width="286" HorizontalContentAlignment="Right"  BorderThickness="0,0,0,3"  BorderBrush="#FFBDBDBD" IsReadOnly="True"></TextBox>
+                        <TextBox x:Name="Sdacha" FontSize="25"  HorizontalAlignment="Right" Height="40" VerticalAlignment="Top" Width="286" HorizontalContentAlignment="Right"  BorderThickness="0,0,0,3"  BorderBrush="#FFBDBDBD" IsReadOnly="True"></TextBox>
                     </Grid>
                 </StackPanel>
                 <StackPanel x:Name="Bez_Oplatit" Visibility="Collapsed">
@@ -47,14 +46,14 @@
                     <TextBlock Text="Закрыть без оплаты" FontSize="25" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"></TextBlock>
                     <ToggleButton x:Name="Zakryt_Oplaty" Style="{DynamicResource Togle_Button}" HorizontalAlignment="Right"  VerticalAlignment="Center"  HorizontalContentAlignment="Right" Click="Zakryt_Oplaty_Click" />
                 </Grid>
-                <Grid Height="90">
-                    <TextBlock Text="Напечатать чек" FontSize="25" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"></TextBlock>
-                    <ToggleButton Style="{DynamicResource Togle_Button}" HorizontalAlignment="Right"  VerticalAlignment="Center"  HorizontalContentAlignment="Right" IsChecked="True"/>
-                </Grid>
+                <!--<Grid Height="90">
+                    --><!--<TextBlock Text="Напечатать чек" FontSize="25" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"></TextBlock>
+                    <ToggleButton Style="{DynamicResource Togle_Button}" HorizontalAlignment="Right"  VerticalAlignment="Center"  HorizontalContentAlignment="Right" IsChecked="True"/>--><!--
+                </Grid>-->
                 <Grid Height="80" VerticalAlignment="Bottom" HorizontalAlignment="Right">
                     <StackPanel Orientation="Horizontal" Margin="0,0">
                         <Button x:Name="Otmena" Style="{DynamicResource Button_B}" Content="Отмена" FontSize="17" Height="40" Width="250" Margin="0,0,5,0" Click="Otmena_Click"/>
-                        <Button Style="{DynamicResource Button_Yellow}" Content="Отправить" FontSize="17" Height="40" Width="250" />
+                        <Button Style="{DynamicResource Button_Yellow}" Click="Zakryt_Oplaty_Click" Content="Оплатить" FontSize="17" Height="40" Width="250" />
                     </StackPanel>
                 </Grid>
             </StackPanel>

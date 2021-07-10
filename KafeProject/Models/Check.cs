@@ -15,8 +15,7 @@ namespace KafeProject.Models
         public DateTime DateTimeCheck { get; set; }
         public int WaiterId { get; set; }
         public Waiter waiter { get; set; }
-
-        public string Status { get; set; }
+        public int Status { get; set; }
 
 
     }

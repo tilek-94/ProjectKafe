@@ -52,7 +52,7 @@ namespace Kafe.User_Menu {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/KafeProject;component/view/user_menu/user_menu1.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/KafeProject;V1.0.0.0;component/view/user_menu/user_menu1.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\User_Menu\User_Menu1.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
