@@ -11,7 +11,7 @@ namespace KafeProject.Models
         public string Pass { get; set; }
         public string Tel { get; set; }
         public string address { get; set; }
-
+       // public string Surname { get; set; }
 
     }
 }

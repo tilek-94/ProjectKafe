@@ -21,21 +21,22 @@ namespace KafeProject
         public MainWindow()
         {
             InitializeComponent();
-            GlawMenu.Children.Add(new MenuFood());
+            MenuStol menuFood = new MenuStol();
+            GlawMenu.Children.Add(menuFood);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            using(ApplicationContext db=new ApplicationContext())
-            {
-                Options op = new Options()
-                {
-                    Key="Test1",
-                    Value="test2"
-                };
-                db.Options.Add(op);
-                db.SaveChanges();
-            }
+            //using(ApplicationContext db=new ApplicationContext())
+            //{
+            //    Options op = new Options()
+            //    {
+            //        Key="Test1",
+            //        Value="test2"
+            //    };
+            //    db.Options.Add(op);
+            //    db.SaveChanges();
+            //}
         }
     }
 }

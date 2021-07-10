@@ -16,7 +16,7 @@ namespace KafeProject.Date
        public DbSet<Check> Checks { get; set; }
        public DbSet<Order> Orders { get; set; }
        public DbSet<Options> Options { get; set; }
-      
+
         public ApplicationContext()
         {
             Database.EnsureCreated();
