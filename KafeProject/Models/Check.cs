@@ -9,15 +9,14 @@ namespace KafeProject.Models
     public class Check
     {
         public int Id { get; set; }
-        public int CheckCount { get; set;}
+        public int CheckCount { get; set; }
         public int TableId { get; set; }
         public Table table { get; set; }
         public DateTime DateTimeCheck { get; set; }
         public int WaiterId { get; set; }
         public Waiter waiter { get; set; }
-
-        public string Status { get; set; }
-
+        public int Status { get; set; }
+        public int GuestsCount { get; set; }
 
     }
 }

@@ -22,13 +22,13 @@
             <TextBlock Text="Количество" FontSize="25" VerticalAlignment="Bottom" Width="200" HorizontalAlignment="Left" Margin="30,0,0,320"/>
             <TextBlock x:Name="Text_Kolichestvo" Text="0" FontSize="60" VerticalAlignment="Bottom" Width="200" HorizontalAlignment="Left" Margin="285,0,0,180" TextAlignment="Center"/>
             <StackPanel Margin="64,0,64,15" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                <Button  Style="{DynamicResource Button_Yellow}" Height="60"  Width="320" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Принять" FontSize="22" Margin="0,0,3,0" Command="{Binding Path=Priniyt}" CommandParameter="{Binding ElementName=Kol_Bluda}"/>
-                <Button  Style="{DynamicResource Button_B}" Height="60"  Width="320" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Отмена" FontSize="22" Command="{Binding Path=Otmena}" CommandParameter="{Binding ElementName=Kol_Bluda}"/>
+                <Button  Style="{DynamicResource Button_Yellow}" Height="60"  Width="320" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Принять" FontSize="22" Margin="0,0,3,0" Click="Button_Click_1"/>
+                <Button  Style="{DynamicResource Button_B}" Height="60"  Width="320" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Отмена" FontSize="22" Click="Button_Click" />
             </StackPanel>
-            <Button x:Name="Plus_Button"  Style="{DynamicResource Button_Plus}" Height="78"  Width="78" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="22" Margin="460,112,232,0" Command="{Binding Plus}" CommandParameter="{Binding ElementName=Text_Kolichestvo}"/>
-            <Button x:Name="Minus_Button"  Style="{DynamicResource Button_Minus}" Height="78"  Width="78" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="22" Margin="227,112,465,0" Command="{Binding Minus}" CommandParameter="{Binding ElementName=Text_Kolichestvo}"/>
-            <Button x:Name="Plus_Button_Copy1"  Style="{DynamicResource Menu_Button}" Content="+10" Height="78"  Width="78" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30" Margin="682,10,10,0" Command="{Binding Plus10}" CommandParameter="{Binding ElementName=Text_Kolichestvo}"/>
-            <Button x:Name="Minus_Button_Copy1"  Style="{DynamicResource Menu_Button}" Content="-10" Height="78"  Width="78" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30" Margin="599,10,93,0" Command="{Binding Minus10}" CommandParameter="{Binding ElementName=Text_Kolichestvo}"/>
+            <Button x:Name="Plus_Button"  Style="{DynamicResource Button_Plus}" Height="78"  Width="78" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="22" Margin="460,112,232,0"  Click="Plus_Button_Click_1"/>
+            <Button x:Name="Minus_Button"  Style="{DynamicResource Button_Minus}" Height="78"  Width="78" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="22" Margin="227,112,465,0"  Click="Plus_Button_Click_1" />
+            <Button x:Name="Plus_Button_Copy1"  Style="{DynamicResource Menu_Button}" Content="+10" Height="78"  Width="78" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30" Margin="682,10,10,0"  Click="Plus_Button_Click_1"/>
+            <Button x:Name="Minus_Button_Copy1"  Style="{DynamicResource Menu_Button}" Content="-10" Height="78"  Width="78" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30" Margin="599,10,93,0"  Click="Plus_Button_Click_1"/>
 
         </Grid>
     </Grid>
