@@ -33,13 +33,18 @@
                     <Button x:Name="Ofissiant_Button" Command="{Binding AllClosses_B}" CommandParameter="{Binding ElementName=Popup_Ofissiant}" Width="60" Style="{DynamicResource Heyder_Butoon}" HorizontalAlignment="Center">
                         <Image x:Name="image" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Images/Icon/menu.png" Height="22" Width="22" Margin="8,0"  ></Image>
                     </Button>
-                    <Button  MaxWidth="120" Command="{Binding Button_Cl}" Style="{DynamicResource Heyder_Butoon}" HorizontalAlignment="Center" MinWidth="60">
+                    <Button  MaxWidth="120" Click="Button_Click_1" 
+                             
+                             Style="{DynamicResource Heyder_Butoon}" HorizontalAlignment="Center" MinWidth="60">
                         <StackPanel   Orientation="Horizontal"   Margin="5,0">
                             <Label x:Name="WorkerName" Content="{Binding OffName, UpdateSourceTrigger=PropertyChanged}" MaxWidth="85" FontSize="18"  Foreground="White" VerticalAlignment="Center"  HorizontalAlignment="Center"></Label>
                             <Image VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Images/Icon/lock.png" Height="40" Width="40" ></Image>
                         </StackPanel>
                     </Button>
-                    <Button  Width="75" Command="{Binding Button_Cl}" Style="{DynamicResource Heyder_Butoon}" HorizontalAlignment="Center">
+                    <Button  Width="75" Command="{Binding Button_Cl}"
+                             Style="{DynamicResource Heyder_Butoon}"
+                             Click="Button_Click"
+                             HorizontalAlignment="Center">
                         <StackPanel   Orientation="Horizontal">
                             <Image VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Images/Icon/Close1.png" Height="60" Width="60" ></Image>
                         </StackPanel>

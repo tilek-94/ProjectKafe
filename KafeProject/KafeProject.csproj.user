@@ -10,6 +10,9 @@
     <Compile Update="View\All_Windows\MenuCheck.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Components\CompPasswordBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\User_Menu\MenuFood.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -52,6 +55,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\All_Windows\Stol_Window.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Components\CompPasswordBox.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\MainWindow.xaml">

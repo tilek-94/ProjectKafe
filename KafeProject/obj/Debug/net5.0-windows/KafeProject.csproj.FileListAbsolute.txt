@@ -175,7 +175,6 @@ D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\Microso
 D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\MySqlConnector.dll
 D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\Pomelo.EntityFrameworkCore.MySql.dll
 D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\System.Diagnostics.DiagnosticSource.dll
-D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.csprojAssemblyReference.cache
 D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Style1.baml
 D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Kolichestvo_Bluda.baml
 D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Stol_Window.baml
@@ -234,3 +233,6 @@ D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafePro
 D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\ref\KafeProject.dll
 D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.pdb
 D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.genruntimeconfig.cache
+D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\Components\CompPasswordBox.g.cs
+D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\Components\CompPasswordBox.baml
+D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.csprojAssemblyReference.cache
