@@ -1,5 +1,6 @@
-﻿using Kafe.All_Windows;
-using KafeProject.Date;
+﻿using KafeProject.Date;
+using KafeProject.View.All_Windows;
+using KafeProject.View.User_Menu;
 using KafeProject.Models;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Kafe.All_Windows;
 
 namespace KafeProject.View.User_Menu
 {
@@ -97,7 +99,7 @@ namespace KafeProject.View.User_Menu
                         ifItIsHim = true;
                     else
                         ifItIsHim = false;
-                    if(g!=0&&g!=null)
+                    if(g!=0 && g!=null)
                         return true;
                     return false;
                 }

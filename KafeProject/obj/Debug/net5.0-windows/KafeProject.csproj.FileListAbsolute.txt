@@ -315,3 +315,39 @@ D:\проекты\кафе 06 07 2021\08 07 2021\KafeProject\obj\Debug\net5.0-wi
 D:\проекты\кафе 06 07 2021\08 07 2021\KafeProject\obj\Debug\net5.0-windows\ref\KafeProject.dll
 D:\проекты\кафе 06 07 2021\08 07 2021\KafeProject\obj\Debug\net5.0-windows\KafeProject.pdb
 D:\проекты\кафе 06 07 2021\08 07 2021\KafeProject\obj\Debug\net5.0-windows\KafeProject.genruntimeconfig.cache
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.csprojAssemblyReference.cache
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Style1.baml
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Kolichestvo_Bluda.baml
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Stol_Window.baml
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\Oplatit.baml
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\User_Check.baml
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\User_Menu1.baml
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\User_Ofissiant.baml
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Arhiv_Check.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Calendar_Window.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Chasy.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Error.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Klaviatura.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Kolichestvo_Bluda.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\MenuCheck.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Parol_Window.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Razdelit_Window.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Sostavit_Otchet.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Stol_Window.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\MainWindow.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\Komentary.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\MenuFood.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\MenuStol.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\NaKuxne.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\Oplatit.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\User_Check.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\User_Menu1.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\User_Ofissiant.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\User_Window_Menu.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\App.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject_MarkupCompile.cache
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject_MarkupCompile.lref
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.dll
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\ref\KafeProject.dll
+D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.pdb
