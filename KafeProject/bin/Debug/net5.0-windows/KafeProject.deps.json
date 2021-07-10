@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v5.0": {
       "KafeProject/1.0.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.7",
           "Pomelo.EntityFrameworkCore.MySql": "5.0.1"
         },
         "runtime": {

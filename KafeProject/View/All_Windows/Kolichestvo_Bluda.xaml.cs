@@ -9,7 +9,7 @@ namespace Kafe.All_Windows
     /// </summary>
     public partial class Kolichestvo_Bluda : Window
     {
-        public Kolichestvo_Bluda(int userId, int tableId)
+        public Kolichestvo_Bluda(int userId=0, int tableId=0)
         {
             InitializeComponent();
         }

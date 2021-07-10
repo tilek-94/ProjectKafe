@@ -5,10 +5,11 @@ using System.Windows;
 using KafeProject.Date;
 using KafeProject.Infrastructure.Commands;
 using KafeProject.Models;
+using KafeProject.ViewModels.Base;
 
-namespace KafeProject.ViewModel
+namespace KafeProject.ViewModels
 {
-    class MenuFoodViewModel  : ViewModels.Base.ViewModel
+    class MenuFoodViewModel  : ViewModel
     {
 
         #region Prop

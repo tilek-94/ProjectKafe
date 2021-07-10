@@ -1,9 +1,11 @@
 ﻿
+using KafeProject.Date;
+using KafeProject.ViewModels;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Kafe.All_Windows
+namespace KafeProject.View.All_Windows
 {
     /// <summary>
     /// Логика взаимодействия для Parol_Window.xaml
@@ -14,28 +16,36 @@ namespace Kafe.All_Windows
         public Parol_Window()
         {
             InitializeComponent();
+            PayWindowVM vm = new PayWindowVM();
+            this.DataContext = vm;
+            if (vm.CloseAction == null)
+                vm.CloseAction = new Action(this.Close);
+
+            
         }
+
+        
         //vv
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
+           /* Button button = sender as Button;
             if (Password_text.Password.Length < 4)
             {
                 Password_text.Password += button.Content.ToString();
-            }
+            }*/
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (Password_text.Password != String.Empty)
+            /*if (Password_text.Password != String.Empty)
             {
                 Password_text.Password = Password_text.Password.Substring(0, Password_text.Password.Length - 1);
-            }
+            }*/
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Password_text.Password = String.Empty;
+           /* Password_text.Password = String.Empty;*/
         }
 
         private void Password_text_PasswordChanged(object sender, RoutedEventArgs e)

@@ -351,3 +351,5 @@ D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject_MarkupCom
 D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.dll
 D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\ref\KafeProject.dll
 D:\C# NOW\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.pdb
+D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\Components\CompPasswordBox.g.cs
+D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\Components\CompPasswordBox.baml

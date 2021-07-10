@@ -1,14 +1,15 @@
-﻿<Window x:Class="Kafe.All_Windows.Parol_Window"
-        x:Name="Par_Window"
+﻿<Window x:Class="KafeProject.View.All_Windows.Parol_Window"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-       
-        xmlns:local="clr-namespace:Kafe.All_Windows"
+       xmlns:local="clr-namespace:KafeProject.ViewModels"
+       xmlns:comp="clr-namespace:KafeProject.View.Components"
         mc:Ignorable="d"
        Height="650" Width="1000"  WindowStyle="None" WindowStartupLocation="CenterScreen" WindowState="Maximized">
-   
+    <Window.DataContext>
+        <local:PayWindowVM/>
+    </Window.DataContext>
     <Grid>
         <Grid>
             <Grid>
@@ -25,21 +26,77 @@
                         <Setter Property="Opacity" Value="0.4" />
                     </Style>
                 </Grid.Resources>
-                <StackPanel FocusManager.FocusedElement="{Binding ElementName=Password_text}">
-                    <PasswordBox x:Name="Password_text" MaxLength="4" Height="70" HorizontalAlignment="Stretch" PasswordChar="*" FontSize="50"  HorizontalContentAlignment="Center" Padding="0,15" PasswordChanged="Password_text_PasswordChanged"/>
+                <StackPanel >
+                    <TextBlock Background="White" 
+                               Foreground="Black"
+                               FontSize="80"
+                               Height="80"
+                               TextAlignment="Center"
+                               Text="{Binding Password2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                             >
+                        
+                    </TextBlock>
+                    <TextBox 
+                        Visibility="Collapsed"
+                       FontSize="50"
+                        Height="70" 
+                        Text="{Binding Password,
+                        UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                        HorizontalContentAlignment="Center"
+                                />
                     <UniformGrid Rows="4" Columns="3" Height="440" Margin="0,10,0,10">
-                        <Button HorizontalAlignment="Left" Content="1"  Click="Button_Click"/>
-                        <Button HorizontalAlignment="Center" Content="2" Click="Button_Click"/>
-                        <Button  HorizontalAlignment="Right" Content="3"   Click="Button_Click"/>
-                        <Button  HorizontalAlignment="Left" Content="4"  Click="Button_Click"/>
-                        <Button  HorizontalAlignment="Center" Content="5"  Click="Button_Click"/>
-                        <Button  HorizontalAlignment="Right" Content="6"  Click="Button_Click"/>
-                        <Button  HorizontalAlignment="Left" Content="7"   Click="Button_Click"/>
-                        <Button HorizontalAlignment="Center" Content="8"  Click="Button_Click"/>
-                        <Button HorizontalAlignment="Right" Content="9" Click="Button_Click"/>
-                        <Button HorizontalAlignment="Left" FontSize="30" Content="Удалить" Click="Button_Click_2"/>
-                        <Button HorizontalAlignment="Center" Content="0" Click="Button_Click"/>
-                        <Button HorizontalAlignment="Right" Click="Button_Click_1">
+                        <Button x:Name="Buut1" HorizontalAlignment="Left" 
+                                Content="1" 
+                                 Command="{Binding ButtonForAutorization}"
+                                 CommandParameter="{Binding ElementName=Buut1,Path=Content}"/>
+                        <Button x:Name="Buut2" HorizontalAlignment="Center" Content="2" 
+                                 Command="{Binding ButtonForAutorization}"
+                                 CommandParameter="{Binding ElementName=Buut2,Path=Content}"/>
+
+                        <Button x:Name="Buut3" HorizontalAlignment="Right" Content="3" 
+                                 Command="{Binding ButtonForAutorization}"
+                                 CommandParameter="{Binding ElementName=Buut3,Path=Content}"/>
+
+                        <Button x:Name="Buut4" HorizontalAlignment="Left" Content="4" 
+                                 Command="{Binding ButtonForAutorization}"
+                                 CommandParameter="{Binding ElementName=Buut4,Path=Content}"
+                                 />
+                        <Button x:Name="Buut5" HorizontalAlignment="Center" Content="5" 
+                                 Command="{Binding ButtonForAutorization}"
+                                 CommandParameter="{Binding ElementName=Buut5,Path=Content}"
+                                 />
+                        <Button x:Name="Buut6" HorizontalAlignment="Right" Content="6" 
+                                 Command="{Binding ButtonForAutorization}"
+                                 CommandParameter="{Binding ElementName=Buut6,Path=Content}"
+                                 />
+                        <Button x:Name="Buut7" HorizontalAlignment="Left" Content="7" 
+                                 Command="{Binding ButtonForAutorization}"
+                                 CommandParameter="{Binding ElementName=Buut7,Path=Content}"
+                                 />
+                        <Button x:Name="Buut8" HorizontalAlignment="Center" Content="8" 
+                                 Command="{Binding ButtonForAutorization}"
+                                 CommandParameter="{Binding ElementName=Buut8,Path=Content}"
+                                 />
+                        <Button x:Name="Buut9" HorizontalAlignment="Right" Content="9" 
+                                 Command="{Binding ButtonForAutorization}"
+                                 CommandParameter="{Binding ElementName=Buut9, Path=Content}"
+                                 />
+                        <Button x:Name="Buut10"
+                                Command="{Binding ButtonForAutorization}"
+                                 CommandParameter="{Binding ElementName=Buut10,
+                                Path=Content}"
+                                HorizontalAlignment="Left" 
+                                FontSize="30" Content="Удалить" />
+                        <Button HorizontalAlignment="Center" 
+                                Content="0"
+                                x:Name="Buut0"
+                                Command="{Binding ButtonForAutorization}"
+                                 CommandParameter="{Binding ElementName=Buut0, Path=Content}"
+                                />
+                        <Button HorizontalAlignment="Right"
+                                Command="{Binding ButtonForClear}"
+                                 
+                                >
                             <Image Source="../../Images/Icon/Clear.png" HorizontalAlignment="Stretch" Width="117"/>
                         </Button>
                     </UniformGrid>

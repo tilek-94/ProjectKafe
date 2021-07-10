@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kafe.User_Menu"
-        xmlns:vm="clr-namespace:KafeProject.ViewModel"
+        xmlns:vm="clr-namespace:KafeProject.ViewModels"
         mc:Ignorable="d"
         Height="550" Width="900" Background="{x:Null}" Loaded="UserControl_Loaded">
     <UserControl.DataContext>

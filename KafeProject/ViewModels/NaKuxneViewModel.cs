@@ -5,10 +5,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KafeProject.ViewModels.Base;
 
-namespace KafeProject.ViewModel
+namespace KafeProject.ViewModels
 {
-    class NaKuxneViewModel : ViewModels.Base.ViewModel
+    class NaKuxneViewModel : ViewModel
     {
         public static ObservableCollection<MenuFoodParams> _FoodList = new ObservableCollection<MenuFoodParams>();
         public ObservableCollection<MenuFoodParams> FoodList
