@@ -71,8 +71,8 @@ namespace KafeProject.View.User_Menu
                 menuStol_(checkIdForTable);
                 return;
             }
-            Kolichestvo_Bluda kolichestvo_Bluda = new Kolichestvo_Bluda();
-                      kolichestvo_Bluda.ShowDialog();
+            Kolichestvo_Bluda kolichestvo_Bluda = new Kolichestvo_Bluda(Convert.ToInt32((sender as Button).Uid));
+            kolichestvo_Bluda.ShowDialog();
         }
         
         void button_Category_Click(object sender, RoutedEventArgs e)

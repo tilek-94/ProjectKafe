@@ -38,6 +38,13 @@ namespace KafeProject
                 MenuFood m = new MenuFood();
                 GlawMenu.Children.Add(m);
             };
+            Kolichestvo_Bluda.menuStolForDynamicCheck_ += (tableId,guestCount) =>
+            {
+                MessageBox.Show(tableId + " "+ guestCount);
+                GlawMenu.Children.Clear();
+                MenuFood m = new MenuFood();
+                GlawMenu.Children.Add(m);
+            };
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
