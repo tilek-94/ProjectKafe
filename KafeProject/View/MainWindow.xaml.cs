@@ -31,6 +31,13 @@ namespace KafeProject
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show(Id.ToString());
+            MenuStol.menuStol_ += checkIdForMainWindow =>
+            {
+                MessageBox.Show(checkIdForMainWindow+"");
+                GlawMenu.Children.Clear();
+                MenuFood m = new MenuFood();
+                GlawMenu.Children.Add(m);
+            };
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
