@@ -1,4 +1,5 @@
-﻿using KafeProject.User_Menu;
+﻿using KafeProject.Date;
+using KafeProject.User_Menu;
 using KafeProject.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -59,17 +60,40 @@ namespace KafeProject.View.User_Menu
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //string s = "SELECT marka,kurs,data FROM cars";
-            //connection.Open();
-            //MySqlCommand cmd = connection.CreateCommand();
-            //cmd.CommandType = CommandType.Text;
-            //cmd.CommandText = s;
-            //cmd.ExecuteNonQuery();
-            //DataTable dta1 = new DataTable();
-            //MySqlDataAdapter dataadap = new MySqlDataAdapter(cmd);
-            //dataadap.Fill(dta1);
-            //dataGridView1.ItemsSource = dta1.DefaultView;
-            //connection.Close();
+            glawMenuMethod();
+        }
+        void glawMenuMethod(object sender=null, RoutedEventArgs e=null) 
+        {
+            TovarMenu.Children.Clear();
+            using (ApplicationContext db = new ApplicationContext())
+            {
+
+                foreach (var i in db.Foods.Where(f => f.Id == f.ParentCategoryId))
+                {
+                    Grid grid = new Grid();
+                    grid.Margin = new Thickness(10, 10, 0, 35);
+                    grid.Height = 155;
+                    grid.Width = double.NaN;
+
+                    Image im = new Image();
+                    im.MouseDown += new MouseButtonEventHandler(allCategory);
+                    im.Style = (Style)this.TryFindResource("Image_Style");
+                    im.Source = new BitmapImage(new Uri("/Images/FoodImage/se.png", UriKind.RelativeOrAbsolute));
+                    im.Uid = i.Id.ToString();
+                    StackPanel st = new StackPanel();
+                    st.Style = (Style)this.TryFindResource("StackPanel_Style");
+                   
+                    TextBlock text1 = new TextBlock();
+                    text1.Style = (Style)this.TryFindResource("TextBlock_Style");
+                    text1.Text = i.Name;
+                    grid.Children.Add(im);
+                    st.Children.Add(text1);
+                    grid.Children.Add(st);
+                    TovarMenu.Children.Add(grid);
+
+                }
+            }
+
         }
 
         private void Otpravit_Kuxne_Click(object sender, RoutedEventArgs e)
@@ -114,7 +138,7 @@ namespace KafeProject.View.User_Menu
 
         private void Vse_Tovar_Click(object sender, RoutedEventArgs e)
         {
-
+            glawMenuMethod();
         }
         private void Dynamik_but(object sender, RoutedEventArgs e)
         {
@@ -135,8 +159,42 @@ namespace KafeProject.View.User_Menu
         }
         private void D_B(int x)
         { }
-        private void Pod_category(object sender, RoutedEventArgs e)
+        private void allCategory(object sender, RoutedEventArgs e)
         {
+            TovarMenu.Children.Clear();
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                //(sender as Image).Uid.ToString()
+                if (db.Foods.Where(f => Convert.ToInt32((sender as Image).Uid.ToString()) == f.ParentCategoryId).Count()==0)
+                {
+                    MessageBox.Show("id еды =" + (sender as Image).Uid.ToString());
+                }
+                else
+                    foreach (var i in db.Foods.Where(f => Convert.ToInt32((sender as Image).Uid.ToString()) == f.ParentCategoryId))
+                    {
+                        Grid grid = new Grid();
+                        grid.Margin = new Thickness(10, 10, 0, 35);
+                        grid.Height = 155;
+                        grid.Width = double.NaN;
+
+                        Image im = new Image();
+                        im.MouseDown += new MouseButtonEventHandler(allCategory);
+                        im.Style = (Style)this.TryFindResource("Image_Style");
+                        im.Source = new BitmapImage(new Uri("/Images/FoodImage/se.png", UriKind.RelativeOrAbsolute));
+                        im.Uid = i.Id.ToString();
+                        StackPanel st = new StackPanel();
+                        st.Style = (Style)this.TryFindResource("StackPanel_Style");
+
+                        TextBlock text1 = new TextBlock();
+                        text1.Style = (Style)this.TryFindResource("TextBlock_Style");
+                        text1.Text = i.Name;
+                        grid.Children.Add(im);
+                        st.Children.Add(text1);
+                        grid.Children.Add(st);
+                        TovarMenu.Children.Add(grid);
+
+                    }
+            }
         }
         public void Kategory_button_dynamic()
         {
