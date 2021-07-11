@@ -30,7 +30,9 @@ namespace KafeProject.View.User_Menu
         string usersName;
         bool ifItIsHim;
         string err;
-        public MenuStol(int x=1)// чтобы узнать какой официант
+        public delegate void MessageTest();
+        public static event MessageTest me_;
+        public MenuStol(int x=0)// чтобы узнать какой официант
         {
             InitializeComponent();
             currentWaiter = x;
@@ -50,8 +52,14 @@ namespace KafeProject.View.User_Menu
         }
         void button_Click(object sender, RoutedEventArgs e)
         {
+            if ((sender as Button).Uid == "-2") 
+            {
+
+                return;
+            
+            }
             Kolichestvo_Bluda kolichestvo_Bluda = new Kolichestvo_Bluda();
-            kolichestvo_Bluda.Show();
+                      kolichestvo_Bluda.ShowDialog();
         }
         
         void button_Category_Click(object sender, RoutedEventArgs e)
@@ -99,7 +107,7 @@ namespace KafeProject.View.User_Menu
                         ifItIsHim = true;
                     else
                         ifItIsHim = false;
-                    if(g!=0 && g!=null)
+                    if(g!=0)
                         return true;
                     return false;
                 }

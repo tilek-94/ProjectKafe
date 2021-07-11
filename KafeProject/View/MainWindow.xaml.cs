@@ -23,14 +23,14 @@ namespace KafeProject
         public MainWindow(int id=0)
         {
             InitializeComponent();
-            MenuFood menuFood = new MenuFood();
-            //MenuStol menuFood = new MenuStol();
+            //MenuFood menuFood = new MenuFood();
+            MenuStol menuFood = new MenuStol(id);
             GlawMenu.Children.Add(menuFood);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(Id.ToString());
+            //MessageBox.Show(Id.ToString());
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
