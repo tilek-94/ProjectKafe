@@ -29,8 +29,11 @@ namespace KafeProject.View.User_Menu
         int currentWaiter;
         string usersName;
         bool ifItIsHim;
+        int selectedLocationId;
         string err;
-        public MenuStol(int x=1)// чтобы узнать какой официант
+        public delegate void Message1(int x);
+        public static event Message1 menuStol_;
+        public MenuStol(int x=0)// чтобы узнать какой официант
         {
             InitializeComponent();
             currentWaiter = x;
@@ -50,8 +53,26 @@ namespace KafeProject.View.User_Menu
         }
         void button_Click(object sender, RoutedEventArgs e)
         {
-            Kolichestvo_Bluda kolichestvo_Bluda = new Kolichestvo_Bluda();
-            kolichestvo_Bluda.Show();
+            if ((sender as Button).Uid == "-2") 
+            {
+                int checkIdForTable = 0;
+                //selectedLocationId
+                //(sender as Button).Content;
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    checkIdForTable=db.Checks.Where(g =>
+                    g.TableId ==
+                        db.Tables.Where(h =>
+                        h.LocationId == selectedLocationId &&
+                        h.Name == (sender as Button).Content.ToString()
+                        ).Select(l => l.Id).OrderBy(j => j).LastOrDefault()
+                    ).Select(d=>d.Id).OrderBy(s=>s).LastOrDefault();
+                }
+                menuStol_(checkIdForTable);
+                return;
+            }
+            Kolichestvo_Bluda kolichestvo_Bluda = new Kolichestvo_Bluda(Convert.ToInt32((sender as Button).Uid));
+            kolichestvo_Bluda.ShowDialog();
         }
         
         void button_Category_Click(object sender, RoutedEventArgs e)
@@ -99,7 +120,7 @@ namespace KafeProject.View.User_Menu
                         ifItIsHim = true;
                     else
                         ifItIsHim = false;
-                    if(g!=0 && g!=null)
+                    if(g!=0)
                         return true;
                     return false;
                 }
@@ -112,12 +133,18 @@ namespace KafeProject.View.User_Menu
             }
            
         }
-        void dynamicButton(object sender=null) 
+        void dynamicButton(object sender = null)
         {
             Stol_Panel.Children.Clear();
             int? k = 1;
             if (sender != null)
                 k = Convert.ToInt32((sender as Button).Tag);
+            else
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    k = db.Locations.Select(t=>t.Id).OrderBy(tt => tt).FirstOrDefault();
+                }
+            selectedLocationId = k ?? 1;
             using (ApplicationContext db = new ApplicationContext())
             {
                 foreach (var tg in db.Tables.Where(t => t.LocationId == k))

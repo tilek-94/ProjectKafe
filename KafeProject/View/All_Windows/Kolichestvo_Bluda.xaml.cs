@@ -9,9 +9,13 @@ namespace Kafe.All_Windows
     /// </summary>
     public partial class Kolichestvo_Bluda : Window
     {
-        public Kolichestvo_Bluda(int userId=0, int tableId=0)
+        int tableIdForDynamicCheck = 0;
+        public delegate void Message2(int tableIdParametr,int guestCountParametr);
+        public static event Message2 menuStolForDynamicCheck_;
+        public Kolichestvo_Bluda(int tableId=0)
         {
             InitializeComponent();
+            tableIdForDynamicCheck = tableId;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -52,7 +56,8 @@ namespace Kafe.All_Windows
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            menuStolForDynamicCheck_(tableIdForDynamicCheck, Convert.ToInt32(Text_Kolichestvo.Text.ToString()));
+            this.Close();
         }
     }
 }

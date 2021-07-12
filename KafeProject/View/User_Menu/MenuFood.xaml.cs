@@ -1,4 +1,5 @@
-﻿using KafeProject.User_Menu;
+﻿using KafeProject.Date;
+using KafeProject.User_Menu;
 using KafeProject.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,8 @@ namespace KafeProject.View.User_Menu
     /// </summary>
     public partial class MenuFood : UserControl
     {
+        string categoyButtonId;
+        string categoyButtonName;
         public MenuFood()
         {
             InitializeComponent();
@@ -59,17 +62,40 @@ namespace KafeProject.View.User_Menu
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //string s = "SELECT marka,kurs,data FROM cars";
-            //connection.Open();
-            //MySqlCommand cmd = connection.CreateCommand();
-            //cmd.CommandType = CommandType.Text;
-            //cmd.CommandText = s;
-            //cmd.ExecuteNonQuery();
-            //DataTable dta1 = new DataTable();
-            //MySqlDataAdapter dataadap = new MySqlDataAdapter(cmd);
-            //dataadap.Fill(dta1);
-            //dataGridView1.ItemsSource = dta1.DefaultView;
-            //connection.Close();
+            glawMenuMethod();
+        }
+        void glawMenuMethod(object sender=null, RoutedEventArgs e=null) 
+        {
+            TovarMenu.Children.Clear();
+            using (ApplicationContext db = new ApplicationContext())
+            {
+
+                foreach (var i in db.Foods.Where(f => f.Id == f.ParentCategoryId))
+                {
+                    Grid grid = new Grid();
+                    grid.Margin = new Thickness(10, 10, 0, 35);
+                    grid.Height = 155;
+                    grid.Width = double.NaN;
+
+                    Image im = new Image();
+                    im.MouseDown += new MouseButtonEventHandler(allCategory);
+                    im.Style = (Style)this.TryFindResource("Image_Style");
+                    im.Source = new BitmapImage(new Uri("/Images/FoodImage/se.png", UriKind.RelativeOrAbsolute));
+                    im.Uid = i.Id.ToString();
+                    StackPanel st = new StackPanel();
+                    st.Style = (Style)this.TryFindResource("StackPanel_Style");
+                   
+                    TextBlock text1 = new TextBlock();
+                    text1.Style = (Style)this.TryFindResource("TextBlock_Style");
+                    text1.Text = i.Name;
+                    grid.Children.Add(im);
+                    st.Children.Add(text1);
+                    grid.Children.Add(st);
+                    TovarMenu.Children.Add(grid);
+
+                }
+            }
+
         }
 
         private void Otpravit_Kuxne_Click(object sender, RoutedEventArgs e)
@@ -114,7 +140,8 @@ namespace KafeProject.View.User_Menu
 
         private void Vse_Tovar_Click(object sender, RoutedEventArgs e)
         {
-
+            Kategory_button_dynamic(); 
+            glawMenuMethod();
         }
         private void Dynamik_but(object sender, RoutedEventArgs e)
         {
@@ -135,8 +162,88 @@ namespace KafeProject.View.User_Menu
         }
         private void D_B(int x)
         { }
-        private void Pod_category(object sender, RoutedEventArgs e)
+        private void allCategory(object sender, RoutedEventArgs e)
         {
+            TovarMenu.Children.Clear();
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                //(sender as Image).Uid.ToString()
+                if (db.Foods.Where(f => Convert.ToInt32((sender as Image).Uid.ToString()) == f.ParentCategoryId).Count() == 0)
+                {
+                    MessageBox.Show("id еды =" + (sender as Image).Uid.ToString());
+                    Kategory_button_dynamic();
+                    glawMenuMethod();
+                }
+                else
+                {
+                    Kategory_button_dynamic();
+                    categoryButMethod(Convert.ToInt32((sender as Image).Uid));
+                    foreach (var i in db.Foods.Where(f => Convert.ToInt32((sender as Image).Uid.ToString()) == f.ParentCategoryId))
+                    {
+                        Grid grid = new Grid();
+                        grid.Margin = new Thickness(10, 10, 0, 35);
+                        grid.Height = 155;
+                        grid.Width = double.NaN;
+
+                        Image im = new Image();
+                        im.MouseDown += new MouseButtonEventHandler(allCategory);
+                        im.Style = (Style)this.TryFindResource("Image_Style");
+                        im.Source = new BitmapImage(new Uri("/Images/FoodImage/se.png", UriKind.RelativeOrAbsolute));
+                        im.Uid = i.Id.ToString();
+                        StackPanel st = new StackPanel();
+                        st.Style = (Style)this.TryFindResource("StackPanel_Style");
+
+                        TextBlock text1 = new TextBlock();
+                        text1.Style = (Style)this.TryFindResource("TextBlock_Style");
+                        text1.Text = i.Name;
+                        grid.Children.Add(im);
+                        st.Children.Add(text1);
+                        grid.Children.Add(st);
+                        TovarMenu.Children.Add(grid);
+
+                    }
+                }
+            }
+        }
+        void categoryButMethod(int idBut) 
+        {
+            //Kategory_button_dynamic();
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                categoyButtonId = categoyButtonId+" "+idBut.ToString();
+                categoyButtonName= categoyButtonName + " " + db.Foods.Where(f => f.Id == idBut).Select(l => l.Name).OrderBy(o => o).LastOrDefault();
+                int dynamicId = db.Foods.Where(f => f.Id == idBut).Select(l => l.ParentCategoryId).OrderBy(o => o).LastOrDefault();
+                if (dynamicId == idBut) 
+                {
+                    creatingButtonsMethod();
+                    return;
+                }
+                categoryButMethod(dynamicId);
+            }
+        }
+        void creatingButtonsMethod ()
+        {
+            categoyButtonId = categoyButtonId.Trim();
+            categoyButtonName = categoyButtonName.Trim();
+            MessageBox.Show(categoyButtonName);
+            var idCategoryButtons = categoyButtonId.Split().Select(int.Parse).ToList();
+            var nameCategoryButtons = categoyButtonName.Split();
+            for(int i=0;i< idCategoryButtons.Count();i++)
+            {
+                Button butt = new Button();
+                butt.Style = (Style)this.TryFindResource("Button_Kategory1");
+                if (nameCategoryButtons[i].Length < 15)
+                    for (; nameCategoryButtons[i].Length < 20;)
+                        nameCategoryButtons[i] += ". ";
+                butt.Content = nameCategoryButtons[i];
+                butt.Click += new RoutedEventHandler(Dynamik_but);
+                //butt.Tag = (KategoryMenu.Children.Count).ToString();
+                butt.Uid = idCategoryButtons[i].ToString();
+                KategoryMenu.Children.Add(butt);
+
+            }
+            categoyButtonId = "";
+            categoyButtonName = "";
         }
         public void Kategory_button_dynamic()
         {
@@ -145,6 +252,7 @@ namespace KafeProject.View.User_Menu
             Button butt = new Button();
             butt.Style = (Style)this.TryFindResource("Button_Kategory");
             butt.VerticalAlignment = VerticalAlignment.Center;
+            butt.Uid = "0";
             butt.Height = 42;
             butt.HorizontalAlignment = HorizontalAlignment.Left;
             butt.Width = 130.5;
