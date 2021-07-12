@@ -136,30 +136,16 @@ namespace KafeProject.View.User_Menu
         }
         private void Dynamik_but(object sender, RoutedEventArgs e)
         {
-            int c = int.Parse((sender as Button).Tag.ToString());
-            //MessageBox.Show(KategoryMenu.Children.Count.ToString());
-            for (; c + 1 < KategoryMenu.Children.Count;)
-            {
-                if (c + 1 == KategoryMenu.Children.Count)
-                {
-                    MessageBox.Show(KategoryMenu.Children.Count.ToString() + " " + c.ToString());
-                    break;
-                }
-                KategoryMenu.Children.RemoveAt(KategoryMenu.Children.Count - 1);
-            }
-            //MessageBox.Show(KategoryMenu.Children.Count.ToString()+" "+ (sender as Button).Tag.ToString());
-            //Pod_category(sender,e);
-            D_B(int.Parse((sender as Button).Uid.ToString()));
+            allCategory(Convert.ToInt32((sender as Button).Uid));
         }
-        private void D_B(int x)
-        { }
-        private void allCategory(object sender, RoutedEventArgs e)
+        private void allCategory(object sender=null, RoutedEventArgs e = null)
         {
             TovarMenu.Children.Clear();
+            string uidImage = (sender as Image).Uid.ToString();
             using (ApplicationContext db = new ApplicationContext())
             {
                 //(sender as Image).Uid.ToString()
-                if (db.Foods.Where(f => Convert.ToInt32((sender as Image).Uid.ToString()) == f.ParentCategoryId).Count() == 0)
+                if (db.Foods.Where(f => Convert.ToInt32(uidImage) == f.ParentCategoryId).Count() == 0)
                 {
                     MessageBox.Show("id еды =" + (sender as Image).Uid.ToString());
                     Kategory_button_dynamic();
@@ -168,8 +154,53 @@ namespace KafeProject.View.User_Menu
                 else
                 {
                     Kategory_button_dynamic();
-                    categoryButMethod(Convert.ToInt32((sender as Image).Uid));
-                    foreach (var i in db.Foods.Where(f => Convert.ToInt32((sender as Image).Uid.ToString()) == f.ParentCategoryId))
+                    categoryButMethod(Convert.ToInt32(uidImage));
+                    foreach (var i in db.Foods.Where(f => Convert.ToInt32(uidImage) == f.ParentCategoryId))
+                    {
+                        Grid grid = new Grid();
+                        grid.Margin = new Thickness(10, 10, 0, 35);
+                        grid.Height = 155;
+                        grid.Width = double.NaN;
+
+                        Image im = new Image();
+                        im.MouseDown += new MouseButtonEventHandler(allCategory);
+                        im.Style = (Style)this.TryFindResource("Image_Style");
+                        im.Source = new BitmapImage(new Uri("/Images/FoodImage/se.png", UriKind.RelativeOrAbsolute));
+                        im.Uid = i.Id.ToString();
+                        StackPanel st = new StackPanel();
+                        st.Style = (Style)this.TryFindResource("StackPanel_Style");
+
+                        TextBlock text1 = new TextBlock();
+                        text1.Style = (Style)this.TryFindResource("TextBlock_Style");
+                        text1.Text = i.Name;
+                        grid.Children.Add(im);
+                        st.Children.Add(text1);
+                        grid.Children.Add(st);
+                        TovarMenu.Children.Add(grid);
+
+                    }
+                }
+            }
+        }
+        private void allCategory(int x)
+        {
+            TovarMenu.Children.Clear();
+            string? uidImage = x.ToString();
+            //(sender as Image).Uid.ToString();
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                //(sender as Image).Uid.ToString()
+                if (db.Foods.Where(f => Convert.ToInt32(uidImage) == f.ParentCategoryId).Count() == 0)
+                {
+                    //MessageBox.Show("id еды =" + (sender as Image).Uid.ToString());
+                    Kategory_button_dynamic();
+                    glawMenuMethod();
+                }
+                else
+                {
+                    Kategory_button_dynamic();
+                    categoryButMethod(Convert.ToInt32(uidImage));
+                    foreach (var i in db.Foods.Where(f => Convert.ToInt32(uidImage) == f.ParentCategoryId))
                     {
                         Grid grid = new Grid();
                         grid.Margin = new Thickness(10, 10, 0, 35);
