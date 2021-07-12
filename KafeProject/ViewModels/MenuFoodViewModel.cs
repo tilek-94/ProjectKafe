@@ -53,28 +53,32 @@ namespace KafeProject.ViewModels
             ObsSum = 0.00;
             ItogSum = 0.00;
           
-            using (ApplicationContext db = new ApplicationContext())
-            {  FoodList = new ObservableCollection<MenuFoodParams>();
-               // checkStatus = db.Checks.Where(b => b.TableId == 1).OrderBy(t => t.Id).LastOrDefault().Status.ToString() ?? "";
-
-                var ord = db.Orders.Where(d => d.CheckId == 1);
-
-                var result = ord.Join(db.Foods,
-                    p => p.FoodId,
-                    t => t.Id,
-                    (p, t) => new { Name = t.Name, Count = p.CountFood, CheckId = p.CheckId, Price = t.Price });
-
-                foreach (var s in result)
+            
+            MainWindow.menuCheck_ += (id) =>
+            {
+                using (ApplicationContext db = new ApplicationContext())
                 {
-                    ItogSum += s.Count * s.Price;
-                    ObsSum += ((s.Count * s.Price) / 10) * (PercentSum/10);
-                    FoodList.Add(new MenuFoodParams { Name = s.Name, Count = s.Count, Price = s.Count * s.Price });
-                    NaKuxneViewModel._FoodList.Add(new MenuFoodParams { Name = s.Name, Count = s.Count, Price = s.Count * s.Price }); ;
+                    FoodList = new ObservableCollection<MenuFoodParams>();
+                    // checkStatus = db.Checks.Where(b => b.TableId == 1).OrderBy(t => t.Id).LastOrDefault().Status.ToString() ?? "";
+
+                    var ord = db.Orders.Where(d => d.CheckId == id);
+
+                    var result = ord.Join(db.Foods,
+                        p => p.FoodId,
+                        t => t.Id,
+                        (p, t) => new { Name = t.Name, Count = p.CountFood, CheckId = p.CheckId, Price = t.Price });
+
+                    foreach (var s in result)
+                    {
+                        ItogSum += s.Count * s.Price;
+                        ObsSum += ((s.Count * s.Price) / 10) * (PercentSum / 10);
+                        FoodList.Add(new MenuFoodParams { Name = s.Name, Count = s.Count, Price = s.Count * s.Price });
+                        NaKuxneViewModel._FoodList.Add(new MenuFoodParams { Name = s.Name, Count = s.Count, Price = s.Count * s.Price }); ;
+                    }
+                    ItogSum += ObsSum;
+                    //string checkStatus = db.Checks.Where(b => b.TableId == t.Id).OrderBy(t => t.Id).LastOrDefault().Status ?? "";
                 }
-                ItogSum += ObsSum;
-                //string checkStatus = db.Checks.Where(b => b.TableId == t.Id).OrderBy(t => t.Id).LastOrDefault().Status ?? "";
-            }
-           
+            };
         }
         #region Commands
 

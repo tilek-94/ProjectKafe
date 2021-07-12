@@ -20,6 +20,8 @@ namespace KafeProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        public delegate void MessageForCheck(int x);
+        public static event MessageForCheck menuCheck_;
         private int Id { get; set; }
         public MainWindow(int id=0)
         {
@@ -37,6 +39,7 @@ namespace KafeProject
                 GlawMenu.Children.Clear();
                 MenuFood m = new MenuFood();
                 GlawMenu.Children.Add(m);
+                menuCheck_(checkIdForMainWindow);
             };
             Kolichestvo_Bluda.menuStolForDynamicCheck_ += (tableId,guestCount) =>
             {
