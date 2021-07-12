@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 
 
-namespace Kafe.All_Windows
+namespace KafeProject.All_Windows
 {
     /// <summary>
     /// Логика взаимодействия для Stol_Window.xaml

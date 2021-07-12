@@ -1,22 +1,13 @@
 ﻿using KafeProject.Date;
-using KafeProject.User_Menu;
-using KafeProject.ViewModels;
+using KafeProject.View.User_Menu;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace KafeProject.View.User_Menu
 {
@@ -64,7 +55,7 @@ namespace KafeProject.View.User_Menu
         {
             glawMenuMethod();
         }
-        void glawMenuMethod(object sender=null, RoutedEventArgs e=null) 
+        void glawMenuMethod(object sender = null, RoutedEventArgs e = null)
         {
             TovarMenu.Children.Clear();
             using (ApplicationContext db = new ApplicationContext())
@@ -84,7 +75,7 @@ namespace KafeProject.View.User_Menu
                     im.Uid = i.Id.ToString();
                     StackPanel st = new StackPanel();
                     st.Style = (Style)this.TryFindResource("StackPanel_Style");
-                   
+
                     TextBlock text1 = new TextBlock();
                     text1.Style = (Style)this.TryFindResource("TextBlock_Style");
                     text1.Text = i.Name;
@@ -140,7 +131,7 @@ namespace KafeProject.View.User_Menu
 
         private void Vse_Tovar_Click(object sender, RoutedEventArgs e)
         {
-            Kategory_button_dynamic(); 
+            Kategory_button_dynamic();
             glawMenuMethod();
         }
         private void Dynamik_but(object sender, RoutedEventArgs e)
@@ -205,15 +196,15 @@ namespace KafeProject.View.User_Menu
                 }
             }
         }
-        void categoryButMethod(int idBut) 
+        void categoryButMethod(int idBut)
         {
             //Kategory_button_dynamic();
             using (ApplicationContext db = new ApplicationContext())
             {
-                categoyButtonId = categoyButtonId+" "+idBut.ToString();
-                categoyButtonName= categoyButtonName + " " + db.Foods.Where(f => f.Id == idBut).Select(l => l.Name).OrderBy(o => o).LastOrDefault();
+                categoyButtonId = categoyButtonId + " " + idBut.ToString();
+                categoyButtonName = categoyButtonName + " " + db.Foods.Where(f => f.Id == idBut).Select(l => l.Name).OrderBy(o => o).LastOrDefault();
                 int dynamicId = db.Foods.Where(f => f.Id == idBut).Select(l => l.ParentCategoryId).OrderBy(o => o).LastOrDefault();
-                if (dynamicId == idBut) 
+                if (dynamicId == idBut)
                 {
                     creatingButtonsMethod();
                     return;
@@ -221,14 +212,14 @@ namespace KafeProject.View.User_Menu
                 categoryButMethod(dynamicId);
             }
         }
-        void creatingButtonsMethod ()
+        void creatingButtonsMethod()
         {
             categoyButtonId = categoyButtonId.Trim();
             categoyButtonName = categoyButtonName.Trim();
             MessageBox.Show(categoyButtonName);
             var idCategoryButtons = categoyButtonId.Split().Select(int.Parse).ToList();
             var nameCategoryButtons = categoyButtonName.Split();
-            for(int i=0;i< idCategoryButtons.Count();i++)
+            for (int i = 0; i < idCategoryButtons.Count(); i++)
             {
                 Button butt = new Button();
                 butt.Style = (Style)this.TryFindResource("Button_Kategory1");
@@ -267,7 +258,7 @@ namespace KafeProject.View.User_Menu
         private void Button_Click(object sender, RoutedEventArgs e)
         {/*
             Parol_Window parol = new Parol_Window();
-            parol.Show();  */     
+            parol.Show();  */
         }
 
         private void OpenOplatitWindow(object sender, RoutedEventArgs e)

@@ -3,7 +3,7 @@ using System;
 using System.Data;
 using System.Windows;
 using System.Windows.Controls;
-namespace Kafe.All_Windows
+namespace KafeProject.All_Windows
 {
     /// <summary>
     /// Логика взаимодействия для Razdelit_Window.xaml

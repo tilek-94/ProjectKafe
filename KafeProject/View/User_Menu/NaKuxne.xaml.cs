@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Kafe.User_Menu
+namespace KafeProject.View.User_Menu
 {
     /// <summary>
     /// Логика взаимодействия для NaKuxne.xaml

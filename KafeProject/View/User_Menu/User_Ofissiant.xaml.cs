@@ -1,7 +1,6 @@
-﻿
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
-namespace Kafe.User_Menu
+namespace KafeProject.View.User_Menu
 {
     /// <summary>
     /// Логика взаимодействия для User_Ofissiant.xaml

@@ -1,5 +1,5 @@
 ﻿using System.Windows.Controls;
-namespace Kafe.User_Menu
+namespace KafeProject.View.User_Menu
 {
     public partial class User_Menu1 : UserControl
     {

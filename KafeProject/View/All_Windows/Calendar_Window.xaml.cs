@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Kafe.All_Windows
+namespace KafeProject.All_Windows
 {
     /// <summary>
     /// Логика взаимодействия для Calendar_Window.xaml

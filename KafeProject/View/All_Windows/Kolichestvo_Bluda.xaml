@@ -1,4 +1,4 @@
-﻿<Window x:Class="Kafe.All_Windows.Kolichestvo_Bluda"
+﻿<Window x:Class="KafeProject.All_Windows.Kolichestvo_Bluda"
         x:Name="Kol_Bluda"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

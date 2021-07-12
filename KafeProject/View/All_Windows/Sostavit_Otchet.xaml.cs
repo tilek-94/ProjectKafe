@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 
-namespace Kafe.All_Windows
+namespace KafeProject.All_Windows
 {
     /// <summary>
     /// Логика взаимодействия для Sostavit_Otchet.xaml

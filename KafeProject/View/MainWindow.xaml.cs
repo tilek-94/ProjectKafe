@@ -1,17 +1,7 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Input;
-using System.Windows.Media.Imaging;
-using System.Data;
-using Kafe.User_Menu;
-using Kafe.All_Windows;
-using KafeProject.Date;
-using KafeProject.Models;
+﻿using KafeProject.All_Windows;
 using KafeProject.View.All_Windows;
 using KafeProject.View.User_Menu;
-using System.Linq;
+using System.Windows;
 
 namespace KafeProject
 {

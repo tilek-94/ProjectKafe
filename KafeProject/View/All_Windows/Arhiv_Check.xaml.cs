@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Kafe.All_Windows
+namespace KafeProject.All_Windows
 {
     /// <summary>
     /// Логика взаимодействия для Arhiv_Check.xaml

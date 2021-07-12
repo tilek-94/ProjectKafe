@@ -375,7 +375,6 @@ D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\bin\Debug\net5.0-
 D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\bin\Debug\net5.0-windows\MySqlConnector.dll
 D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\bin\Debug\net5.0-windows\Pomelo.EntityFrameworkCore.MySql.dll
 D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\bin\Debug\net5.0-windows\System.Diagnostics.DiagnosticSource.dll
-D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\KafeProject.csproj.AssemblyReference.cache
 D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Style1.baml
 D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Kolichestvo_Bluda.baml
 D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Stol_Window.baml
@@ -420,3 +419,19 @@ D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-
 D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\ref\KafeProject.dll
 D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\KafeProject.pdb
 D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\KafeProject.genruntimeconfig.cache
+D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Sostavit_Otchet.baml
+D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Error.baml
+D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Klaviatura.baml
+D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Razdelit_Window.baml
+D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\Komentary.baml
+D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\User_Window_Menu.baml
+D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\MainWindow.baml
+D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\App.baml
+D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Arhiv_Check.baml
+D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Calendar_Window.baml
+D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Chasy.baml
+D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\MenuCheck.baml
+D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Parol_Window.baml
+D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\Components\CompPasswordBox.baml
+D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\MenuStol.baml
+D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\NaKuxne.baml

@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        xmlns:local="clr-namespace:KafeProject.ViewModels"
-       xmlns:comp="clr-namespace:KafeProject.View.Components"
         mc:Ignorable="d"
        Height="650" Width="1000"  WindowStyle="None" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Window.DataContext>

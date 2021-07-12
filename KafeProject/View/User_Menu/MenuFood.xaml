@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:KafeProject.View.User_Menu" xmlns:local1="clr-namespace:Kafe.User_Menu"
+             xmlns:local="clr-namespace:KafeProject.View.User_Menu"
              xmlns:vm="clr-namespace:KafeProject.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="590" d:DesignWidth="1000" Loaded="Window_Loaded">
@@ -142,28 +142,28 @@
         </Grid>
         <Popup x:Name="Popup_US" AllowsTransparency="True" IsOpen="{Binding Is_open1, UpdateSourceTrigger=PropertyChanged}" VerticalOffset="-30" HorizontalOffset="-90">
             <Grid>
-                <local1:User_Window_Menu x:Name="Header"/>
+                <local:User_Window_Menu x:Name="Header"/>
                 <Button x:Name="Net_Button" Style="{DynamicResource Menu_Button}" Content="Нет не этот раз" Margin="10,130,10,10" Click="Stol_Button_Click"/>
             </Grid>
         </Popup>
         <Popup x:Name="Popup_Check" AllowsTransparency="True" IsOpen="{Binding Is_open2, UpdateSourceTrigger=PropertyChanged}" VerticalOffset="-30" HorizontalOffset="0">
             <Grid>
-                <local1:User_Check/>
+                <local:User_Check/>
             </Grid>
         </Popup>
         <Popup x:Name="Popup_Ofissiant" AllowsTransparency="True" IsOpen="{Binding Is_open3, UpdateSourceTrigger=PropertyChanged}" VerticalOffset="-30" HorizontalOffset="-104">
             <Grid>
-                <local1:User_Ofissiant/>
+                <local:User_Ofissiant/>
             </Grid>
         </Popup>
         <Popup x:Name="Popup_Menu" AllowsTransparency="True" IsOpen="{Binding Is_open4, UpdateSourceTrigger=PropertyChanged}" VerticalOffset="15" HorizontalOffset="-15">
             <Grid>
-                <local1:User_Menu1/>
+                <local:User_Menu1/>
             </Grid>
         </Popup>
         <Popup x:Name="Popup_Kuxne" AllowsTransparency="True" IsOpen="{Binding Is_open5, UpdateSourceTrigger=PropertyChanged}" VerticalOffset="-71" HorizontalOffset="0" PopupAnimation="Slide">
             <Grid>
-                <local1:NaKuxne/>
+                <local:NaKuxne/>
                 <Grid Height="80" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,20">
                     <StackPanel Orientation="Horizontal" Margin="50,0">
                         <Button Style="{DynamicResource Button_Yellow}" Content="Отправить" FontSize="17" Height="40" Width="200" Margin="0,0,5,0"/>
