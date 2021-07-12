@@ -32,7 +32,7 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <StackPanel  Orientation="Horizontal" x:Name="KategoryMenu" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="60" Grid.Column="0">
-                            <Button x:Name="Vse_Tovar" Command="{Binding OnlyAllCl}" VerticalAlignment="Center" Height="60" HorizontalAlignment="Left" Width="130.5" Margin="25,0"   Style="{DynamicResource Button_Kategory}" Click="Vse_Tovar_Click"/>
+                            <Button x:Name="Vse_Tovar" Uid="0" Command="{Binding OnlyAllCl}" VerticalAlignment="Center" Height="60" HorizontalAlignment="Left" Width="130.5" Margin="25,0"   Style="{DynamicResource Button_Kategory}" Click="Vse_Tovar_Click"/>
                             <!--Тамактын аты-->
 
                         </StackPanel>
