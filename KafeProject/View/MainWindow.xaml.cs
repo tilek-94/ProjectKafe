@@ -22,6 +22,7 @@ namespace KafeProject
         ~MainWindow() => clearingDelegatesFromBaktiar();
         void clearingDelegatesFromBaktiar()
         {
+            
             MenuStol.menuStol_ -= menuStolMessage;
             Kolichestvo_Bluda.menuStolForDynamicCheck_ -= menuStolForDynamicCheck;
         }

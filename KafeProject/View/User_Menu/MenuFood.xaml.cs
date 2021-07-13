@@ -1,4 +1,5 @@
 ﻿using KafeProject.Date;
+using KafeProject.Models;
 using KafeProject.View.User_Menu;
 using System;
 using System.Data;
@@ -18,6 +19,8 @@ namespace KafeProject.View.User_Menu
     {
         string categoyButtonId;
         string categoyButtonName;
+        public delegate void ButtonClick(MenuFoodParams x);
+        public static event ButtonClick foodEvent;
         public MenuFood()
         {
             InitializeComponent();
@@ -60,7 +63,6 @@ namespace KafeProject.View.User_Menu
             TovarMenu.Children.Clear();
             using (ApplicationContext db = new ApplicationContext())
             {
-
                 foreach (var i in db.Foods.Where(f => f.Id == f.ParentCategoryId))
                 {
                     Grid grid = new Grid();
@@ -83,12 +85,9 @@ namespace KafeProject.View.User_Menu
                     st.Children.Add(text1);
                     grid.Children.Add(st);
                     TovarMenu.Children.Add(grid);
-
                 }
             }
-
         }
-
         private void Otpravit_Kuxne_Click(object sender, RoutedEventArgs e)
         {
             Popup_Kuxne.PlacementTarget = Prog_Border;
@@ -128,7 +127,6 @@ namespace KafeProject.View.User_Menu
                 throw;
             }*/
         }
-
         private void Vse_Tovar_Click(object sender, RoutedEventArgs e)
         {
             Kategory_button_dynamic();
@@ -147,9 +145,16 @@ namespace KafeProject.View.User_Menu
                 //(sender as Image).Uid.ToString()
                 if (db.Foods.Where(f => Convert.ToInt32(uidImage) == f.ParentCategoryId).Count() == 0)
                 {
-                    MessageBox.Show("id еды =" + (sender as Image).Uid.ToString());
+                    //MessageBox.Show("id еды =" + (sender as Image).Uid.ToString());
                     Kategory_button_dynamic();
                     glawMenuMethod();
+                    var foodInfo = db.Foods.Where(f => f.Id== Convert.ToInt32(uidImage));
+                    foodEvent(new MenuFoodParams 
+                    {Name =foodInfo.Select(p=>p.Name).OrderBy(p=>p).LastOrDefault(),
+                    Count=1,
+                    Price=foodInfo.Select(p=>p.Price).OrderBy(p=>p).LastOrDefault(),
+                    Id= Convert.ToInt32(uidImage)
+                    });
                 }
                 else
                 {
@@ -195,6 +200,7 @@ namespace KafeProject.View.User_Menu
                     //MessageBox.Show("id еды =" + (sender as Image).Uid.ToString());
                     Kategory_button_dynamic();
                     glawMenuMethod();
+                    
                 }
                 else
                 {
