@@ -435,3 +435,4 @@ D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-
 D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\Components\CompPasswordBox.baml
 D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\MenuStol.baml
 D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\NaKuxne.baml
+D:\проекты\кафе 06 07 2021\10 07 2021 2\KafeProject\obj\Debug\net5.0-windows\KafeProject.csproj.AssemblyReference.cache

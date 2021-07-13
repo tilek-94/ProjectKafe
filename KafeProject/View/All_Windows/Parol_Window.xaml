@@ -6,9 +6,7 @@
        xmlns:local="clr-namespace:KafeProject.ViewModels"
         mc:Ignorable="d"
        Height="650" Width="1000"  WindowStyle="None" WindowStartupLocation="CenterScreen" WindowState="Maximized">
-    <Window.DataContext>
-        <local:PayWindowVM/>
-    </Window.DataContext>
+
     <Grid>
         <Grid>
             <Grid>

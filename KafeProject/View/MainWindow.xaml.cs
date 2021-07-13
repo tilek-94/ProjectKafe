@@ -16,43 +16,44 @@ namespace KafeProject
         public MainWindow(int id=0)
         {
             InitializeComponent();
-            //MenuFood menuFood = new MenuFood();
             MenuStol menuFood = new MenuStol(id);
             GlawMenu.Children.Add(menuFood);
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            MenuStol.menuStol_ += checkIdForMainWindow =>
-            {
-                MessageBox.Show(checkIdForMainWindow+"");
-                GlawMenu.Children.Clear();
-                MenuFood m = new MenuFood();
-                GlawMenu.Children.Add(m);
-                menuCheck_(checkIdForMainWindow);
-            };
-            Kolichestvo_Bluda.menuStolForDynamicCheck_ += (tableId,guestCount) =>
-            {
-                MessageBox.Show(tableId + " "+ guestCount);
-                GlawMenu.Children.Clear();
-                MenuFood m = new MenuFood();
-                GlawMenu.Children.Add(m);
-            };
-
-        }
-        void windowGlawMenu(object sender=null, RoutedEventArgs e=null) 
+        ~MainWindow() => clearingDelegatesFromBaktiar();
+        void clearingDelegatesFromBaktiar()
         {
             
+            MenuStol.menuStol_ -= menuStolMessage;
+            Kolichestvo_Bluda.menuStolForDynamicCheck_ -= menuStolForDynamicCheck;
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MenuStol.menuStol_ += menuStolMessage;
+            Kolichestvo_Bluda.menuStolForDynamicCheck_ += menuStolForDynamicCheck;
+        }
+        void menuStolForDynamicCheck(int tableId,int guestCount) 
+        {
+            MessageBox.Show(tableId + " " + guestCount);
+            GlawMenu.Children.Clear();
+            MenuFood m = new MenuFood();
+            GlawMenu.Children.Add(m);
+        }
+        void menuStolMessage(int checkIdForMainWindow) 
+        {
+            MessageBox.Show(checkIdForMainWindow + "");
+            GlawMenu.Children.Clear();
+            MenuFood m = new MenuFood();
+            GlawMenu.Children.Add(m);
+            menuCheck_(checkIdForMainWindow);
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
+            clearingDelegatesFromBaktiar();
             this.Close();
         }
-
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            clearingDelegatesFromBaktiar();
             Parol_Window parol_Window = new Parol_Window();
             parol_Window.Show();
             this.Close();

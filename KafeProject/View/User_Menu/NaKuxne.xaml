@@ -28,27 +28,30 @@
                     <TextBlock Text="Добавить коментарий" FontSize="20" VerticalAlignment="Bottom" Width="250" Height="55" HorizontalAlignment="Right" Margin="0,0" Foreground="#FF00A0B0" Padding="0,25"  MouseDown="TextBlock_MouseDown"/>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <DataGrid FontSize="12" Style="{DynamicResource grid_Kuxne}"
+                    <DataGrid FontSize="12" Style="{DynamicResource grid_Kuxne}" SelectedItem="{Binding Food}"
                   BorderBrush="{x:Null}"
                   ColumnHeaderStyle="{DynamicResource hederstyle_Kuxne}"
                   HeadersVisibility="None"
+                  VerticalAlignment="Stretch"
+                  HorizontalAlignment="Stretch"
                   HorizontalScrollBarVisibility="Hidden"
                   VerticalGridLinesBrush="{x:Null}"
                   ItemsSource="{Binding FoodList}" Margin="35,0,35,0"
                   VerticalScrollBarVisibility="Auto"
+                  
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   CanUserResizeColumns="False"
-                  x:Name="Datagrid_Kuxne" >
+                  x:Name="Datagrid_Kuxne">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="700" FontSize="15" Foreground="Black"/>
-                            <DataGridTextColumn Header="Количество" Binding="{Binding Count}" Width="700" FontSize="15" Foreground="Black"/>
-                            <DataGridTextColumn Header="Сумма" Binding="{Binding Price}" Width="700" FontSize="15" Foreground="Black"/>
-                            <DataGridTemplateColumn Width="100" >
+                            <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" Width="*" FontSize="15" Foreground="Black"/>
+                            <DataGridTextColumn Header="Количество" Binding="{Binding Count}" Width="*" FontSize="15" Foreground="Black"/>
+                            <DataGridTextColumn Header="Сумма" Binding="{Binding Price}" Width="*" FontSize="15" Foreground="Black"/>
+                            <DataGridTemplateColumn Header="Удалить" Width="100" >
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button  Style="{DynamicResource Button_Remov_Row}" x:Name="x1" Cursor="Hand" VerticalAlignment="Center">
-                                            <Image Source="pack://application:,,,/Images/Icon/Remove.png" Width="45" Height="45"/>
+                                        <Button Command="{Binding DataContext.SendCheckCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{DynamicResource Button_Remov_Row}" x:Name="x1" Cursor="Hand" VerticalAlignment="Center">
+                                            <Image Source="/Images/Icon/Remove.png" Width="45" Height="45"/>
                                         </Button>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

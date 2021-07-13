@@ -47,7 +47,7 @@ namespace KafeProject.View.User_Menu
                 //(sender as Button).Content;
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    checkIdForTable=db.Checks.Where(g =>
+                    checkIdForTable=db.Checks.Where(g => g.DateTimeCheck > DateTime.Now.Date &&
                     g.TableId ==
                         db.Tables.Where(h =>
                         h.LocationId == selectedLocationId &&
@@ -87,11 +87,8 @@ namespace KafeProject.View.User_Menu
                     button.Click += new RoutedEventHandler(button_Category_Click);
                     Stol_Category.Children.Add(button);
                 }
-
             }
-            
         }
-        
         private bool methodForResult(int p) 
         {
             int g = 0;
@@ -99,11 +96,11 @@ namespace KafeProject.View.User_Menu
             {
                 try
                 {
-                    g =db.Checks?.Where(b => b.TableId == p)?.Select(p => p.Id).OrderBy(a=>a)?.LastOrDefault() ?? 0;
-                    g = db.Checks?.Where(b => b.Id == g)?.Select(p => p.Status).OrderBy(a => a)?.LastOrDefault() ?? 0;
-                    usersName = db.Waiters.Where(rt => rt.Id == db.Checks.Where(b => b.TableId == p).Select(l => l.WaiterId).OrderBy(t => t).LastOrDefault()).OrderBy(t => t.Id).Last().Name;
+                    g =db.Checks?.Where(b => b.TableId == p&&b.DateTimeCheck> DateTime.Now.Date)?.Select(p => p.Id).OrderBy(a=>a)?.LastOrDefault() ?? 0;
+                    g = db.Checks?.Where(b => b.Id == g && b.DateTimeCheck > DateTime.Now.Date)?.Select(p => p.Status).OrderBy(a => a)?.LastOrDefault() ?? 0;
+                    usersName = db.Waiters.Where(rt => rt.Id == db.Checks.Where(b => b.TableId == p && b.DateTimeCheck > DateTime.Now.Date).Select(l => l.WaiterId).OrderBy(t => t).LastOrDefault()).OrderBy(t => t.Id).Last().Name;
 
-                    if (db.Checks.Where(b => b.TableId == p).Select(s=>s.WaiterId).OrderBy(t => t).LastOrDefault() == currentWaiter)
+                    if (db.Checks.Where(b => b.TableId == p && b.DateTimeCheck > DateTime.Now.Date).Select(s=>s.WaiterId).OrderBy(t => t).LastOrDefault() == currentWaiter)
                         ifItIsHim = true;
                     else
                         ifItIsHim = false;
