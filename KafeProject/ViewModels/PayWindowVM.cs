@@ -88,7 +88,7 @@ namespace KafeProject.ViewModels
                 */
                 using (ApplicationContext db = new ApplicationContext())
                 {
-
+                    
                     Id = db.Waiters.Where(t => t.Pass == Password).Select(t => t.Id).FirstOrDefault();
                     if (Id > 0)
                     {
