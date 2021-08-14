@@ -9,6 +9,8 @@ namespace KafeProject.All_Windows
     /// </summary>
     public partial class Chasy : Window
     {
+        public delegate void DateForArhiv(DateTime i);
+        public static event DateForArhiv getDate;
         public Chasy()
         {
             InitializeComponent();
@@ -268,7 +270,15 @@ namespace KafeProject.All_Windows
             Date_Month.Text = dateTime.Month.ToString();
             Date_Day.Text = dateTime.Day.ToString();
             Hourse_Text.Text = dateTime.Hour.ToString();
-            Minuta_Text.Text = dateTime.Minute.ToString();
+            Minuta_Text.Text = dateTime.Minute.ToString();  
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            string dateTime =Date_Year.Text + "/" + Date_Month.Text +"/"+ Date_Day.Text +" "+ Hourse_Text.Text +":"+ Minuta_Text.Text;
+
+            getDate(DateTime.Parse(dateTime));
+            this.Close();
         }
     }
 }

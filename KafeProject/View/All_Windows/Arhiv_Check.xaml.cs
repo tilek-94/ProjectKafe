@@ -7,11 +7,16 @@ namespace KafeProject.All_Windows
     /// </summary>
     public partial class Arhiv_Check : Window
     {
+        
         public Arhiv_Check()
         {
             InitializeComponent();
+            
         }
-
+        ~Arhiv_Check()
+        {
+            
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

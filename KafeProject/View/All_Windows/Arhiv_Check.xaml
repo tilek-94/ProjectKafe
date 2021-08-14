@@ -3,9 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KafeProject.All_Windows"
+        xmlns:vm="clr-namespace:KafeProject.ViewModels"
+        xmlns:local="clr-namespace:KafeProject.All_Windows" xmlns:models="clr-namespace:KafeProject.Models"
         mc:Ignorable="d"
-        Title="Arhiv_Check" Height="650" Width="1200" Background="{x:Null}" AllowsTransparency="True" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"  Topmost="{Binding Source={x:Static Application.Current},Path=MainWindow.IsActive,Mode=OneWay}">
+        Title="Arhiv_Check" Height="650" Width="1200" Background="{x:Null}" AllowsTransparency="True" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Window.DataContext>
+        <vm:ArchiveCheckViewModel/>
+    </Window.DataContext>
     <Window.Resources>
         <DataTemplate x:Key="listTemplate">
             <Button Tag="{Binding ElementName=CheckMame,Path=Text}" Width="430" Height="60" Style="{DynamicResource Menu_Button}">
@@ -24,46 +28,168 @@
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <Grid Background="White" Margin="10,10,10,10">
+        <Grid Background="White">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="15" Opacity="0.5" ShadowDepth="7" Direction="272"/>
             </Grid.Effect>
             <TabControl Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FFF7F7F7" BorderThickness="0">
                 <TabItem Header="Все чеки " FontSize="20" Height="50" Width="130" Style="{DynamicResource TabControl}">
-                    <StackPanel Orientation="Horizontal">
-                        <ListBox x:Name="Check_List" VerticalAlignment="Stretch" HorizontalAlignment="Left"  ItemTemplate="{StaticResource listTemplate}">
-                        </ListBox>
-                            <StackPanel Width="430" Margin="0,20,0,10">
-                            <Button Width="430" Height="60" Style="{DynamicResource Menu_Button}">
-                                <Grid Height="60" Width="420">
-                                    <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Top">
-                                        <Ellipse Height="10" Width="10" Margin="3,3,3,3" Fill="#FFF5C7C7"/>
-                                        <TextBlock Text="№1433653213" Width="165" TextTrimming="CharacterEllipsis" FontSize="16" VerticalAlignment="Center"/>
-                                        <TextBlock Text="Стол 10" Width="100" TextAlignment="Center" TextTrimming="CharacterEllipsis" FontSize="18" VerticalAlignment="Center"/>
-                                        <TextBlock Text="5000 сом" HorizontalAlignment="Right" Width="135" TextAlignment="Right" Padding="0,0,5,0" TextTrimming="CharacterEllipsis" FontSize="14" FontWeight="Bold"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1.5*" />
+                        </Grid.ColumnDefinitions>
+                        <GroupBox Header="Чеки" Grid.Column="0">
+                            <DockPanel>
+                                <ListBox ItemsSource="{Binding CheckList, UpdateSourceTrigger=PropertyChanged}"                                  
+                                 SelectedItem="{Binding SelectedCheck}"
+                                 SelectedIndex="0"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                     VirtualizingPanel.IsContainerVirtualizable="True"
+                                     VirtualizingPanel.IsVirtualizing="True"
+                                     VirtualizingPanel.VirtualizationMode="Recycling"
+                                         >
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate DataType="models:ACheck">
+                                            <Grid HorizontalAlignment="Stretch" Height="60" Width="450">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="1*" />
+                                                    <RowDefinition Height="1*" />
+                                                </Grid.RowDefinitions>
+                                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                                    <TextBlock Width="140" TextAlignment="Left" Text="{Binding CheckID , StringFormat=Чек: 0}"/>
+                                                    <TextBlock Width="140" TextAlignment="Center" Text="{Binding CheckTable , StringFormat=Стол: 0}"/>
+                                                    <TextBlock Width="140" TextAlignment="Right" Text="{Binding CheckPrice}"/>
+                                                </StackPanel>
+                                                <TextBlock Text="{Binding AllFood}" Grid.Row="1"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <VirtualizingStackPanel/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                </ListBox>
+                            </DockPanel>
+                        </GroupBox>
+                        <!--<Grid Grid.Column="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.5*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="0.5*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="1" Background="White" x:Name="grd" Grid.Row="1" VerticalAlignment="Top">
+                                    <Grid.RowDefinitions >
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="50" />
+                                    </Grid.RowDefinitions>
+                                    <Rectangle Grid.Row="1" Fill="Black" />
+                                    <StackPanel Orientation="Vertical">
+                                        -->
+                        <!--<Image HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Source="skymage.png"/>-->
+                        <!--
+                                        <TextBlock HorizontalAlignment="Center" FontSize="20" Text="Кафе Таухид" />
+                                        <TextBlock HorizontalAlignment="Center" FontSize="12" Text="ул. Курманжан-Датка,282" />
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Bottom">
-                                        <TextBlock Text="Манты, Шорпо, Пельмен, Кочо аш, Чучвара, БыстроГанов" TextTrimming="CharacterEllipsis" FontSize="15" Margin="3,0,3,0" Width="420" />
+                                    <Grid Grid.Row="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0" Orientation="Vertical">
+                                            <TextBlock Text="Чек №" Margin="10,0,0,0" HorizontalAlignment="Left"/>
+                                            <TextBlock Margin="10,0,0,0" HorizontalAlignment="Left" Text="Стол №"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Orientation="Vertical" Margin="25,0,0,0">
+                                            <TextBlock Margin="10,0,0,0" HorizontalAlignment="Left" Text="{Binding SelectedCheck.CheckID}"/>
+                                            <TextBlock Text="{Binding SelectedCheck.CheckTable}" Margin="10,0,0,0" HorizontalAlignment="Left"/>
+                                        </StackPanel>
+                                    </Grid> 
+                                    <Rectangle Grid.Row="3" Fill="Black"/>
+                                    <DataGrid VerticalScrollBarVisibility="Hidden" CanUserSortColumns="False" CanUserDeleteRows="False"  ScrollViewer.CanContentScroll="False" Background="White" BorderThickness="0" Grid.Row="4" RowBackground="Transparent" ItemsSource="{Binding SelectedCheck.FoodInCheck}" AutoGenerateColumns="False"
+                                  GridLinesVisibility="None" HorizontalScrollBarVisibility="Hidden" CanUserAddRows="False"  BorderBrush="{x:Null}" VerticalGridLinesBrush="{x:Null}">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn  FontSize="15" Header="Наименование" Width="150" Binding="{Binding Name}" CanUserResize="False"/>
+                                            <DataGridTextColumn FontSize="15" Header="Кол-во"  Width="75" Binding="{Binding Count}"/>
+                                            <DataGridTextColumn FontSize="15" Header="Цена" Width="70" Binding="{Binding Price}"/>
+                                            <DataGridTextColumn FontSize="15" Header="Итог" Width="70" Binding="{Binding Itog}"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <StackPanel HorizontalAlignment="Center" Grid.Row="5" Orientation="Vertical">
+                                        <TextBlock FontSize="12"  HorizontalAlignment="Left" Text="{Binding SelectedCheck.CheckPrice, StringFormat=[Итого: 0]}" />
+                                        <TextBlock FontSize="12"  HorizontalAlignment="Left" Text="Обслуживание - 10%" />
+                                        <TextBlock FontSize="12"  HorizontalAlignment="Left" Text="{Binding SelectedCheck.CheckPrice}" />
                                     </StackPanel>
                                 </Grid>
-                            </Button>
-                            </StackPanel>
-
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="60"/>
-                            </Grid.RowDefinitions>
-                            <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Left" VerticalScrollBarVisibility="Visible" Grid.Row="0" >
-                                <StackPanel Width="705" Grid.Row="0">
-
-                                </StackPanel>
-                            </ScrollViewer>
-                            <Button x:Name="Otpravka_Kuxne" Grid.Row="1" Style="{DynamicResource Button_Yellow}" Content="Печать" FontSize="17" Height="40" Width="200" HorizontalAlignment="Right" Margin="0,0,25,0"/>
+                            </Grid>
+                        </Grid>-->
+                        <Grid Grid.Column="1">
+                            <Grid Background="White" Margin="5,30,0,8">
+                                <ScrollViewer Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Visible" >
+                                    <StackPanel>
+                                        <StackPanel Margin="20,50,20,30">
+                                            <TextBlock Text="Кафе Таухид" Foreground="Black" FontSize="22" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="ул.Курманжан Датка 282" Foreground="Black" HorizontalAlignment="Center"/>
+                                            <Grid Margin="0,10,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel Grid.Column="0" Margin="20,0,0,0">
+                                                    <TextBlock Text="Чек №" Foreground="Black" HorizontalAlignment="Left"/>
+                                                    <TextBlock Text="Дата" Foreground="Black" HorizontalAlignment="Left"/>
+                                                    <TextBlock Text="Стол №" Foreground="Black" HorizontalAlignment="Left"/>
+                                                    <TextBlock Text="Статус" Foreground="Black" HorizontalAlignment="Left"/>
+                                                </StackPanel>
+                                                <StackPanel Grid.Column="1">
+                                                    <TextBlock Text="{Binding SelectedCheck.CheckID}" Foreground="Black" HorizontalAlignment="Left"/>
+                                                    <TextBlock Text="{Binding SelectedCheck.CheckDate}" Foreground="Black" HorizontalAlignment="Left"/>
+                                                    <TextBlock Text="{Binding SelectedCheck.CheckTable}" Foreground="Black" HorizontalAlignment="Left"/>
+                                                    <TextBlock Text="{Binding SelectedCheck.CheckStatus}" Foreground="Black" HorizontalAlignment="Left"/>
+                                                </StackPanel>
+                                            </Grid>
+                                            <DataGrid GridLinesVisibility="None"  HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}" ItemsSource="{Binding CheckItems}" VerticalAlignment="Stretch" Style="{DynamicResource grid_xml}" IsReadOnly="True" FontSize="12" Margin="0,8,0,0"  CanUserAddRows="False" ColumnHeaderStyle="{DynamicResource hederstyle1}"  VerticalScrollBarVisibility="Auto"  HeadersVisibility="Column"
+                   AutoGenerateColumns="False" >
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Width="130" Binding="{Binding Name}" Header="Наименование" />
+                                                    <DataGridTextColumn  Width="50" Binding="{Binding Count}" Header="Кол-во"/>
+                                                    <DataGridTextColumn  Width="50" Binding="{Binding Price}" Header="Цена"/>
+                                                    <DataGridTextColumn  Width="60" Binding="{Binding Itog}" Header="Итог"/>
+                                                    <DataGridTextColumn  Width="70" Binding="{Binding Otmena}" Header="Отменено"/>
+                                                    <!--<DataGridTextColumn Binding="{Binding Status}" Header="Статус"/>-->
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                            <StackPanel HorizontalAlignment="Center">
+                                                <Grid Margin="0,10,0,0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackPanel Grid.Column="0" Margin="20,0,0,0">
+                                                        <TextBlock Text="Обслуживание" Foreground="Black" HorizontalAlignment="Left"/>
+                                                        <TextBlock Text="Итого" Foreground="Black" HorizontalAlignment="Left"/>
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="1" Margin="20,0,0,0">
+                                                        <TextBlock Text="{Binding Ob}" Foreground="Black" HorizontalAlignment="Left"/>
+                                                        <TextBlock Text="{Binding Itog}" Foreground="Black" HorizontalAlignment="Left"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
                         </Grid>
-                    </StackPanel>
+                    </Grid>
                 </TabItem>
-                <TabItem Header="Наличными" FontSize="20" Height="50" Width="130" Style="{DynamicResource TabControl}">
+                <!--<TabItem Header="Наличными" FontSize="20" Height="50" Width="130" Style="{DynamicResource TabControl}">
                     <StackPanel Orientation="Horizontal">
                         <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Left">
                             <StackPanel Width="430" Margin="0,20,0,10">
@@ -154,14 +280,14 @@
                             <Button  Grid.Row="1" Style="{DynamicResource Button_Yellow}" Content="Печать" FontSize="17" Height="40" Width="200" HorizontalAlignment="Right" Margin="0,0,25,0"/>
                         </Grid>
                     </StackPanel>
-                </TabItem>
+                </TabItem>-->
             </TabControl>
             <Button  Width="75" Background="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource Button_Remov_Row}" HorizontalAlignment="Right" Click="Button_Click" VerticalAlignment="Top" Margin="0,4">
                 <StackPanel   Orientation="Horizontal">
                     <Image VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Images/Icon/Close1.png" Height="60" Width="60" ></Image>
                 </StackPanel>
             </Button>
-            <Button x:Name="Otpravka_Kuxne_Copy" Style="{DynamicResource Button_Yellow}" Content="Настроить дату" FontSize="17" Height="30" Width="200" HorizontalAlignment="Right" Margin="0,-55,70,515" Click="Otpravka_Kuxne_Copy_Click"/>
+            <Button x:Name="Otpravka_Kuxne_Copy" Style="{DynamicResource Button_Yellow}" Content="Настроить дату" FontSize="17" Height="30" Width="200" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="75,13" Click="Otpravka_Kuxne_Copy_Click"/>
         </Grid>
     </Grid>
 </Window>

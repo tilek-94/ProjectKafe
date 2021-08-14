@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using KafeProject.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace KafeProject.View.All_Windows
 {
@@ -19,9 +9,24 @@ namespace KafeProject.View.All_Windows
     /// </summary>
     public partial class MenuCheck : Window
     {
+        public delegate void ButtonClick();
+        public static event ButtonClick addStol;
         public MenuCheck()
         {
             InitializeComponent();
+            MainWindow.fuckAll_ += thisClose;
+            ChecksLogic.cls += thisClose;
+        }
+        void thisClose(int j=0) 
+        {
+            Close();
+            ChecksLogic.cls -= thisClose;
+            MainWindow.fuckAll_ -= thisClose;
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //addStol();
+            Close();
         }
     }
 }

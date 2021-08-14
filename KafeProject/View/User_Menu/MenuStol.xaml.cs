@@ -3,6 +3,8 @@ using KafeProject.Date;
 using KafeProject.View.All_Windows;
 using System;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -20,12 +22,26 @@ namespace KafeProject.View.User_Menu
         string err;
         public delegate void Message1(int x);
         public static event Message1 menuStol_;
-        public MenuStol(int x=0)// чтобы узнать какой официант
+        public MenuStol(int x = 0)// чтобы узнать какой официант
         {
             InitializeComponent();
             currentWaiter = x;
-            
+            MenuFood.IdCheck = 0;
+            MenuFood.IdTable = 0;
+            MenuFood.GuestCount = 0;
         }
+        void addBut() 
+        {
+            Thread.Sleep(10);
+            Knopki();
+            this.Dispatcher.Invoke(() =>
+            {
+                Knopki_kategoryy();
+            });
+            
+
+        }
+        async void Fac() => await Task.Run(() => addBut());
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Parol_Window parol_Window = new Parol_Window();
@@ -35,17 +51,18 @@ namespace KafeProject.View.User_Menu
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Knopki();
-            Knopki_kategoryy();
+            Fac();
+            //Knopki();
+            //Knopki_kategoryy();
         }
-        void button_Click(object sender, RoutedEventArgs e)
+        async void button_Click(object sender, RoutedEventArgs e)
         {
             if ((sender as Button).Uid == "-2") 
             {
                 int checkIdForTable = 0;
                 //selectedLocationId
                 //(sender as Button).Content;
-                using (ApplicationContext db = new ApplicationContext())
+                await using (ApplicationContext db = new ApplicationContext())
                 {
                     checkIdForTable=db.Checks.Where(g => g.DateTimeCheck > DateTime.Now.Date &&
                     g.TableId ==
@@ -70,9 +87,9 @@ namespace KafeProject.View.User_Menu
         {
             dynamicButton();
         }
-        public void Knopki_kategoryy()
+        public async void Knopki_kategoryy()
         {
-            using (ApplicationContext db = new ApplicationContext())
+            await using (ApplicationContext db = new ApplicationContext())
             {
                 foreach (var t in db.Locations)
                 {
@@ -96,11 +113,19 @@ namespace KafeProject.View.User_Menu
             {
                 try
                 {
-                    g =db.Checks?.Where(b => b.TableId == p&&b.DateTimeCheck> DateTime.Now.Date)?.Select(p => p.Id).OrderBy(a=>a)?.LastOrDefault() ?? 0;
-                    g = db.Checks?.Where(b => b.Id == g && b.DateTimeCheck > DateTime.Now.Date)?.Select(p => p.Status).OrderBy(a => a)?.LastOrDefault() ?? 0;
-                    usersName = db.Waiters.Where(rt => rt.Id == db.Checks.Where(b => b.TableId == p && b.DateTimeCheck > DateTime.Now.Date).Select(l => l.WaiterId).OrderBy(t => t).LastOrDefault()).OrderBy(t => t.Id).Last().Name;
 
-                    if (db.Checks.Where(b => b.TableId == p && b.DateTimeCheck > DateTime.Now.Date).Select(s=>s.WaiterId).OrderBy(t => t).LastOrDefault() == currentWaiter)
+
+                    g =db.Checks?.
+                        Where(b => b.TableId == p&&b.DateTimeCheck> DateTime.Now.Date &&b.Status==5)?.
+                        Select(p => p.Id).
+                        OrderBy(a=>a)?.
+                        LastOrDefault() ?? 0;
+
+
+                    g = db.Checks?.Where(b => b.Id == g && b.DateTimeCheck > DateTime.Now.Date && b.Status == 5)?.Select(p => p.Status).OrderBy(a => a)?.LastOrDefault() ?? 0;
+                    usersName = db.Waiters.Where(rt => rt.Id == db.Checks.Where(b => b.TableId == p && b.DateTimeCheck > DateTime.Now.Date && b.Status == 5).Select(l => l.WaiterId).OrderBy(t => t).LastOrDefault()).OrderBy(t => t.Id).Last().Name;
+
+                    if (db.Checks.Where(b => b.TableId == p && b.DateTimeCheck > DateTime.Now.Date && b.Status == 5).Select(s=>s.WaiterId).OrderBy(t => t).LastOrDefault() == currentWaiter)
                         ifItIsHim = true;
                     else
                         ifItIsHim = false;
@@ -117,8 +142,11 @@ namespace KafeProject.View.User_Menu
             }
            
         }
-        void dynamicButton(object sender = null)
+        async void dynamicButton(object sender = null)
         {
+            this.Dispatcher.Invoke(() => { 
+
+
             Stol_Panel.Children.Clear();
             int? k = 1;
             if (sender != null)
@@ -154,9 +182,11 @@ namespace KafeProject.View.User_Menu
                         }
                     }
                     butt.Click += new RoutedEventHandler(button_Click);
-                    Stol_Panel.Children.Add(butt);
+                     Stol_Panel.Children.Add(butt);
+                    
                 }
             }
+            });
         }
     }
 }

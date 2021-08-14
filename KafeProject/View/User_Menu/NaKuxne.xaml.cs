@@ -15,16 +15,13 @@ namespace KafeProject.View.User_Menu
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            
         }
-
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            System.Diagnostics.Process.Start(@"osk.exe");
+            //System.Diagnostics.Process.Start(@"osk.exe");
             Komentary komentary = new Komentary();
             komentary.Owner = Application.Current.MainWindow;
-            komentary.ShowDialog();
-           
+            komentary.ShowDialog();       
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using KafeProject.ViewModels;
+using System.Windows;
 
 namespace KafeProject.View.User_Menu
 {
@@ -27,6 +28,7 @@ namespace KafeProject.View.User_Menu
 
         private void Otpravka_Kuxne_Click(object sender, RoutedEventArgs e)
         {
+            MenuFoodViewModel.comm=textBox1.Text.ToString().Trim();
             this.Close();
         }
     }

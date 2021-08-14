@@ -2,9 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\KafeProject",
+    "\\KafeProject\\Data",
     "\\KafeProject\\View",
     "\\KafeProject\\View\\User_Menu"
   ],
-  "SelectedNode": "\\KafeProject\\View\\User_Menu\\MenuStol.xaml.cs",
+  "SelectedNode": "\\KafeProject\\Data",
   "PreviewInSolutionExplorer": false
 }

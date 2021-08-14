@@ -46,7 +46,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <ScrollViewer  CanContentScroll="False"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Visible" Grid.Row="0">
+                <ScrollViewer  CanContentScroll="False"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Hidden" Grid.Row="0">
                     <WrapPanel x:Name="Stol_Category" Grid.Row="0" Margin="75,10,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                         <Button x:Name="Vse_Tovar" VerticalAlignment="Center" Height="42" HorizontalAlignment="Left" Margin="-10,0,11,0"  Width="50"  Style="{DynamicResource Button_Kategory_stol}"/>
                     </WrapPanel>

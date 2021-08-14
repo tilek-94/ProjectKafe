@@ -20,7 +20,7 @@
                     <RowDefinition Height="60"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Добавить коментарий" FontSize="25" VerticalAlignment="Bottom" Width="350" Height="55" HorizontalAlignment="Left" Margin="30,0" Foreground="#FF00A0B0" Padding="0,13"/>
-                <TextBox Grid.Row="1" Style="{DynamicResource textbox_style}" Margin="20,0,20,0" FontSize="15"/>
+                <TextBox x:Name="textBox1" Grid.Row="1" Style="{DynamicResource textbox_style}" Margin="20,0,20,0" FontSize="15"/>
                 <Button x:Name="Otpravka_Kuxne" Grid.Row="3" Style="{DynamicResource Button_Yellow}" Content="Отправить" FontSize="17" Height="40" Width="200" Margin="20,0,5,0" HorizontalAlignment="Left" Click="Otpravka_Kuxne_Click"/>
                 <Button  Width="75" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Right" Click="Button_Click">
                     <StackPanel   Orientation="Horizontal">

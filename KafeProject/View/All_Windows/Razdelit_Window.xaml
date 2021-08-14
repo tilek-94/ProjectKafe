@@ -3,13 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:KafeProject.ViewModels"
         mc:Ignorable="d"
-        Title="Razdelit_Window" Height="650" Width="1050" Background="{x:Null}" AllowsTransparency="True" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"  Topmost="{Binding Source={x:Static Application.Current},Path=MainWindow.IsActive,Mode=OneWay}" Loaded="Window_Loaded">
+        Title="Razdelit_Window" Height="650" Width="1050" Background="{x:Null}" AllowsTransparency="True" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized" Loaded="Window_Loaded">
+    <Window.DataContext>
+        <vm:RazdelitViewModel/>
+    </Window.DataContext>
     <Grid>
-        <Grid Background="White" Margin="10,10,10,10">
+        <Grid Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="15" Opacity="0.5" ShadowDepth="7" Direction="272"/>
@@ -19,7 +24,6 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="70"/>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0" >
                             <Grid.ColumnDefinitions>
@@ -34,43 +38,41 @@
                                 <TextBlock Text="Все блюда" FontSize="20" VerticalAlignment="Bottom" Width="200" HorizontalAlignment="Left" Margin="40,0"/>
                                 <TextBlock Text="Выбранные блюда" FontSize="20" VerticalAlignment="Bottom" Width="270" HorizontalAlignment="Right" Margin="100,0"/>
                             </Grid>
-
-                            <DataGrid FontSize="12" Style="{DynamicResource grid_Kuxne}" Grid.Row="1" Grid.Column="0"
-                  BorderBrush="{x:Null}"
+                            <StackPanel  Background="White" Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+                                <DataGrid FontSize="12" Style="{DynamicResource grid_Kuxne}"
                   ColumnHeaderStyle="{DynamicResource hederstyle_Kuxne}"
-                  HeadersVisibility="None"
-                  HorizontalScrollBarVisibility="Hidden"
+                  HeadersVisibility="Column" 
+                  SelectedItem="{Binding SelectedFood}"
                   VerticalGridLinesBrush="{x:Null}"
-                  ItemsSource="{Binding}" Margin="35,0,35,0"
-                  VerticalScrollBarVisibility="Hidden"
+                  VerticalScrollBarVisibility="Auto"
+                  CanUserAddRows="False"            
                   AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  Background="#FFF7F7F7"
                   CanUserResizeColumns="False"
-                  x:Name="Datagrid_Spisok" SelectionChanged="Datagrid_Spisok_SelectionChanged" >
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Наименование" Binding="{Binding fio}" Width="700" FontSize="15" Foreground="Black"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                            <DataGrid FontSize="12" Style="{DynamicResource grid_Kuxne}" Grid.Row="1" Grid.Column="1"
-                  BorderBrush="{x:Null}"
+                                         ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                  x:Name="dataGridView1" ItemsSource="{Binding RCheckList, UpdateSourceTrigger=PropertyChanged}" >
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Binding="{Binding RCheckName}" IsReadOnly="True" Header="Наименование"  Width="350" FontSize="15" Foreground="Black"/>
+                                        <DataGridTextColumn Binding="{Binding RCheckCount}" IsReadOnly="True" Header="Кол-во"  Width="160" FontSize="15" Foreground="Black"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                            <DataGrid Grid.Row="1" Grid.Column="1" FontSize="12" Style="{DynamicResource grid_Kuxne}"
                   ColumnHeaderStyle="{DynamicResource hederstyle_Kuxne}"
-                  HeadersVisibility="None"
-                  HorizontalScrollBarVisibility="Hidden"
+                  HeadersVisibility="Column" 
+                  SelectedItem="{Binding UnSelectedFood}"
                   VerticalGridLinesBrush="{x:Null}"
-                  ItemsSource="{Binding}" Margin="35,0,35,0"
-                  VerticalScrollBarVisibility="Hidden"
+                  VerticalScrollBarVisibility="Auto"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                  CanUserAddRows="False"
                   AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  Background="#FFF7F7F7"
                   CanUserResizeColumns="False"
-                  x:Name="Datagrid_Razdelennyi" >
+                   ItemsSource="{Binding SelectedRCheckList, UpdateSourceTrigger=PropertyChanged}" >
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Наименование" Binding="{Binding marka}" Width="700" FontSize="15" Foreground="Black"/>
+                                    <DataGridTextColumn Binding="{Binding RCheckName}" IsReadOnly="True" Header="Наименование"  Width="350" FontSize="15" Foreground="Black"/>
+                                    <DataGridTextColumn Binding="{Binding RCheckCount}" IsReadOnly="True" Header="Кол-во"  Width="170" FontSize="15" Foreground="Black"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
-                        <Button x:Name="Otpravka_Kuxne" Grid.Row="1" Style="{DynamicResource Button_Yellow}" Content="Разделить выбранные на новые чеки " FontSize="17" Height="40" Width="350" Margin="0,15,35,15" HorizontalAlignment="Right" Grid.Column="1"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Разделить гость" FontSize="20" Height="60" Style="{DynamicResource TabControl}">
@@ -78,34 +80,38 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="70"/>
                         </Grid.RowDefinitions>
                         <Grid Grid.ColumnSpan="2">
-                            <TextBlock Text="Текущая стол" FontSize="20" VerticalAlignment="Bottom" Width="200" HorizontalAlignment="Left" Margin="50,0"/>
-                            <TextBlock Text="На другой стол" FontSize="20" VerticalAlignment="Bottom" Width="270" HorizontalAlignment="Right" Margin="100,0"/>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="8*"/>
+                                <ColumnDefinition Width="163*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Текущий стол" FontSize="20" VerticalAlignment="Bottom" Width="200" HorizontalAlignment="Left" Margin="2,0,0,0" Grid.Column="1"/>
+                            <TextBlock Text="На другой стол" FontSize="20" VerticalAlignment="Bottom" Width="270" HorizontalAlignment="Right" Margin="0,0,100,0" Grid.Column="1"/>
                         </Grid>
                         <Grid Grid.Row="1">
                             <StackPanel Width="250" HorizontalAlignment="Left" Margin="100,50">
                                 <Image Source="pack://application:,,,/Images/wrfwqfrqw.png" Height="150" Width="160"/>
-                                <TextBlock x:Name="Count_Gost" Text="10" FontSize="60" TextAlignment="Center" Foreground="#FF6E6E6E"/>
+                                <TextBlock x:Name="Count_Gost" Text="{Binding StolCount}" FontSize="60" TextAlignment="Center" Foreground="#FF6E6E6E"/>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Button Style="{DynamicResource Button_Icon}"  Height="100" Width="100"  HorizontalAlignment="Center" Padding="-10,-10" Margin="0,0,0,10" Click="Button_Click_1">
+                                <Button Style="{DynamicResource Button_Icon}"  Height="100" Width="100"  HorizontalAlignment="Center" Padding="-10,-10" Margin="0,0,0,10"  Command="{Binding PlusStolCommand}">
                                     <Image Source="pack://application:,,,/Images/Icon/Ukazatel.png" Height="120" Width="120"/>
                                 </Button>
-                                <Button Style="{DynamicResource Button_Icon}"  Height="100" Width="100"  HorizontalAlignment="Center" Padding="-10,-10" Click="Button_Click_2">
+                                <Button Style="{DynamicResource Button_Icon}"  Height="100" Width="100"  HorizontalAlignment="Center" Padding="-10,-10"  Command="{Binding MinusStolCommand}">
                                     <Image Source="pack://application:,,,/Images/Icon/Decrement.png" Height="120" Width="120"/>
                                 </Button>
                             </StackPanel>
                             <StackPanel Width="250" HorizontalAlignment="Right" Margin="100,50">
                                 <Image Source="pack://application:,,,/Images/ergegqegqer.png" Height="150" Width="150"/>
-                                <TextBlock x:Name="Count_New_Stol" Text="0" FontSize="60" TextAlignment="Center" Foreground="#FF6E6E6E"/>
+                                <TextBlock x:Name="Count_New_Stol" Text="{Binding RazStolCount}" FontSize="60" TextAlignment="Center" Foreground="#FF6E6E6E"/>
                             </StackPanel>
                         </Grid>
-                        <Button x:Name="Button_Razdelit_Gost" Style="{DynamicResource Button_Yellow}" Content="Разделите выбранные на новые столы " FontSize="17" Height="40" Width="350" Margin="0,15,35,15" HorizontalAlignment="Right" Grid.Row="2"/>
+                        <!--<Button x:Name="Button_Razdelit_Gost" Style="{DynamicResource Button_Yellow}" Content="Разделите выбранные на новые столы " FontSize="17" Height="40" Width="350" Margin="0,15,35,15" HorizontalAlignment="Right" Grid.Row="2"/>-->
                     </Grid>
                 </TabItem>
             </TabControl>
+            <Button x:Name="Otpravka_Kuxne" Grid.Row="2" Style="{DynamicResource Button_Yellow}" Content="Разделить выбранные на новые чеки " Command="{Binding SendCheckCommand}" FontSize="17" Height="40" Width="350" Margin="0,15,35,15" HorizontalAlignment="Right" Grid.Column="1"/>
             <Button  Width="75" Background="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource Button_Remov_Row}" HorizontalAlignment="Right" Click="Button_Click">
                 <StackPanel   Orientation="Horizontal">
                     <Image VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Images/Icon/Close1.png" Height="60" Width="60" ></Image>

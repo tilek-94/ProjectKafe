@@ -36,7 +36,7 @@
                   HorizontalAlignment="Stretch"
                   HorizontalScrollBarVisibility="Hidden"
                   VerticalGridLinesBrush="{x:Null}"
-                  ItemsSource="{Binding FoodList}" Margin="35,0,35,0"
+                  ItemsSource="{Binding FoodList, UpdateSourceTrigger=PropertyChanged}" Margin="35,0,35,0"
                   VerticalScrollBarVisibility="Auto"
                   
                   AutoGenerateColumns="False"

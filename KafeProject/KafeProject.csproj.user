@@ -44,6 +44,9 @@
     <Page Update="View\All_Windows\Kolichestvo_Bluda.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\All_Windows\CheckWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\All_Windows\MenuCheck.xaml">
       <SubType>Designer</SubType>
     </Page>

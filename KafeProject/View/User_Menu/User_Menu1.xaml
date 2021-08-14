@@ -3,20 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="250" d:DesignWidth="250">
+             mc:Ignorable="d" d:DesignWidth="250" Height="250">
     <Grid>
-       
+
         <Grid Margin="10,10,10,10">
             <Path Data="M0,137 L14,137 21,144 C21,144 26,149 29,153 31,158 38,159 41,154 44,148 45,147 47,146 48,145 57,138 56,137 55,137 57,137 57,137 L247,137 247,-16 -0,-16 z" Fill="White" HorizontalAlignment="Stretch" Stretch="Fill" Stroke="#FFF3F3F3" VerticalAlignment="Top" Width="250">
-            <Path.Effect>
+                <Path.Effect>
                     <DropShadowEffect Opacity="0.5" Direction="273" BlurRadius="15"/>
                 </Path.Effect>
             </Path>
             <StackPanel>
-                <Button Style="{DynamicResource Menu_Button}" Content="Разделить чек / Гость" Command="{Binding RazdelitChek}"/>
-                <Button Style="{DynamicResource Menu_Button}" Content="Очистить заказ"/>
-                <Button Style="{DynamicResource Menu_Button}" FontSize="19.5" Content="Изменить кол-во гостей" Command="{Binding KollGostei}"/>
+                <Button Style="{DynamicResource Menu_Button}" Content="Разделить чек / Гость" Click="Button_Click_2"/>
+                <Button Style="{DynamicResource Menu_Button}" Click="Button_Click" FontSize="19.5" Content="Изменить кол-во гостей" />
             </StackPanel>
         </Grid>
     </Grid>

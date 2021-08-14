@@ -16,14 +16,15 @@ namespace KafeProject.Date
        public DbSet<Check> Checks { get; set; }
        public DbSet<Order> Orders { get; set; }
        public DbSet<Options> Options { get; set; }
-
+       public DbSet<Regimes> Regime { get; set; }
+        //public DbSet<Options> status { get; set; }
         public ApplicationContext()
         {
-            Database.EnsureCreated();
+                  Database.EnsureCreated();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=192.168.0.113;user=kafe;password=1;database=BasaKafe;",
+            optionsBuilder.UseMySql("server=192.168.0.101;user=kafe;password=1;database=BasaKafe;",
                  new MySqlServerVersion(new Version(5, 7, 29))
              );
         } 

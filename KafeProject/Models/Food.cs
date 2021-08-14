@@ -9,7 +9,8 @@ namespace KafeProject.Models
     public class Food:StandartAbstract
     {
        public double Price { get; set; }
-       public string Image { get; set; }
+       public byte[] Image { get; set; }
        public int ParentCategoryId { get; set; }
+       public int isCook { get; set; }
     }
 }

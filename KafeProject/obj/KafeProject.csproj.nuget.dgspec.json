@@ -1,25 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\проекты\\кафе 06 07 2021\\10 07 2021 2\\KafeProject\\KafeProject.csproj": {}
+    "D:\\project\\Project_Kafe\\ProjectKafe\\KafeProject\\KafeProject.csproj": {}
   },
   "projects": {
-    "D:\\проекты\\кафе 06 07 2021\\10 07 2021 2\\KafeProject\\KafeProject.csproj": {
+    "D:\\project\\Project_Kafe\\ProjectKafe\\KafeProject\\KafeProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\проекты\\кафе 06 07 2021\\10 07 2021 2\\KafeProject\\KafeProject.csproj",
+        "projectUniqueName": "D:\\project\\Project_Kafe\\ProjectKafe\\KafeProject\\KafeProject.csproj",
         "projectName": "KafeProject",
-        "projectPath": "D:\\проекты\\кафе 06 07 2021\\10 07 2021 2\\KafeProject\\KafeProject.csproj",
+        "projectPath": "D:\\project\\Project_Kafe\\ProjectKafe\\KafeProject\\KafeProject.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\проекты\\кафе 06 07 2021\\10 07 2021 2\\KafeProject\\obj\\",
+        "outputPath": "D:\\project\\Project_Kafe\\ProjectKafe\\KafeProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -50,9 +48,17 @@
               "target": "Package",
               "version": "[5.0.7, )"
             },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.26, )"
+            },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[5.0.1, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             }
           },
           "imports": [
@@ -73,7 +79,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

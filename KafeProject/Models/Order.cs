@@ -14,6 +14,7 @@ namespace KafeProject.Models
         public int CheckId { get; set; }
         public Check check { get; set; }
         public int CountFood { get; set; }
+        public int isCancel { get; set; }
 
     }
 }

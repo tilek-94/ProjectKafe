@@ -32,7 +32,7 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <StackPanel  Orientation="Horizontal" x:Name="KategoryMenu" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="60" Grid.Column="0">
-                            <Button x:Name="Vse_Tovar" Uid="0" Command="{Binding OnlyAllCl}" VerticalAlignment="Center" Height="60" HorizontalAlignment="Left" Width="130.5" Margin="25,0"   Style="{DynamicResource Button_Kategory}" Click="Vse_Tovar_Click"/>
+                            <Button x:Name="Vse_Tovar" Uid="0"  VerticalAlignment="Center" Height="60" HorizontalAlignment="Left" Width="130.5" Margin="25,0"   Style="{DynamicResource Button_Kategory}" Click="Vse_Tovar_Click"/>
                             <!--Тамактын аты-->
 
                         </StackPanel>
@@ -43,13 +43,30 @@
                             <ColumnDefinition Width="80*"/>
                             <ColumnDefinition Width="429*"/>
                         </Grid.ColumnDefinitions>
-                        <ScrollViewer  CanContentScroll="False"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Hidden" Grid.ColumnSpan="3">
+                        <ScrollViewer  CanContentScroll="False"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Hidden" Grid.ColumnSpan="3" PanningMode="Both">
                             <WrapPanel x:Name="TovarMenu"   VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="15,0,15,0" >
-                                <!--<Grid   Margin="10,10" Height="155" >
-                                    <Image Height="155" Width="200" Source="/Images/FoodImage/se.png" Stretch="UniformToFill" VerticalAlignment="Top"/>
+                                <!--<Grid   Margin="10,10" Height="130" >
+                                    <Image Height="130" Width="170" Source="/Images/FoodImage/se.png" Stretch="UniformToFill" VerticalAlignment="Top"/>
                                     <StackPanel Background="White" Height="Auto" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Orientation="Horizontal">
-                                        <TextBlock  FontSize="20"  Margin="0,5,0,5" VerticalAlignment="Bottom" FontWeight="UltraBold"  HorizontalAlignment="Left" TextAlignment="Center" TextWrapping="Wrap" Width="200" 
+                                        <TextBlock  FontSize="20"  Margin="0,5,0,5" VerticalAlignment="Bottom" FontWeight="UltraBold"  HorizontalAlignment="Left" TextAlignment="Center" TextWrapping="Wrap" Width="170" 
                                                     Text="Суп с тушенкой" ></TextBlock>
+
+                                    </StackPanel>
+                                </Grid>
+                                <Grid   Margin="10,10" Height="130" >
+                                    <Image Height="130" Width="170" Source="/Images/FoodImage/se.png" Stretch="UniformToFill" VerticalAlignment="Top"/>
+                                    <StackPanel Background="White" Height="Auto" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Orientation="Horizontal">
+                                        <TextBlock  FontSize="20"  Margin="0,5,0,5" VerticalAlignment="Bottom" FontWeight="UltraBold"  HorizontalAlignment="Left" TextAlignment="Center" TextWrapping="Wrap" Width="170" 
+                                                    Text="Суп с тушенкой" ></TextBlock>
+
+                                    </StackPanel>
+                                </Grid>
+                                <Grid   Margin="10,10" Height="130" >
+                                    <Image Height="130" Width="170" Source="/Images/FoodImage/se.png" Stretch="UniformToFill" VerticalAlignment="Top"/>
+                                    <StackPanel Background="White" Height="Auto" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Orientation="Horizontal">
+                                        <TextBlock  FontSize="20"  Margin="0,5,0,5" VerticalAlignment="Bottom" FontWeight="UltraBold"  HorizontalAlignment="Left" TextAlignment="Center" TextWrapping="Wrap" Width="170" 
+                                                    Text="Суп с тушенкой" ></TextBlock>
+
                                     </StackPanel>
                                 </Grid>-->
                             </WrapPanel>
@@ -59,26 +76,30 @@
             </Grid>
             <!--Тамактар тизмеси чыкчу панел-->
             <Grid Grid.Row="0" Grid.Column="1" Background="White">
-                <DataGrid FontSize="12" Style="{DynamicResource grid_Kuxne}"
+                <!--<ScrollViewer CanContentScroll="True"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Hidden" PanningMode="Both">-->
+                   <DataGrid FontSize="12" Style="{DynamicResource grid_Kuxne}"
                   ColumnHeaderStyle="{DynamicResource hederstyle_Kuxne}"
-                  HeadersVisibility="Column"                  
+                  HeadersVisibility="Column" 
+                  SelectedItem="{Binding SelectedFood}"
                   VerticalGridLinesBrush="{x:Null}"
-                  VerticalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Hidden"
+                  CanUserAddRows="False"
                   AutoGenerateColumns="False"
-                  IsReadOnly="True"
                   CanUserResizeColumns="False"
-                  x:Name="dataGridView1" ItemsSource="{Binding FoodList, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="dataGridView1_SelectionChanged" >
+                  x:Name="dataGridView1" ItemsSource="{Binding FoodList, UpdateSourceTrigger=PropertyChanged}" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Name}" Header="Наименование"  Width="250" FontSize="15" Foreground="Black"/>
-                        <DataGridTextColumn Binding="{Binding Count}" Header="Кол-во"  Width="50" FontSize="15" Foreground="Black"/>
-                        <DataGridTextColumn Binding="{Binding Price}" Header="Цена" Width="97" FontSize="15" Foreground="Black"/>
+                        <DataGridTextColumn Binding="{Binding Name}" IsReadOnly="True" Header="Наименование"  Width="250" FontSize="15" Foreground="Black"/>
+                        <DataGridTextColumn Binding="{Binding Count}" IsReadOnly="True" Header="Кол-во"  Width="50" FontSize="15" Foreground="Black"/>
+                        <DataGridTextColumn Binding="{Binding Price}" IsReadOnly="True" Header="Цена" Width="97" FontSize="15" Foreground="Black"/>
                     </DataGrid.Columns>
-                </DataGrid>
+                </DataGrid>  
+                <!--</ScrollViewer>-->
+               
             </Grid>
             <!--Официанттын панели-->
             <Grid Grid.Row="1" Grid.Column="1" Background="#FFF7F7F7">
                 <StackPanel Height="Auto" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
-                    <Button x:Name="Otpravit_Kuxne" Command="{Binding SendCheckCommand}" Style="{DynamicResource Button_Yellow}" Height="60"  Width="365" Margin="0,0,0,15" VerticalAlignment="Top" HorizontalAlignment="Center" Click="Otpravit_Kuxne_Click">
+                    <Button x:Name="Otpravit_Kuxne"  Style="{DynamicResource Button_Yellow}" Height="60"  Width="365" Margin="0,0,0,15" VerticalAlignment="Top" HorizontalAlignment="Center" Click="Otpravit_Kuxne_Click" Command="{Binding CheckPrintCommand}">
                         <StackPanel  Height="60" Orientation="Horizontal"   Width="365" >
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="30,0" >
                                 <TextBlock Text="Отправить на кухню" FontSize="22"  Foreground="White" Height="28.263" ></TextBlock>
@@ -92,7 +113,7 @@
                     <StackPanel  VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="35" Margin="10,0,0,0" >
                         <Grid>
                             <TextBlock Text="Итого" FontSize="17" VerticalAlignment="Center" Margin="13,0" HorizontalAlignment="Left"></TextBlock>
-                            <TextBlock Text="{Binding ItogSum}" x:Name="ItogSumma" FontSize="17" VerticalAlignment="Center" Margin="60,0,80,0" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{Binding ObsSum}"  FontSize="17" VerticalAlignment="Center" Margin="60,0,80,0" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
                             <TextBlock Text="К оплате" FontSize="17" VerticalAlignment="Center" Margin="0,0,20,0" HorizontalAlignment="Right" FontWeight="Bold"></TextBlock>
                         </Grid>
                     </StackPanel>
@@ -100,8 +121,8 @@
                     <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="35"  Margin="10,0,0,0">
                         <Grid>
                             <TextBlock Text="Обслуживание" FontSize="17" VerticalAlignment="Center" Margin="13,0" HorizontalAlignment="Left"></TextBlock>
-                            <TextBlock Text="-%" FontSize="17" VerticalAlignment="Center" Margin="60,0,80,0" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
-                            <TextBlock Text="{Binding ObsSum}" FontSize="17" VerticalAlignment="Center"  HorizontalAlignment="Right" FontWeight="Bold" Margin="0,0,27,0"></TextBlock>
+                            <TextBlock Text="{Binding PercentSum}" FontSize="17" VerticalAlignment="Center" Margin="60,0,80,0" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <TextBlock x:Name="ItogSumma" Text="{Binding ItogSum}" FontSize="17" VerticalAlignment="Center"  HorizontalAlignment="Right" FontWeight="Bold" Margin="0,0,27,0"></TextBlock>
                         </Grid>
                     </StackPanel>
                     <!--Печать просент оплатить панели-->
@@ -114,7 +135,7 @@
                                 <Grid.Effect>
                                     <DropShadowEffect BlurRadius="5" Opacity="0.4" ShadowDepth="5" Direction="272" RenderingBias="Quality"/>
                                 </Grid.Effect>
-                                <Button x:Name="Menu_Button" Command="{Binding AllClosses_B}" CommandParameter="{Binding ElementName=Popup_Menu}" Style="{DynamicResource Button_Icon}" Click="Menu_Button_Click">
+                                <Button x:Name="Menu_Button"  Style="{DynamicResource Button_Icon}" Click="Menu_Button_Click">
                                     <Image  Height="50" Width="50" Source="/Images/Icon/Black_Menu.png" VerticalAlignment="Center"/>
                                 </Button>
                             </Grid>
@@ -122,7 +143,7 @@
                                 <Grid.Effect>
                                     <DropShadowEffect BlurRadius="5" Opacity="0.4" ShadowDepth="5" Direction="272" RenderingBias="Quality"/>
                                 </Grid.Effect>
-                                <Button Style="{DynamicResource Button_Icon}" Command="{Binding CheckPrintCommand}" >
+                                <Button Style="{DynamicResource Button_Icon}" Command="{Binding SendCheckKuhCommand}" >
                                     <Image  Height="50" Width="50" Source="/Images/Icon/Print1.png" VerticalAlignment="Center"/>
                                 </Button>
                             </Grid>
@@ -140,37 +161,32 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <Popup x:Name="Popup_US" AllowsTransparency="True" IsOpen="{Binding Is_open1, UpdateSourceTrigger=PropertyChanged}" VerticalOffset="-30" HorizontalOffset="-90">
+        <Popup x:Name="Popup_US" AllowsTransparency="True" IsOpen="False" VerticalOffset="-30" HorizontalOffset="-90">
             <Grid>
                 <local:User_Window_Menu x:Name="Header"/>
                 <Button x:Name="Net_Button" Style="{DynamicResource Menu_Button}" Content="Нет не этот раз" Margin="10,130,10,10" Click="Stol_Button_Click"/>
             </Grid>
         </Popup>
-        <Popup x:Name="Popup_Check" AllowsTransparency="True" IsOpen="{Binding Is_open2, UpdateSourceTrigger=PropertyChanged}" VerticalOffset="-30" HorizontalOffset="0">
+        <Popup x:Name="Popup_Check" AllowsTransparency="True" IsOpen="False"  VerticalOffset="-30" HorizontalOffset="0">
             <Grid>
                 <local:User_Check/>
             </Grid>
         </Popup>
-        <Popup x:Name="Popup_Ofissiant" AllowsTransparency="True" IsOpen="{Binding Is_open3, UpdateSourceTrigger=PropertyChanged}" VerticalOffset="-30" HorizontalOffset="-104">
-            <Grid>
-                <local:User_Ofissiant/>
-            </Grid>
-        </Popup>
-        <Popup x:Name="Popup_Menu" AllowsTransparency="True" IsOpen="{Binding Is_open4, UpdateSourceTrigger=PropertyChanged}" VerticalOffset="15" HorizontalOffset="-15">
+        <Popup x:Name="Popup_Menu" AllowsTransparency="True" IsOpen="False"  VerticalOffset="15" HorizontalOffset="-15">
             <Grid>
                 <local:User_Menu1/>
             </Grid>
         </Popup>
-        <Popup x:Name="Popup_Kuxne" AllowsTransparency="True" IsOpen="{Binding Is_open5, UpdateSourceTrigger=PropertyChanged}" VerticalOffset="-71" HorizontalOffset="0" PopupAnimation="Slide">
-            <Grid>
+        <Popup x:Name="Popup_Kuxne" AllowsTransparency="True"  VerticalOffset="-71" HorizontalOffset="0" PopupAnimation="Slide">
+            <!--<Grid>
                 <local:NaKuxne/>
                 <Grid Height="80" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,20">
                     <StackPanel Orientation="Horizontal" Margin="50,0">
-                        <Button Style="{DynamicResource Button_Yellow}" Content="Отправить" FontSize="17" Height="40" Width="200" Margin="0,0,5,0"/>
+                        <Button Style="{DynamicResource Button_Yellow}" Command="{Binding CheckPrintCommand}" Content="Отправить" FontSize="17" Height="40" Width="200" Margin="0,0,5,0" Click="Button_Click"/>
                         <Button x:Name="Kuxne_Otmena" Style="{DynamicResource Button_B}" Content="Отмена" FontSize="17" Height="40" Width="200" Click="Kuxne_Otmena_Click"/>
                     </StackPanel>
                 </Grid>
-            </Grid>
+            </Grid>-->
         </Popup>
     </Grid>
 </UserControl>

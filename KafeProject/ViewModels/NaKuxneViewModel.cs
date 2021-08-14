@@ -45,7 +45,10 @@ namespace KafeProject.ViewModels
 
         void ExecuteSendCheckCommand(object p)
         {
-            MessageBox.Show("привет");
+            //MessageBox.Show(Food.Name + " " + Food.Price);
+            FoodList.Remove(Food);
+            FoodList = _FoodList;
+            
             //if (id == 0) 
             //{
             //    using (ApplicationContext db = new ApplicationContext())

@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-       mc:Ignorable="d"
+        xmlns:local="clr-namespace:KafeProject.View.User_Menu"
+        xmlns:loc="clr-namespace:KafeProject.View.All_Windows"
+        mc:Ignorable="d"
        Height="650" Width="1000" AllowsTransparency="True" 
         WindowStyle="None" WindowStartupLocation="CenterScreen" 
         WindowState="Maximized" Loaded="Window_Loaded">
@@ -21,19 +23,22 @@
             </Grid.RowDefinitions>
             <!--Header колонка-->
             <Grid Grid.Row="0" Background="#FF555555" Grid.ColumnSpan="2" Margin="0">
-                <Button x:Name="Stol_Button" Command="{Binding AllClosses_B}" CommandParameter="{Binding ElementName=Popup_US}" Style="{DynamicResource Heyder_Butoon}"  Foreground="White" FontSize="25" Padding="0,-20,0,0" Content="{Binding BindStolName}" Width="90"  Margin="130,0" VerticalAlignment="Stretch"  HorizontalAlignment="Left"/>
-                <Button x:Name="Check_Button" Command="{Binding AllClosses_B}" CommandParameter="{Binding ElementName=Popup_Check}" MaxWidth="300" Style="{DynamicResource Heyder_Butoon}" HorizontalAlignment="Left" VerticalAlignment="Stretch"   Margin="407,0,0,0" MinWidth="130">
+                <TextBlock Margin="70,0,0,0" Text="Fcfy" FontSize="24" Foreground="White" HorizontalAlignment="Left" x:Name="OffName" VerticalAlignment="Center"/>
+                <Button x:Name="Stol_Button" Style="{DynamicResource Heyder_Butoon}"  Foreground="White" FontSize="25" Padding="0,0,0,0" Content="Столы" Width="90"  Margin="300,0" VerticalAlignment="Stretch" Click="Stol_Button_Click" HorizontalAlignment="Left"/>
+                <Button x:Name="Check_Button" Click="Check_Button_Click" MaxWidth="300" Style="{DynamicResource Heyder_Butoon}" HorizontalAlignment="Left" VerticalAlignment="Stretch"   Margin="450,0,0,0" MinWidth="130">
                     <StackPanel   Orientation="Horizontal"  Margin="5,0">
-                        <Label Content="{Binding BindChecklName}" MaxWidth="250" FontSize="18"  Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+                        <TextBlock x:Name="Xheck" FontSize="18"  Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <Image VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Images/Icon/Bottom.png" Height="40" Width="40" ></Image>
-                    </StackPanel>
+                       </StackPanel>
                 </Button>
                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Stretch"   Margin="0,0,2,0" >
-                    <Button x:Name="Ofissiant_Button" Command="{Binding AllClosses_B}" CommandParameter="{Binding ElementName=Popup_Ofissiant}" Width="60" Style="{DynamicResource Heyder_Butoon}" HorizontalAlignment="Center">
+                    <Button x:Name="Ofissiant_Button1111" Click="Ofissiant_Button1111_Click" Width="80" Style="{DynamicResource Heyder_Butoon}" HorizontalAlignment="Center">
+                        <TextBlock Text="С cобой" Foreground="White" FontSize="20"/>
+                    </Button>
+                    <Button x:Name="Ofissiant_Button"  Width="60" Style="{DynamicResource Heyder_Butoon}" Click="Ofissiant_Button_Click" HorizontalAlignment="Center">
                         <Image x:Name="image" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Images/Icon/menu.png" Height="22" Width="22" Margin="8,0"  ></Image>
                     </Button>
                     <Button  MaxWidth="120" Click="Button_Click_1" 
-                             
                              Style="{DynamicResource Heyder_Butoon}" HorizontalAlignment="Center" MinWidth="60">
                         <StackPanel   Orientation="Horizontal"   Margin="5,0">
                             <Label x:Name="WorkerName" Content="{Binding OffName, UpdateSourceTrigger=PropertyChanged}" MaxWidth="85" FontSize="18"  Foreground="White" VerticalAlignment="Center"  HorizontalAlignment="Center"></Label>
@@ -54,5 +59,10 @@
                 
             </Grid>
         </Grid>
+        <Popup x:Name="Popup_Ofissiant" AllowsTransparency="True" IsOpen="False" VerticalOffset="-30" HorizontalOffset="-105">
+            <Grid>
+                <local:User_Ofissiant/>
+            </Grid>
+        </Popup>
     </Grid>
 </Window>
