@@ -814,3 +814,16 @@ C:\Users\user\Desktop\ласт кафе косячный\KafeProject\obj\Debug\n
 C:\Users\user\Desktop\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\KafeProject.pdb
 C:\Users\user\Desktop\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\KafeProject.genruntimeconfig.cache
 C:\Users\user\Desktop\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\KafeProject.csprojAssemblyReference.cache
+D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\BouncyCastle.Crypto.dll
+D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\Google.Protobuf.dll
+D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\K4os.Compression.LZ4.dll
+D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\K4os.Compression.LZ4.Streams.dll
+D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\K4os.Hash.xxHash.dll
+D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\MySql.Data.dll
+D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\Ubiety.Dns.Core.dll
+D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\Zstandard.Net.dll
+D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\System.Drawing.Common.dll
+D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\CheckWindow.baml
+D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\CheckWindow.g.cs
