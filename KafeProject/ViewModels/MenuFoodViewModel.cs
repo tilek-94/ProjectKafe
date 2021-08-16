@@ -51,7 +51,7 @@ namespace KafeProject.ViewModels
                             {
                                 if (MenuFood.IdCheck != 0)
                                 {
-                                    var h = db.Checks.Where(g => g.Id == MenuFood.IdCheck).LastOrDefault();
+                                    var h = db.Checks.Where(g => g.Id == MenuFood.IdCheck).OrderBy(t=>t).LastOrDefault();
                                     return _ItogSum + Convert.ToInt32(h.GuestsCount * f.Salary);
                                 }
                                 else

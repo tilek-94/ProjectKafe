@@ -11,9 +11,12 @@ namespace KafeProject.All_Windows
         public Calendar_Window()
         {
             InitializeComponent();
+            MainWindow.timer.Stop();
         }
         private void Caleddar1_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
+            MainWindow.t = 0;
+            MainWindow.timer.Start();
             this.Close();
         }
     }

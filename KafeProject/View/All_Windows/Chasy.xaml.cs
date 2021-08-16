@@ -14,6 +14,7 @@ namespace KafeProject.All_Windows
         public Chasy()
         {
             InitializeComponent();
+            MainWindow.timer.Stop();
         }
         private void Decrement_button_Click(object sender, RoutedEventArgs e)
         {

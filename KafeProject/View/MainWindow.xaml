@@ -8,7 +8,7 @@
         mc:Ignorable="d"
        Height="650" Width="1000" AllowsTransparency="True" 
         WindowStyle="None" WindowStartupLocation="CenterScreen" 
-        WindowState="Maximized" Loaded="Window_Loaded">
+        WindowState="Maximized" Loaded="Window_Loaded" MouseMove="Window_MouseMove">
     <!--ebvefbvhjehj-->
     
     <Grid x:Name="Prog_Border">
@@ -24,6 +24,7 @@
             <!--Header колонка-->
             <Grid Grid.Row="0" Background="#FF555555" Grid.ColumnSpan="2" Margin="0">
                 <TextBlock Margin="70,0,0,0" Text="Fcfy" FontSize="24" Foreground="White" HorizontalAlignment="Left" x:Name="OffName" VerticalAlignment="Center"/>
+                <TextBlock Margin="10,0,0,0" Text="Fcfy" FontSize="24" Foreground="White" HorizontalAlignment="Left" x:Name="OffName1" VerticalAlignment="Center"/>
                 <Button x:Name="Stol_Button" Style="{DynamicResource Heyder_Butoon}"  Foreground="White" FontSize="25" Padding="0,0,0,0" Content="Столы" Width="90"  Margin="300,0" VerticalAlignment="Stretch" Click="Stol_Button_Click" HorizontalAlignment="Left"/>
                 <Button x:Name="Check_Button" Click="Check_Button_Click" MaxWidth="300" Style="{DynamicResource Heyder_Butoon}" HorizontalAlignment="Left" VerticalAlignment="Stretch"   Margin="450,0,0,0" MinWidth="130">
                     <StackPanel   Orientation="Horizontal"  Margin="5,0">

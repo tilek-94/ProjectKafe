@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kiSDtK+y6USPsxXzPjezlb5iWrtnTL9fj6qJavVFue77Yw81aQF2tHGAZCXvIWbkobOfNFBUMgbeNu6yvw0FEA==",
+  "dgSpecHash": "Q2mSUm4XeWP5r0e7m6p/DCUckSfGLFtnf3F4gHv181Rhfo8XQzbLXua5okiZa4OGR68wBTVbFGk6+jZ97ZLwSw==",
   "success": true,
-  "projectFilePath": "D:\\project\\Project_Kafe\\ProjectKafe\\KafeProject\\KafeProject.csproj",
+  "projectFilePath": "D:\\project\\ProjectKafe\\KafeProject\\KafeProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",

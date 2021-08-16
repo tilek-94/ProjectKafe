@@ -25,6 +25,7 @@ namespace KafeProject.View.User_Menu
         public Oplatit(string s)
         {
             InitializeComponent();
+            MainWindow.timer.Stop();
             K_Oplate.Text = s;
             if (s != null && s != "")
                 itogsum = int.Parse(s);
@@ -71,6 +72,8 @@ namespace KafeProject.View.User_Menu
                         db.SaveChanges();
                     }
                     menuStolOpen();
+                    MainWindow.t = 0;
+                    MainWindow.timer.Start();
                     this.Close();
                 }
             }
@@ -88,6 +91,8 @@ namespace KafeProject.View.User_Menu
                         }
                     }
                     menuStolOpen();
+                    MainWindow.t = 0;
+                    MainWindow.timer.Start();
                     this.Close();
                 }
             }
@@ -97,6 +102,8 @@ namespace KafeProject.View.User_Menu
 
         private void Otmena_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow.t = 0;
+            MainWindow.timer.Start();
             this.Close();
         }
         private void Check()

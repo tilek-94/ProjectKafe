@@ -43,7 +43,7 @@ namespace KafeProject.ViewModels
             if (Password.Length == 4 || Password.Length > 4)
             {
                // MessageBox.Show(DateTime.Now.ToString());
-                using (MySqlConnection connection = new MySqlConnection("datasource=localhost; port=3306;Initial Catalog='basakafe';username=kafe;password=1;CharSet=utf8;"))
+                using (MySqlConnection connection = new MySqlConnection("datasource=192.168.0.105; port=3306;Initial Catalog='basakafe';username=kafe;password=1;CharSet=utf8;"))
                 {
                     connection.Open();
                     string value = "";

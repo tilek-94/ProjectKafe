@@ -136,6 +136,8 @@ namespace KafeProject.All_Windows
             }
             ///c.lf
             clsRW();
+            MainWindow.t = 0;
+            MainWindow.timer.Start();
             this.Close();
         }
         public delegate void CloseRW();
@@ -151,6 +153,8 @@ namespace KafeProject.All_Windows
 
         private void Otpravka_Kuxne_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow.t = 0;
+            MainWindow.timer.Start();
             this.Close();
         }
     }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Threading;
 
 namespace KafeProject
 {
@@ -18,6 +19,10 @@ namespace KafeProject
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public static DispatcherTimer timer = new DispatcherTimer();
+        public static int t = 0,timeNull = 0;
+
         public delegate void MessageForCheck(int checkId, int tableId, int guestCount,int idWaiter);
         public static event MessageForCheck menuCheck_;
         public delegate void CloseAll(int i=0);
@@ -70,6 +75,35 @@ namespace KafeProject
             MenuCheck.addStol += menuStolOpenForEndCheck;////
             MenuFoodViewModel.openStolWindow += menuStolOpenForEndCheck;
             User_Ofissiant.closeAll_ += CloseSmena;
+
+            timeCheck();
+
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Start();
+            
+            
+        }
+        async void  timeCheck()
+        {
+            await Task.Run(()=> {
+                using (ApplicationContext connetc = new ApplicationContext())
+                {
+                    timeNull = Convert.ToInt32(connetc.Options.Where(a => a.Key == "TimeValue").Select(s => s.Value).FirstOrDefault());
+
+                }
+            });   
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            t += 1;
+            OffName1.Text = t.ToString();
+            if (t == timeNull)
+            {
+                Button_Click_1(sender,new RoutedEventArgs());
+                timer.Stop();
+            }
         }
 
         void CloseSmena(int i) 
@@ -183,11 +217,13 @@ namespace KafeProject
             if(fuckAll_!=null) 
                 fuckAll_();
             clearingDelegatesFromBaktiar();
+            timer.Stop();
             this.Close();
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if(fuckAll_!=null)
+            timer.Tick -= new EventHandler(timer_Tick);
+            if (fuckAll_!=null)
                 fuckAll_();
             clearingDelegatesFromBaktiar();
             Parol_Window parol_Window = new Parol_Window();
@@ -264,6 +300,11 @@ namespace KafeProject
             {
                 Popup_Ofissiant.IsOpen = false;
             }
+        }
+
+        private void Window_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            t = 0;
         }
     }
 }
