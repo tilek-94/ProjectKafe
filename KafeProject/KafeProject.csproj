@@ -15,7 +15,12 @@
 
   <ItemGroup>
     <None Remove="Images\ergegqegqer.png" />
+    <None Remove="Images\Fon\Fon1.jpeg" />
+    <None Remove="Images\Fon\Fon2.jpeg" />
+    <None Remove="Images\Fon\Fon3.jpeg" />
+    <None Remove="Images\Fon\Fon4.jpeg" />
     <None Remove="Images\FoodImage\fg.jpg" />
+    <None Remove="Images\FoodImage\food3.png" />
     <None Remove="Images\FoodImage\se.png" />
     <None Remove="Images\Icon\3Menu.png" />
     <None Remove="Images\Icon\Black_Menu.png" />
@@ -47,6 +52,7 @@
     <None Remove="Images\Icon\zp1.png" />
     <None Remove="Images\Untitled-12.png" />
     <None Remove="Images\wrfwqfrqw.png" />
+    <None Remove="Styles_Folder\Fonts\AlexBrush-Regular.ttf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -58,7 +64,12 @@
 
   <ItemGroup>
     <Resource Include="Images\ergegqegqer.png" />
+    <Resource Include="Images\Fon\Fon1.jpeg" />
+    <Resource Include="Images\Fon\Fon2.jpeg" />
+    <Resource Include="Images\Fon\Fon3.jpeg" />
+    <Resource Include="Images\Fon\Fon4.jpeg" />
     <Resource Include="Images\FoodImage\fg.jpg" />
+    <Resource Include="Images\FoodImage\food3.png" />
     <Resource Include="Images\FoodImage\se.png" />
     <Resource Include="Images\Icon\3Menu.png" />
     <Resource Include="Images\Icon\Black_Menu.png" />
@@ -92,6 +103,22 @@
     <Resource Include="Images\Icon\zp1.png" />
     <Resource Include="Images\Untitled-12.png" />
     <Resource Include="Images\wrfwqfrqw.png" />
+    <Resource Include="Styles_Folder\Fonts\AlexBrush-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles_Folder\Topic\Fon4.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles_Folder\Topic\Fon3.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles_Folder\Topic\Fon2.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

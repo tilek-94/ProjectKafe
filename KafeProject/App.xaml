@@ -4,9 +4,11 @@
              xmlns:local="clr-namespace:KafeProject"
              StartupUri="View/All_Windows/Parol_Window.xaml">
     <Application.Resources>
+        
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles_Folder/Style1.xaml"/>
+                
+                <ResourceDictionary Source="Styles_Folder/Topic/Fon2.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

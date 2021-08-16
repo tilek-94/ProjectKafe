@@ -6,24 +6,34 @@
        xmlns:local="clr-namespace:KafeProject.ViewModels"
         mc:Ignorable="d"
        Height="650" Width="1000"  WindowStyle="None" WindowStartupLocation="CenterScreen" WindowState="Maximized">
-
+   
     <Grid>
+        
         <Grid>
             <Grid>
-                <Grid.Background>
+                <Image Style="{DynamicResource ImageFon}"/>
+                <!--<Grid.Background>
                     <ImageBrush ImageSource="../../Images/Icon/fon.tif"/>
-                </Grid.Background>
+                </Grid.Background>-->
             </Grid>
-            <Grid Height="600" Width="400"  VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid Width="500" Margin="0,-20,0,0"   VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Grid.Resources>
                     <Style TargetType="Button">
                         <Setter Property="Height" Value="100"/>
                         <Setter Property="Width" Value="120"/>
                         <Setter Property="FontSize"  Value="45"/>
-                        <Setter Property="Opacity" Value="0.4" />
+                        <Setter Property="Opacity" Value="0.6" />
                     </Style>
                 </Grid.Resources>
-                <StackPanel >
+                <StackPanel  >
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,10">
+                        <Image Width="80" Source="../../Images/FoodImage/food3.png"/>
+                        <TextBlock Style="{DynamicResource Fontstyle}"  
+                                   Margin="20,0,0,0" 
+                                   Foreground="White" 
+                                   FontSize="75">Caffe  Tauxid</TextBlock>
+                    </StackPanel>
+                    <StackPanel Width="400">
                     <TextBlock Background="White" 
                                Foreground="Black"
                                FontSize="80"
@@ -97,6 +107,7 @@
                             <Image Source="../../Images/Icon/Clear.png" HorizontalAlignment="Stretch" Width="117"/>
                         </Button>
                     </UniformGrid>
+                    </StackPanel>
                     <!--<Button Height="70" Content="Вход в программу"  FontSize="25" Style="{DynamicResource Button_Yellow}"></Button>-->
                 </StackPanel>
             </Grid>

@@ -175,8 +175,6 @@ D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\Microso
 D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\MySqlConnector.dll
 D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\Pomelo.EntityFrameworkCore.MySql.dll
 D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\System.Diagnostics.DiagnosticSource.dll
-D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.csprojAssemblyReference.cache
-D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Style1.baml
 D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Kolichestvo_Bluda.baml
 D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Stol_Window.baml
 D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\Oplatit.baml
@@ -751,7 +749,6 @@ C:\Users\user\Desktop\ласт кафе косячный\KafeProject\bin\Debug\n
 C:\Users\user\Desktop\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\System.Drawing.Common.dll
 C:\Users\user\Desktop\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\user\Desktop\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
-C:\Users\user\Desktop\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Style1.baml
 C:\Users\user\Desktop\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\CheckWindow.baml
 C:\Users\user\Desktop\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Error.baml
 C:\Users\user\Desktop\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Klaviatura.baml
@@ -814,6 +811,108 @@ C:\Users\user\Desktop\ласт кафе косячный\KafeProject\obj\Debug\n
 C:\Users\user\Desktop\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\KafeProject.pdb
 C:\Users\user\Desktop\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\KafeProject.genruntimeconfig.cache
 C:\Users\user\Desktop\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\KafeProject.csprojAssemblyReference.cache
+C:\Users\user\Desktop\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon1.baml
+C:\Users\user\Desktop\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon2.baml
+C:\Users\user\Desktop\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon3.baml
+C:\Users\user\Desktop\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon4.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\KafeProject.exe
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\KafeProject.deps.json
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\KafeProject.runtimeconfig.json
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\KafeProject.runtimeconfig.dev.json
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\KafeProject.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\ref\KafeProject.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\KafeProject.pdb
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\BouncyCastle.Crypto.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\Google.Protobuf.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\K4os.Compression.LZ4.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\K4os.Compression.LZ4.Streams.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\K4os.Hash.xxHash.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\Microsoft.EntityFrameworkCore.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\Microsoft.EntityFrameworkCore.Relational.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\Microsoft.Extensions.Caching.Memory.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\Microsoft.Extensions.DependencyInjection.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\Microsoft.Extensions.Logging.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\Microsoft.Extensions.Options.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\Microsoft.Extensions.Primitives.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\MySql.Data.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\Ubiety.Dns.Core.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\Zstandard.Net.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\MySqlConnector.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\Pomelo.EntityFrameworkCore.MySql.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\System.Diagnostics.DiagnosticSource.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\System.Drawing.Common.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon1.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon2.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon3.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon4.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\CheckWindow.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Error.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Klaviatura.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Kolichestvo_Bluda.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Sostavit_Otchet.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Stol_Window.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\Komentary.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\Oplatit.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\User_Check.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\User_Menu1.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\User_Ofissiant.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\User_Window_Menu.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Arhiv_Check.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Calendar_Window.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Chasy.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\CheckWindow.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Error.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Klaviatura.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Kolichestvo_Bluda.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\MenuCheck.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Parol_Window.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Razdelit_Window.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Sostavit_Otchet.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Stol_Window.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\Components\CompPasswordBox.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\MainWindow.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\Komentary.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\MenuFood.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\MenuStol.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\NaKuxne.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\Oplatit.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\User_Check.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\User_Menu1.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\User_Ofissiant.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\User_Window_Menu.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\App.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\KafeProject_MarkupCompile.cache
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\KafeProject_MarkupCompile.lref
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\App.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Arhiv_Check.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Calendar_Window.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Chasy.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\MenuCheck.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Parol_Window.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\Razdelit_Window.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\Components\CompPasswordBox.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\MainWindow.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\MenuFood.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\MenuStol.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\NaKuxne.baml
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\KafeProject.g.resources
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\KafeProject.GeneratedMSBuildEditorConfig.editorconfig
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\KafeProject.AssemblyInfoInputs.cache
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\KafeProject.AssemblyInfo.cs
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\KafeProject.csproj.CoreCompileInputs.cache
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\KafeProject.csproj.CopyComplete
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\KafeProject.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\ref\KafeProject.dll
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\KafeProject.pdb
+D:\project\Project_Kafe\Чернавик\ласт кафе косячный\KafeProject\obj\Debug\net5.0-windows\KafeProject.genruntimeconfig.cache
 D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\BouncyCastle.Crypto.dll
 D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\Google.Protobuf.dll
 D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\K4os.Compression.LZ4.dll
@@ -825,5 +924,10 @@ D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\Zstanda
 D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\System.Drawing.Common.dll
 D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
 D:\project\Project_Kafe\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon1.baml
+D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon2.baml
+D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon3.baml
+D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon4.baml
 D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\CheckWindow.baml
 D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\CheckWindow.g.cs
+D:\project\Project_Kafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.csprojAssemblyReference.cache
