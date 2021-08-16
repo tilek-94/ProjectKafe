@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Height="500" Width="900" Background="{x:Null}" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen"  Topmost="{Binding Source={x:Static Application.Current},Path=MainWindow.IsActive,Mode=OneWay}">
+        Height="500" Width="900" Background="{x:Null}" WindowStyle="None" AllowsTransparency="True" MouseMove="Window_MouseMove" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen"  Topmost="{Binding Source={x:Static Application.Current},Path=MainWindow.IsActive,Mode=OneWay}">
     <Grid>
         <Grid Background="White" Margin="10,10,10,10">
             <Grid.Effect>

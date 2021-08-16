@@ -23,7 +23,8 @@ namespace KafeProject.All_Windows
         public Kolichestvo_Bluda(int tableId=0, int checkId=0)
         {
             InitializeComponent();
-            if(pclose!=null)
+            MainWindow.timer.Stop();
+            if (pclose!=null)
                 pclose();
             if (tableId == 0)
             {
@@ -41,6 +42,8 @@ namespace KafeProject.All_Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow.t = 0;
+            MainWindow.timer.Start();
             this.Close();
         }
 
@@ -103,8 +106,11 @@ namespace KafeProject.All_Windows
                     }
                 }
                 //MessageBox.Show(a+flag);
+                MainWindow.t = 0;
+                MainWindow.timer.Start();
                 this.Close();
             }
         }
+
     }
 }

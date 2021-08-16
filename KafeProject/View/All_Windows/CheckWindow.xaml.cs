@@ -19,9 +19,9 @@ namespace KafeProject.All_Windows
         public CheckWindow(int id, int d)
         {
             InitializeComponent();
+            MainWindow.timer.Stop();
             paramses = new List<Params>();
             paramses1 = new List<Params>();
-            MessageBox.Show(id.ToString());
             checkid = d;
             paramses.Add(new Params { Name = "Наименование", Count = "Кол-во", Price = "Цена", Itog = "Итог" });
             paramses1.Add(new Params { Name = "Наименование", Count = "Кол-во" });
@@ -95,11 +95,6 @@ namespace KafeProject.All_Windows
             list.ItemsSource = paramses;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -166,6 +161,8 @@ namespace KafeProject.All_Windows
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            MainWindow.t = 0;
+            MainWindow.timer.Start();
             this.Close();
         }
     }

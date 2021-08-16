@@ -27,6 +27,8 @@ namespace KafeProject.ViewModels
                 }
                 //MessageBox.Show(value.Name + " " + value.Id) ;
                 menuStol_(o);
+                MainWindow.t = 0;
+                MainWindow.timer.Start();
                 cls();
             }
         }

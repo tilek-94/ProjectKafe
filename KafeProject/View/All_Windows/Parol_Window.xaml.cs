@@ -4,6 +4,7 @@ using KafeProject.ViewModels;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace KafeProject.View.All_Windows
 {
@@ -12,7 +13,7 @@ namespace KafeProject.View.All_Windows
     /// </summary>
     public partial class Parol_Window : Window
     {
-        
+
         public Parol_Window()
         {
             InitializeComponent();
@@ -79,5 +80,6 @@ namespace KafeProject.View.All_Windows
                 }
             }*/
         }
+
     }
 }
