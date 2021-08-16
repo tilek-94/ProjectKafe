@@ -9,6 +9,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using KafeProject.View.All_Windows;
+using KafeProject.View.User_Menu;
 using System;
 using System.Diagnostics;
 using System.Windows;

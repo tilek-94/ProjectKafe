@@ -98,7 +98,7 @@ namespace KafeProject
         private void timer_Tick(object sender, EventArgs e)
         {
             t += 1;
-            OffName1.Text = t.ToString();
+           /* OffName1.Text = t.ToString();*/
             if (t == timeNull)
             {
                 Button_Click_1(sender,new RoutedEventArgs());
