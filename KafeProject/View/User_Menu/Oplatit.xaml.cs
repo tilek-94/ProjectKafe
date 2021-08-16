@@ -14,8 +14,8 @@ namespace KafeProject.View.User_Menu
     public partial class Oplatit : Window
     {
         static TextBox text = new TextBox();
-
-        int sdacha = 0;
+        
+        double sdacha = 0;
 
         int itogsum = 0;
 
@@ -28,7 +28,7 @@ namespace KafeProject.View.User_Menu
             K_Oplate.Text = s;
             if (s != null && s != "")
                 itogsum = int.Parse(s);
-
+            text = NalichText;
             //using (ApplicationContext db = new ApplicationContext())
             //{
 
@@ -76,7 +76,7 @@ namespace KafeProject.View.User_Menu
             }
             else
             {
-                if (int.Parse(K_Oplate.Text) <= int.Parse(CardText.Text) + int.Parse(NalichText.Text))
+                if (double.Parse(K_Oplate.Text) <= double.Parse(CardText.Text) + double.Parse(NalichText.Text))
                 {
                     using (ApplicationContext db = new ApplicationContext())
                     {
@@ -103,9 +103,9 @@ namespace KafeProject.View.User_Menu
         {
             if (NalichText.Text.Length > 0 && CardText.Text.Length > 0)
             {
-                sdacha = itogsum - (int.Parse(CardText.Text) + int.Parse(NalichText.Text));
+                sdacha = itogsum - (double.Parse(CardText.Text) + double.Parse(NalichText.Text));
                 if (sdacha < 0)
-                    Sdacha.Text = (int.Parse(CardText.Text) + int.Parse(NalichText.Text) - itogsum).ToString();
+                    Sdacha.Text = (double.Parse(CardText.Text) + double.Parse(NalichText.Text) - itogsum).ToString();
                 else
                     Sdacha.Text = "0";
             }
@@ -115,18 +115,21 @@ namespace KafeProject.View.User_Menu
         {
             if (text != null)
             {
-                if (text.Text == "0")
+                if (text.Text.Length < 10)
                 {
-                    text.Text = "";
-                    text.Text += (sender as Button).Content;
-                    Check();
-                }
-                else
-                {
-                    text.Text += (sender as Button).Content;
-                    Check();
+                    if (text.Text == "0")
+                    {
+                        text.Text = "";
+                        text.Text += (sender as Button).Content;
+                        Check();
+                    }
+                    else
+                    {
+                        text.Text += (sender as Button).Content;
+                        Check();
 
-                }
+                    }
+                }                
             }
         }
 

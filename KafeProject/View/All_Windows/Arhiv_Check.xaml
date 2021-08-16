@@ -58,8 +58,8 @@
                                                 </Grid.RowDefinitions>
                                                 <StackPanel Grid.Row="0" Orientation="Horizontal">
                                                     <TextBlock Width="140" TextAlignment="Left" Text="{Binding CheckID , StringFormat=Чек: 0}"/>
-                                                    <TextBlock Width="140" TextAlignment="Center" Text="{Binding CheckTable , StringFormat=Стол: 0}"/>
-                                                    <TextBlock Width="140" TextAlignment="Right" Text="{Binding CheckPrice}"/>
+                                                    <TextBlock Width="140" TextAlignment="Center" Text="{Binding CheckTable , StringFormat=Стол: {0}}"/>
+                                                    <TextBlock Width="140" TextAlignment="Right" Text="{Binding CheckPrice, StringFormat=Итог: {0}}"/>
                                                 </StackPanel>
                                                 <TextBlock Text="{Binding AllFood}" Grid.Row="1"/>
                                             </Grid>
