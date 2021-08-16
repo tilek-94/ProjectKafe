@@ -23,9 +23,17 @@
             </Grid.RowDefinitions>
             <!--Header колонка-->
             <Grid Grid.Row="0" Background="#FF555555" Grid.ColumnSpan="2" Margin="0">
-                <TextBlock Margin="70,0,0,0" Text="Fcfy" FontSize="24" Foreground="White" HorizontalAlignment="Left" x:Name="OffName" VerticalAlignment="Center"/>
-                <Button x:Name="Stol_Button" Style="{DynamicResource Heyder_Butoon}"  Foreground="White" FontSize="25" Padding="0,0,0,0" Content="Столы" Width="90"  Margin="300,0" VerticalAlignment="Stretch" Click="Stol_Button_Click" HorizontalAlignment="Left"/>
-                <Button x:Name="Check_Button" Click="Check_Button_Click" MaxWidth="300" Style="{DynamicResource Heyder_Butoon}" HorizontalAlignment="Left" VerticalAlignment="Stretch"   Margin="450,0,0,0" MinWidth="130">
+                <TextBlock Margin="70,0,0,0" Text="Name" FontSize="24" Foreground="White" HorizontalAlignment="Left" x:Name="OffName" VerticalAlignment="Center"/>
+                <Button x:Name="Stol_Button" Style="{DynamicResource Heyder_Butoon}" 
+                        Foreground="White" FontSize="25" Padding="0,0,0,0"
+                        Content="Столы" Width="90"  Margin="300,0" VerticalAlignment="Stretch" Click="Stol_Button_Click" HorizontalAlignment="Left"/>
+                <TextBlock Text="Чек №" FontSize="24" 
+                           Panel.ZIndex="1"
+                           Foreground="White" HorizontalAlignment="Left" 
+                           VerticalAlignment="Center" Margin="450,0,0,0"/>
+                <Button x:Name="Check_Button" Click="Check_Button_Click" MaxWidth="300" 
+                        Style="{DynamicResource Heyder_Butoon}" HorizontalAlignment="Left" 
+                        VerticalAlignment="Stretch"   Margin="500,0,0,0" MinWidth="130">
                     <StackPanel   Orientation="Horizontal"  Margin="5,0">
                         <TextBlock x:Name="Xheck" FontSize="18"  Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         <Image VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Images/Icon/Bottom.png" Height="40" Width="40" ></Image>
