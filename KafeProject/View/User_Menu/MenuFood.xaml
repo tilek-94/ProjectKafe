@@ -22,9 +22,10 @@
             </Grid.RowDefinitions>
             <!--Тамак аштар чыкчу панел-->
             <Grid Grid.Row="0" Grid.RowSpan="2">
-                <Grid.Background>
+                <Image Style="{DynamicResource ImageFon}"/>
+                <!--<Grid.Background>
                     <ImageBrush ImageSource="/Images/Icon/fon.tif"/>
-                </Grid.Background>
+                </Grid.Background>-->
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60"/>

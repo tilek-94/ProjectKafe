@@ -23,7 +23,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Styles_Folder\Style1.xaml">
+    <Page Update="Styles_Folder\Topic\Fon4.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles_Folder\Topic\Fon3.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles_Folder\Topic\Fon2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles_Folder\Topic\Fon1.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\All_Windows\Arhiv_Check.xaml">
