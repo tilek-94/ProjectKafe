@@ -28,7 +28,7 @@ namespace KafeProject.View.User_Menu
             K_Oplate.Text = s;
             if (s != null && s != "")
                 itogsum = int.Parse(s);
-            text = NalichText as TextBox;
+            text = NalichText;
             //using (ApplicationContext db = new ApplicationContext())
             //{
 

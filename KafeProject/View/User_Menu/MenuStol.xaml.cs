@@ -32,7 +32,7 @@ namespace KafeProject.View.User_Menu
         }
         void addBut() 
         {
-            Thread.Sleep(10);
+            //Thread.Sleep(10);
             Knopki();
             this.Dispatcher.Invoke(() =>
             {
@@ -57,6 +57,7 @@ namespace KafeProject.View.User_Menu
         }
         async void button_Click(object sender, RoutedEventArgs e)
         {
+           
             if ((sender as Button).Uid == "-2") 
             {
                 int checkIdForTable = 0;
@@ -70,6 +71,7 @@ namespace KafeProject.View.User_Menu
                         h.LocationId == selectedLocationId &&
                         h.Name == (sender as Button).Content.ToString()
                         ).Select(l => l.Id).OrderBy(j => j).LastOrDefault()
+
                     ).Select(d=>d.Id).OrderBy(s=>s).LastOrDefault();
                 }
                 menuStol_(checkIdForTable);
@@ -77,6 +79,7 @@ namespace KafeProject.View.User_Menu
             }
             Kolichestvo_Bluda kolichestvo_Bluda = new Kolichestvo_Bluda(Convert.ToInt32((sender as Button).Uid));
             kolichestvo_Bluda.ShowDialog();
+           
         }
         
         void button_Category_Click(object sender, RoutedEventArgs e)
@@ -146,7 +149,6 @@ namespace KafeProject.View.User_Menu
         {
             this.Dispatcher.Invoke(() => { 
 
-
             Stol_Panel.Children.Clear();
             int? k = 1;
             if (sender != null)
@@ -154,7 +156,8 @@ namespace KafeProject.View.User_Menu
             else
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    k = db.Locations.Select(t=>t.Id).OrderBy(tt => tt).FirstOrDefault();
+                    k = db.Locations.Select(t=>t.Id).FirstOrDefault();
+                   // k = db.Locations.Select(t=>t.Id).OrderBy(t => t).FirstOrDefault();
                 }
             selectedLocationId = k ?? 1;
             using (ApplicationContext db = new ApplicationContext())

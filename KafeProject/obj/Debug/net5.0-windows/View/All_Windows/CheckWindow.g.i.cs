@@ -164,7 +164,7 @@ namespace KafeProject.All_Windows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/KafeProject;component/view/all_windows/checkwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/KafeProject;V1.0.0.0;component/view/all_windows/checkwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\All_Windows\CheckWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
