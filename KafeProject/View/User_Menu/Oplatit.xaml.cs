@@ -172,8 +172,6 @@ namespace KafeProject.View.User_Menu
         private void TextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             text = sender as TextBox;
-            MessageBox.Show(text.Name.ToString());
-            MessageBox.Show(sender.ToString());
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
