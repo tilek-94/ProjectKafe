@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using KafeProject.Date;
+using KafeProject.Infrastructure;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace KafeProject.All_Windows
 {
@@ -11,8 +15,9 @@ namespace KafeProject.All_Windows
         public Arhiv_Check()
         {
             InitializeComponent();
-            
+
         }
+
         ~Arhiv_Check()
         {
             
