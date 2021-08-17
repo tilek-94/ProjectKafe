@@ -11,7 +11,7 @@ namespace KafeProject.All_Windows
         public Arhiv_Check()
         {
             InitializeComponent();
-            
+            MainWindow.timer.Stop();
         }
         ~Arhiv_Check()
         {
@@ -19,6 +19,8 @@ namespace KafeProject.All_Windows
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow.t = 0;
+            MainWindow.timer.Start();
             this.Close();
         }
 

@@ -14,6 +14,7 @@ namespace KafeProject.View.All_Windows
         public MenuCheck()
         {
             InitializeComponent();
+            MainWindow.timer.Stop();
             MainWindow.fuckAll_ += thisClose;
             ChecksLogic.cls += thisClose;
         }
@@ -25,6 +26,8 @@ namespace KafeProject.View.All_Windows
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow.t = 0;
+            MainWindow.timer.Start();
             //addStol();
             Close();
         }

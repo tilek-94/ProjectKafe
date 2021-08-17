@@ -13,6 +13,7 @@ namespace KafeProject.All_Windows
         public Razdelit_Window()
         {
             InitializeComponent();
+            MainWindow.timer.Stop();
             Error.clsRW += cl;
         }
         void cl() 
@@ -22,6 +23,8 @@ namespace KafeProject.All_Windows
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow.t = 0;
+            MainWindow.timer.Start();
             this.Close();
         }
 
