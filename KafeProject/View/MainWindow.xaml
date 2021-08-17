@@ -8,7 +8,7 @@
         mc:Ignorable="d"
        Height="650" Width="1000" AllowsTransparency="True" 
         WindowStyle="None" WindowStartupLocation="CenterScreen" 
-        WindowState="Maximized" Loaded="Window_Loaded">
+        WindowState="Maximized" Loaded="Window_Loaded" MouseMove="Window_MouseMove">
     <!--ebvefbvhjehj-->
     
     <Grid x:Name="Prog_Border">

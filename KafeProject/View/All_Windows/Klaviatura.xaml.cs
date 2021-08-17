@@ -12,10 +12,13 @@ namespace KafeProject.All_Windows
         public Klaviatura()
         {
             InitializeComponent();
+            MainWindow.timer.Stop();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow.t = 0;
+            MainWindow.timer.Start();
             this.Close();
         }
 

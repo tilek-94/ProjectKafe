@@ -61,7 +61,7 @@ namespace KafeProject.View.Components {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/KafeProject;component/view/components/comppasswordbox.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/KafeProject;V1.0.0.0;component/view/components/comppasswordbox.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\Components\CompPasswordBox.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
