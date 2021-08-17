@@ -61,6 +61,7 @@ namespace KafeProject
             MenuCheck.addStol -= menuStolOpenForEndCheck;
             MenuFoodViewModel.openStolWindow -= menuStolOpenForEndCheck;
             Error.clsRW -= menuStolOpenForEndCheck;
+            TableChangeWindow.closeChange -= menuStolOpenForEndCheck;
             User_Ofissiant.closeAll_ -= CloseSmena;
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -72,6 +73,7 @@ namespace KafeProject
             Kolichestvo_Bluda.menuStolForDynamicCheck_ += menuStolForDynamicCheck;
             Oplatit.menuStolOpen += menuStolOpenForEndCheck;
             ChecksLogic.menuStol_ += OpenCheck;
+            TableChangeWindow.closeChange += menuStolOpenForEndCheck;
             MenuCheck.addStol += menuStolOpenForEndCheck;////
             MenuFoodViewModel.openStolWindow += menuStolOpenForEndCheck;
             User_Ofissiant.closeAll_ += CloseSmena;

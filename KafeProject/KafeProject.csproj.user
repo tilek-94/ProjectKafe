@@ -21,6 +21,9 @@
     <Compile Update="View\User_Menu\MenuStol.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\User_Menu\TableChangeWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Styles_Folder\Topic\Fon4.xaml">
@@ -90,6 +93,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\User_Menu\Oplatit.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\User_Menu\TableChangeWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\User_Menu\User_Check.xaml">
