@@ -34,8 +34,7 @@ namespace KafeProject.All_Windows
                 {
                     Text_Kolichestvo.Text =db.Checks.Where(k => k.Id == checkIdForGuestCount).Select(o => o.GuestsCount.ToString()).OrderBy(p => p).LastOrDefault();
                 }
-            }
-                
+            }               
             tableIdForDynamicCheck = tableId;
         }
 

@@ -1,5 +1,6 @@
 ﻿using KafeProject.All_Windows;
 using KafeProject.Date;
+using KafeProject.Infrastructure;
 using KafeProject.Models;
 using KafeProject.View.User_Menu;
 using KafeProject.ViewModels;
@@ -36,21 +37,25 @@ namespace KafeProject.View.User_Menu
             IdTable = idTable;
             IdCheck = idCheck;
             GuestCount = guestCount;
+            StartAsync();
+            //MainWindow.adBut += addFoodBut;
+            Fac();
+        }
+        void start()
+        {
             MainWindow.fuckAll_ += thisClose;
             Kolichestvo_Bluda.pclose += popups;
             User_Menu1.cls += popups;
             MainWindow.clsd += thisClose;
-            //MainWindow.adBut += addFoodBut;
-            Fac();
         }
-        void addFoodBut() 
+        async void StartAsync()
+        {
+            await Task.Run(() => start());
+        }
+        void addFoodBut()
         {
             Thread.Sleep(10);
-            this.Dispatcher.Invoke(() =>
-            {
-                glawMenuMethod();
-            });
-            //MainWindow.adBut -= addFoodBut;
+            glawMenuMethod();
         }
         async void Fac()
         {
@@ -69,17 +74,19 @@ namespace KafeProject.View.User_Menu
             Popup_Check.IsOpen = false;
             Popup_US.IsOpen = false;
         }
-        void thisClose(int o=0)
+        void thisClose(int o = 0)
         {
             popups();
             GuestCount = 0;
             IdCheck = 0;
             IdTable = 0;
             User_Menu1.cls -= popups;
-            Kolichestvo_Bluda.pclose-= popups;
+            Kolichestvo_Bluda.pclose -= popups;
             MainWindow.fuckAll_ -= thisClose;
             MainWindow.clsd -= thisClose;
         }
+
+        #region MyRegion
         private void Stol_Button_Click(object sender, RoutedEventArgs e)
         {
 
@@ -93,6 +100,8 @@ namespace KafeProject.View.User_Menu
         {
 
         }
+
+        #endregion
 
         private void Menu_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -114,38 +123,49 @@ namespace KafeProject.View.User_Menu
         }
         async void glawMenuMethod(object sender = null, RoutedEventArgs e = null)
         {
-            TovarMenu.Children.Clear();
+            this.Dispatcher.InvokeOrExecute(() =>
+            {
+                TovarMenu.Children.Clear();
+            });
+
             await using (ApplicationContext db = new ApplicationContext())
             {
                 foreach (var i in db.Foods.Where(f => f.Id == f.ParentCategoryId))
                 {
-                    Grid grid = new Grid();
-                    grid.Margin = new Thickness(10, 10, 0, 35);
-                    grid.Height = 155;
-                    grid.Width = double.NaN;
-
-                    Image im = new Image();
-                    im.MouseDown += new MouseButtonEventHandler(allCategory);
-                    im.Style = (Style)this.TryFindResource("Image_Style");
-                    im.Source = new BitmapImage(new Uri("/Images/FoodImage/se.png", UriKind.RelativeOrAbsolute));
-                    im.Uid = i.Id.ToString();
-                    StackPanel st = new StackPanel();
-                    st.Orientation = Orientation.Horizontal;
-                    st.Style = (Style)this.TryFindResource("StackPanel_Style");
-
-                    TextBlock text1 = new TextBlock();
-                    text1.Style = (Style)this.TryFindResource("TextBlock_Style");
-                    text1.Text = i.Name;
-                    if (i.Price > 0)
+                    this.Dispatcher.InvokeOrExecute(() =>
                     {
-                        text1.Text = text1.Text+" " +i.Price + "c";
-                    }
-                    grid.Children.Add(im);
-                    st.Children.Add(text1);
-                    
-                    
-                    grid.Children.Add(st);
-                    TovarMenu.Children.Add(grid);
+                        Grid grid = new Grid();
+                        grid.Margin = new Thickness(10, 10, 0, 35);
+                        grid.Height = 155;
+                        grid.Width = double.NaN;
+
+                        Image im = new Image();
+                        im.MouseDown += new MouseButtonEventHandler(allCategory);
+                        im.Style = (Style)this.TryFindResource("Image_Style");
+                        im.Source = new BitmapImage(new Uri("/Images/FoodImage/se.png", UriKind.RelativeOrAbsolute));
+                        im.Uid = i.Id.ToString();
+
+                        StackPanel st = new StackPanel();
+                        st.Orientation = Orientation.Vertical;
+                        st.Style = (Style)this.TryFindResource("StackPanel_Style");
+
+                        TextBlock text1 = new TextBlock();
+                        text1.Style = (Style)this.TryFindResource("TextBlock_Style");
+                        text1.Text = i.Name;
+
+                        if (i.Price > 0)
+                        {
+                            text1.Text = text1.Text + " " + i.Price + "c";
+                        }
+
+                        grid.Children.Add(im);
+
+                        st.Children.Add(text1);
+
+                        grid.Children.Add(st);
+
+                        TovarMenu.Children.Add(grid);
+                    });
                 }
             }
         }
@@ -176,24 +196,25 @@ namespace KafeProject.View.User_Menu
         {
             allCategory(Convert.ToInt32((sender as Button).Uid));
         }
-        private async void allCategory(object sender=null, RoutedEventArgs e = null)
+        private async void allCategory(object sender = null, RoutedEventArgs e = null)
         {
-            
+
             string uidImage = (sender as Image).Uid.ToString();
             await using (ApplicationContext db = new ApplicationContext())
             {
                 //(sender as Image).Uid.ToString()
-                if (db.Foods.Where(f => Convert.ToInt32(uidImage) == f.ParentCategoryId).Count() <=1)
+                if (db.Foods.Where(f => Convert.ToInt32(uidImage) == f.ParentCategoryId).Count() <= 1)
                 {
                     //MessageBox.Show("id еды =" + (sender as Image).Uid.ToString());
                     //Kategory_button_dynamic();
                     //glawMenuMethod();
-                    var foodInfo = db.Foods.Where(f => f.Id== Convert.ToInt32(uidImage));
-                    foodEvent(new MenuFoodParams 
-                    {Name =foodInfo.Select(p=>p.Name).OrderBy(p=>p).LastOrDefault(),
-                    Count=1,
-                    Price=foodInfo.Select(p=>p.Price).OrderBy(p=>p).LastOrDefault(),
-                    Id= Convert.ToInt32(uidImage)
+                    var foodInfo = db.Foods.Where(f => f.Id == Convert.ToInt32(uidImage)).Select(i => i);
+                    foodEvent(new MenuFoodParams
+                    {
+                        Name = foodInfo.Select(p => p.Name).OrderBy(p => p).LastOrDefault(),
+                        Count = 1,
+                        Price = foodInfo.Select(p => p.Price).OrderBy(p => p).LastOrDefault(),
+                        Id = Convert.ToInt32(uidImage)
                     }, IdTable);
                 }
                 else
@@ -211,17 +232,17 @@ namespace KafeProject.View.User_Menu
                         Image im = new Image();
                         im.MouseDown += new MouseButtonEventHandler(allCategory);
                         im.Style = (Style)this.TryFindResource("Image_Style");
-                        if(i.Image!=null)
-                        using (MemoryStream memstr = new MemoryStream(i.Image))
-                        {
-                            BitmapImage b = new BitmapImage();
-                            b.BeginInit();
-                            b.CacheOption = BitmapCacheOption.OnLoad;
-                            b.StreamSource = memstr;
-                            b.EndInit();
-                            im.Source = b;
-                        }
-                        else 
+                        if (i.Image != null)
+                            using (MemoryStream memstr = new MemoryStream(i.Image))
+                            {
+                                BitmapImage b = new BitmapImage();
+                                b.BeginInit();
+                                b.CacheOption = BitmapCacheOption.OnLoad;
+                                b.StreamSource = memstr;
+                                b.EndInit();
+                                im.Source = b;
+                            }
+                        else
                         {
                             im.Source = new BitmapImage(new Uri("/Images/FoodImage/se.png", UriKind.RelativeOrAbsolute));
 
@@ -242,15 +263,14 @@ namespace KafeProject.View.User_Menu
                         st.Children.Add(text1);
                         grid.Children.Add(st);
                         TovarMenu.Children.Add(grid);
-
                     }
                 }
             }
         }
         private async void allCategory(int x)
         {
-            
-            string? uidImage = x.ToString();
+
+            string uidImage = x.ToString();
             //(sender as Image).Uid.ToString();
             await using (ApplicationContext db = new ApplicationContext())
             {
@@ -260,14 +280,14 @@ namespace KafeProject.View.User_Menu
                     //MessageBox.Show("id еды =" + (sender as Image).Uid.ToString());
                     //Kategory_button_dynamic();
                     //glawMenuMethod();
-                    
+
                 }
                 else
                 {
                     TovarMenu.Children.Clear();
                     Kategory_button_dynamic();
                     categoryButMethod(Convert.ToInt32(uidImage));
-                    foreach (var i in db.Foods.Where(f => Convert.ToInt32(uidImage) == f.ParentCategoryId&&f.Id!=f.ParentCategoryId))
+                    foreach (var i in db.Foods.Where(f => Convert.ToInt32(uidImage) == f.ParentCategoryId && f.Id != f.ParentCategoryId))
                     {
                         Grid grid = new Grid();
                         grid.Margin = new Thickness(10, 10, 0, 35);
@@ -377,12 +397,13 @@ namespace KafeProject.View.User_Menu
             parol.Show();  */
             Popup_Kuxne.IsOpen = false;
 
-            
+
         }
 
         private void OpenOplatitWindow(object sender, RoutedEventArgs e)
         {
-            if (IdCheck!=0) {
+            if (IdCheck != 0)
+            {
                 Oplatit oplatitwindow = new Oplatit(ItogSumma.Text);
                 oplatitwindow.Show();
             }

@@ -18,17 +18,17 @@ namespace KafeProject
     /// </summary>
     public partial class MainWindow : Window
     {
-        public delegate void MessageForCheck(int checkId, int tableId, int guestCount,int idWaiter);
+        public delegate void MessageForCheck(int checkId, int tableId, int guestCount, int idWaiter);
         public static event MessageForCheck menuCheck_;
-        public delegate void CloseAll(int i=0);
+        public delegate void CloseAll(int i = 0);
         public static event CloseAll fuckAll_;
         public delegate void CloseAllDel(int i = 0);
         public static event CloseAllDel clsd;
-        
+
         public static int Id { get; set; }
 
-        
-        public MainWindow(int id=0)
+
+        public MainWindow(int id = 0)
         {
             InitializeComponent();
             //MessageBox.Show(DateTime.Now.ToString());
@@ -40,10 +40,10 @@ namespace KafeProject
         }
         void NameoF()
         {
-            using (ApplicationContext db = new ApplicationContext()) 
+            using (ApplicationContext db = new ApplicationContext())
             {
-               OffName.Text = db.Waiters.Where(i => i.Id == Id).Select(i=>i.Name).OrderBy(i => i).LastOrDefault();
-            }  
+                OffName.Text = db.Waiters.Where(i => i.Id == Id).Select(i => i.Name).OrderBy(i => i).LastOrDefault();
+            }
 
         }
         ~MainWindow() => clearingDelegatesFromBaktiar();
@@ -72,9 +72,9 @@ namespace KafeProject
             User_Ofissiant.closeAll_ += CloseSmena;
         }
 
-        void CloseSmena(int i) 
+        void CloseSmena(int i)
         {
-            if (i==1)
+            if (i == 1)
             {
                 if (clsd != null)
                 {
@@ -91,7 +91,7 @@ namespace KafeProject
                 Popup_Ofissiant.IsOpen = false;
             }
         }
-        void OpenCheck(int x)
+/*        void OpenCheck(int x)
         {
             GlawMenu.Children.Clear();
             if (clsd != null)
@@ -100,7 +100,7 @@ namespace KafeProject
             }
             MenuFood m = new MenuFood(x);
             GlawMenu.Children.Add(m);
-            menuCheck_(x, 0, 0, Id);
+           // menuCheck_(x, 0, 0, Id);
             if (MenuFood.IdCheck != 0)
             {
                 using (ApplicationContext db = new ApplicationContext())
@@ -112,36 +112,36 @@ namespace KafeProject
             {
                 Xheck.Text = "";
             }
-            
-        }
+
+        }*/
         void menuStolOpenForEndCheck()
         {
             GlawMenu.Children.Clear();
-            if (clsd!=null)
+            if (clsd != null)
             {
                 clsd();
             }
-            if (fuckAll_!=null)
+            if (fuckAll_ != null)
             {
                 fuckAll_(1);
-            }    
-            
+            }
+
             MenuStol menuFood = new MenuStol(Id);
             GlawMenu.Children.Add(menuFood);
             Xheck.Text = "";
-            
+
         }
-        void menuStolForDynamicCheck(int tableId,int guestCount) 
+        void menuStolForDynamicCheck(int tableId, int guestCount)
         {
             GlawMenu.Children.Clear();
-            if (clsd!=null)
+            if (clsd != null)
             {
                 clsd();
             }
-            
-            MenuFood m = new MenuFood(0,tableId, guestCount);
+
+            MenuFood m = new MenuFood(0, tableId, guestCount);
             GlawMenu.Children.Add(m);
-            menuCheck_(0, tableId, guestCount,Id);
+            menuCheck_(0, tableId, guestCount, Id);
             if (MenuFood.IdCheck != 0)
             {
                 using (ApplicationContext db = new ApplicationContext())
@@ -153,19 +153,18 @@ namespace KafeProject
             {
                 Xheck.Text = "";
             }
-            
+
         }
-        void menuStolMessage(int checkIdForMainWindow) 
+        void menuStolMessage(int checkIdForMainWindow)
         {
             GlawMenu.Children.Clear();
-            if (clsd!=null)
+            if (clsd != null)
             {
                 clsd();
             }
-            
             MenuFood m = new MenuFood(checkIdForMainWindow);
             GlawMenu.Children.Add(m);
-            menuCheck_(checkIdForMainWindow,0,0, Id);
+            menuCheck_(checkIdForMainWindow, 0, 0, Id);
             if (MenuFood.IdCheck != 0)
             {
                 using (ApplicationContext db = new ApplicationContext())
@@ -180,14 +179,14 @@ namespace KafeProject
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(fuckAll_!=null) 
+            if (fuckAll_ != null)
                 fuckAll_();
             clearingDelegatesFromBaktiar();
             this.Close();
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if(fuckAll_!=null)
+            if (fuckAll_ != null)
                 fuckAll_();
             clearingDelegatesFromBaktiar();
             Parol_Window parol_Window = new Parol_Window();
@@ -211,26 +210,21 @@ namespace KafeProject
             //}
         }
 
-        private async void Stol_Button_Click(object sender, RoutedEventArgs e)
+        private void Stol_Button_Click(object sender, RoutedEventArgs e)
         {
-            GlawMenu.Children.Clear(); 
+            GlawMenu.Children.Clear();
             if (clsd != null)
             {
                 clsd();
             }
             MenuStol menuFood = new MenuStol(Id);
-            
             GlawMenu.Children.Add(menuFood);
-            
-            
-           
             Xheck.Text = "";
-            
         }
 
-        private  void Ofissiant_Button1111_Click(object sender, RoutedEventArgs e)
+        private void Ofissiant_Button1111_Click(object sender, RoutedEventArgs e)
         {
-            if (clsd!=null)
+            if (clsd != null)
             {
                 clsd();
             }
@@ -249,7 +243,7 @@ namespace KafeProject
             {
                 Xheck.Text = "";
             }
-            
+
         }
         private void Ofissiant_Button_Click(object sender, RoutedEventArgs e)
         {

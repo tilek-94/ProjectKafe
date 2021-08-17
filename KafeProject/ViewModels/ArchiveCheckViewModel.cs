@@ -4,10 +4,11 @@ using KafeProject.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 
 namespace KafeProject.ViewModels
 {
-    class ArchiveCheckViewModel : Base.ViewModel
+    public class ArchiveCheckViewModel : Base.ViewModel
     {
         private ObservableCollection<ACheck> _CheckList = new ObservableCollection<ACheck>();
         public ObservableCollection<ACheck> CheckList
@@ -21,6 +22,95 @@ namespace KafeProject.ViewModels
             get { return _CheckItems; }
             set { Set(ref _CheckItems, value); }
         }
+/*        private double itog = 0;
+        public double Itog
+        {
+            get
+            {
+                if ((itog + ob) % 1 > 0.4)
+                    return Convert.ToInt32(itog + ob + 0.9);
+                else return itog + ob;
+            }
+            set
+            {
+                Set(ref itog, value);
+            }
+        }*/
+        /*        private double ob = 0;
+                public double Ob
+                {
+                    get
+                    {
+                      //  if (ob == 0) return 0;
+                        double x = ob;
+                        using (ApplicationContext db = new ApplicationContext())
+                        {
+                            if (SelectedCheck.CheckTable != "0")
+                            {
+                                //x = db.Orders.Where(i => i.CheckId == Convert.ToInt32(_SelectedCheck.IdCheck)).Select(h => db.Foods.Where(l => l.Id == h.FoodId).OrderBy(o => o.Id).Select(n => n.Price).LastOrDefault() * h.CountFood).OrderBy(p => p).Sum();
+                                var st = db.Waiters.Where(i => i.Id == MainWindow.Id).OrderBy(l => l.Id).LastOrDefault();
+                                if (st != null)
+                                {
+                                    if (st.SalaryType == "Service")
+                                    {
+                                        x = x + Convert.ToInt32(_SelectedCheck.CheckStatus);
+                                    }
+                                    else if (st.SalaryType == "Percent")
+                                    {
+                                        x = x + (x / 100 * st.Salary);
+                                    }
+                                }
+                            }
+                        }
+                        ob = x - itog;
+                        double k = itog;
+                        Itog = 0;
+                        Itog = k;
+                        MessageBox.Show(ob + "   "+Itog);
+                        return Math.Round(ob, 2);
+                    }
+                    set
+                    { 
+                        Set(ref ob, itog); 
+                    }
+                }*/
+
+        /*private double ob = 0;
+        public double Ob
+        {
+            get
+            {
+                return ob;
+            }
+            set
+            {
+                double x = 0;
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    if (SelectedCheck.CheckTable != "0")
+                    {
+                        //x = db.Orders.Where(i => i.CheckId == Convert.ToInt32(_SelectedCheck.IdCheck)).Select(h => db.Foods.Where(l => l.Id == h.FoodId).OrderBy(o => o.Id).Select(n => n.Price).LastOrDefault() * h.CountFood).OrderBy(p => p).Sum();
+                        var st = db.Waiters.Where(i => i.Id == MainWindow.Id).OrderBy(l => l.Id).LastOrDefault();
+                        if (st != null)
+                        {
+                            if (st.SalaryType == "Service")
+                            {
+                                x = Convert.ToDouble(st.Salary) * db.Checks.Where(i => i.Id == int.Parse(_SelectedCheck.IdCheck)).Select(i => i.GuestsCount).OrderBy(i => i).LastOrDefault();
+                            }
+                            else if (st.SalaryType == "Percent")
+                            {
+                                x = (x / 100 * st.Salary);
+                            }
+                        }
+                    }
+                }
+                ob = x;
+                Itog += ob;
+                Set(ref ob,value);
+
+            }
+        }*/
+
         private double itog = 0;
         public double Itog
         {
@@ -52,7 +142,7 @@ namespace KafeProject.ViewModels
                         {
                             if (st.SalaryType == "Service")
                             {
-                                x = x + Convert.ToInt32(_SelectedCheck.CheckStatus);
+                                x = x + (_SelectedCheck.CheckStatus * st.Salary);
                             }
                             else if (st.SalaryType == "Percent")
                             {
@@ -70,6 +160,7 @@ namespace KafeProject.ViewModels
             }
             set { Set(ref ob, itog); }
         }
+
         private ACheck _SelectedCheck = new ACheck();
         public ACheck SelectedCheck
         {
@@ -107,7 +198,7 @@ namespace KafeProject.ViewModels
                     {
                         CheckItems.Add(new FoodClass { Count = h.CountFood, Price = x, Itog = Convert.ToInt32(x * h.CountFood), Name = nameF(h.FoodId), Otmena = "" });
                     }
-                    else 
+                    else
                     {
                         CheckItems.Add(new FoodClass { Count = h.CountFood, Price = x, Itog = Convert.ToInt32(x * h.CountFood), Name = nameF(h.FoodId), Otmena = "Отменнено" });
                     }
@@ -138,10 +229,10 @@ namespace KafeProject.ViewModels
             using (ApplicationContext db = new ApplicationContext())
             {
                 foreach (var t in db.Checks.Where(g => g.WaiterId == MainWindow.Id && g.DateTimeCheck > DateTime.Now.Date).OrderBy(i => i.Id))
-                    CheckList.Add(new ACheck { IdCheck = t.Id.ToString(), CheckID = t.CheckCount, CheckTable = t.TableId.ToString(), CheckPrice = checksPrise(t.Id, t.GuestsCount), CheckStatus = t.GuestsCount.ToString() });
+                    CheckList.Add(new ACheck { CheckDate = t.DateTimeCheck.ToString(), IdCheck = t.Id.ToString(), CheckID = t.CheckCount, CheckTable = t.TableId.ToString(), CheckPrice = checksPrise(t.Id, t.GuestsCount), CheckStatus = t.GuestsCount });
             }
             Chasy.getDate += changeDate;
-            MainWindow.clsd += (t)=> Chasy.getDate -= changeDate; 
+            MainWindow.clsd += (t) => Chasy.getDate -= changeDate;
         }
         ~ArchiveCheckViewModel() => Chasy.getDate -= changeDate;
         string checksPrise(int id, int count)
@@ -149,7 +240,6 @@ namespace KafeProject.ViewModels
             double x = 0;
             using (ApplicationContext db = new ApplicationContext())
             {
-                
                 x = db.Orders.Where(i => i.CheckId == id && i.isCancel == 0).Select(h => db.Foods.Where(l => l.Id == h.FoodId).OrderBy(o => o.Id).Select(n => n.Price).LastOrDefault() * h.CountFood).OrderBy(p => p).Sum();
                 if (db.Checks.Where(i => i.Id == id).Select(i => i.TableId).OrderBy(i => i).LastOrDefault() == 0)
                     return x.ToString();
@@ -158,7 +248,7 @@ namespace KafeProject.ViewModels
                 {
                     if (st.SalaryType == "Service")
                     {
-                        x = x + count;
+                        x = x + (count*st.Salary);
                     }
                     else if (st.SalaryType == "Percent")
                     {
@@ -175,10 +265,9 @@ namespace KafeProject.ViewModels
             {
                 CheckList = new ObservableCollection<ACheck>();
                 foreach (var t in db.Checks.Where(g => g.WaiterId == MainWindow.Id && g.DateTimeCheck.Date == i.Date).OrderBy(i => i.Id))
-                    CheckList.Add(new ACheck { IdCheck = t.Id.ToString(), CheckID = t.CheckCount, CheckTable = t.TableId.ToString(), CheckPrice = checksPrise(t.Id, t.GuestsCount), CheckStatus = t.GuestsCount.ToString() });
+                    CheckList.Add(new ACheck { CheckDate = t.DateTimeCheck.ToString(), IdCheck = t.Id.ToString(), CheckID = t.CheckCount, CheckTable = t.TableId.ToString(), CheckPrice = checksPrise(t.Id, t.GuestsCount), CheckStatus = t.GuestsCount });
                 CheckList = new ObservableCollection<ACheck>(CheckList.OrderBy(i => i.IdCheck));
             }
-
         }
     }
 }

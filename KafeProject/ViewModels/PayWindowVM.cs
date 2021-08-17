@@ -43,11 +43,11 @@ namespace KafeProject.ViewModels
             if (Password.Length == 4 || Password.Length > 4)
             {
                // MessageBox.Show(DateTime.Now.ToString());
-                using (MySqlConnection connection = new MySqlConnection("datasource=localhost; port=3306;Initial Catalog='basakafe';username=kafe;password=1;CharSet=utf8;"))
+                using (MySqlConnection connection = new MySqlConnection("datasource=192.168.0.105; port=3306;Initial Catalog='basakafe';username=kafe;password=1;CharSet=utf8;"))
                 {
                     connection.Open();
                     string value = "";
-                    MySqlCommand command = new MySqlCommand("SELECT id FROM `basakafe`.`waiters` WHERE pass='0000' LIMIT 1", connection);
+                    MySqlCommand command = new MySqlCommand("SELECT id FROM `basakafe`.`waiters` WHERE pass='"+Password+"' LIMIT 1", connection);
                     MySqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
@@ -62,7 +62,7 @@ namespace KafeProject.ViewModels
                         // id = Id;
                         connection.Open();
                         string value1 = "";
-                        command = new MySqlCommand("SELECT id FROM `basakafe`.`regime` WHERE waiterId=2 LIMIT 1", connection);
+                        command = new MySqlCommand("SELECT id FROM `basakafe`.`regime` WHERE waiterId="+Id+" LIMIT 1", connection);
                         reader = command.ExecuteReader();
                         while (reader.Read())
                         {

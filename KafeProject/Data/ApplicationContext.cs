@@ -24,7 +24,7 @@ namespace KafeProject.Date
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=localhost;user=kafe;password=1;database=BasaKafe;",
+            optionsBuilder.UseMySql("server=192.168.0.105;user=kafe;password=1;database=BasaKafe;",
                  new MySqlServerVersion(new Version(5, 7, 29))
              );
         } 

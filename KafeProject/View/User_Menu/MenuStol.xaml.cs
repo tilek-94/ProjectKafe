@@ -1,5 +1,6 @@
 ﻿using KafeProject.All_Windows;
 using KafeProject.Date;
+using KafeProject.Infrastructure;
 using KafeProject.View.All_Windows;
 using System;
 using System.Linq;
@@ -30,47 +31,63 @@ namespace KafeProject.View.User_Menu
             MenuFood.IdTable = 0;
             MenuFood.GuestCount = 0;
         }
-        void addBut() 
+        void addBut(object sender = null)
+        {
+            if (sender != null)
+            {
+                Thread.Sleep(10);
+                Knopki(sender);
+            }
+            else
+            {
+                Thread.Sleep(10);
+                Knopki();
+            }
+        }
+        void addCategoryButton()
         {
             Thread.Sleep(10);
-            Knopki();
-            this.Dispatcher.Invoke(() =>
+            this.Dispatcher.Invoke(new Action(() =>
             {
                 Knopki_kategoryy();
-            });
-            
-
+            }));
         }
-        async void Fac() => await Task.Run(() => addBut());
+        async void Fac(object sender = null) => await Task.Run(() =>
+        {
+            if (sender != null)
+                addBut(sender);
+            else
+                addBut();
+        });
+
+        async void CategoryAdd() => await Task.Run(() => addCategoryButton());
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Parol_Window parol_Window = new Parol_Window();
             parol_Window.Show();
-           
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            CategoryAdd();
             Fac();
-            //Knopki();
-            //Knopki_kategoryy();
         }
         async void button_Click(object sender, RoutedEventArgs e)
         {
-            if ((sender as Button).Uid == "-2") 
+            if ((sender as Button).Uid == "-2")
             {
                 int checkIdForTable = 0;
                 //selectedLocationId
                 //(sender as Button).Content;
                 await using (ApplicationContext db = new ApplicationContext())
                 {
-                    checkIdForTable=db.Checks.Where(g => g.DateTimeCheck > DateTime.Now.Date &&
-                    g.TableId ==
-                        db.Tables.Where(h =>
-                        h.LocationId == selectedLocationId &&
-                        h.Name == (sender as Button).Content.ToString()
-                        ).Select(l => l.Id).OrderBy(j => j).LastOrDefault()
-                    ).Select(d=>d.Id).OrderBy(s=>s).LastOrDefault();
+                    checkIdForTable = db.Checks.Where(g => g.DateTimeCheck > DateTime.Now.Date &&
+                      g.TableId ==
+                          db.Tables.Where(h =>
+                          h.LocationId == selectedLocationId &&
+                          h.Name == (sender as Button).Content.ToString()
+                          ).Select(l => l.Id).OrderBy(j => j).LastOrDefault()
+                    ).Select(d => d.Id).OrderBy(s => s).LastOrDefault();
                 }
                 menuStol_(checkIdForTable);
                 return;
@@ -78,14 +95,14 @@ namespace KafeProject.View.User_Menu
             Kolichestvo_Bluda kolichestvo_Bluda = new Kolichestvo_Bluda(Convert.ToInt32((sender as Button).Uid));
             kolichestvo_Bluda.ShowDialog();
         }
-        
+
         void button_Category_Click(object sender, RoutedEventArgs e)
         {
-            dynamicButton(sender);
+            Fac(sender);
         }
-        public void Knopki()
+        public void Knopki(object sender = null)
         {
-            dynamicButton();
+            dynamicButton(sender);
         }
         public async void Knopki_kategoryy()
         {
@@ -106,55 +123,58 @@ namespace KafeProject.View.User_Menu
                 }
             }
         }
-        private bool methodForResult(int p) 
+        private bool methodForResult(int p)
         {
             int g = 0;
             using (ApplicationContext db = new ApplicationContext())
             {
                 try
                 {
-
-
-                    g =db.Checks?.
-                        Where(b => b.TableId == p&&b.DateTimeCheck> DateTime.Now.Date &&b.Status==5)?.
+                    g = db.Checks?.
+                        Where(b => b.TableId == p && b.DateTimeCheck > DateTime.Now.Date && b.Status == 5)?.
                         Select(p => p.Id).
-                        OrderBy(a=>a)?.
+                        OrderBy(a => a)?.
                         LastOrDefault() ?? 0;
 
-
-                    g = db.Checks?.Where(b => b.Id == g && b.DateTimeCheck > DateTime.Now.Date && b.Status == 5)?.Select(p => p.Status).OrderBy(a => a)?.LastOrDefault() ?? 0;
+                    g = db.Checks?.Where(b => b.Id == g && b.DateTimeCheck > DateTime.Now.Date && b.Status == 5)?.
+                        Select(p => p.Status).
+                        OrderBy(a => a)?.
+                        LastOrDefault() ?? 0;
                     usersName = db.Waiters.Where(rt => rt.Id == db.Checks.Where(b => b.TableId == p && b.DateTimeCheck > DateTime.Now.Date && b.Status == 5).Select(l => l.WaiterId).OrderBy(t => t).LastOrDefault()).OrderBy(t => t.Id).Last().Name;
 
-                    if (db.Checks.Where(b => b.TableId == p && b.DateTimeCheck > DateTime.Now.Date && b.Status == 5).Select(s=>s.WaiterId).OrderBy(t => t).LastOrDefault() == currentWaiter)
+                    if (db.Checks.Where(b => b.TableId == p && b.DateTimeCheck > DateTime.Now.Date && b.Status == 5).Select(s => s.WaiterId).OrderBy(t => t).LastOrDefault() == currentWaiter)
                         ifItIsHim = true;
                     else
                         ifItIsHim = false;
-                    if(g!=0)
+                    if (g != 0)
                         return true;
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    err =usersName+" "+ ex.Message;
+                    err = usersName + " " + ex.Message;
                     return false;
                 }
-                
             }
-           
         }
-        async void dynamicButton(object sender = null)
+        void dynamicButton(object sender = null)
         {
-            this.Dispatcher.Invoke(() => { 
-
-
-            Stol_Panel.Children.Clear();
+            this.Dispatcher.InvokeOrExecute(() =>
+            {
+                Stol_Panel.Children.Clear();
+            });
             int? k = 1;
             if (sender != null)
-                k = Convert.ToInt32((sender as Button).Tag);
+            {
+                this.Dispatcher.InvokeOrExecute(() =>
+                {
+                    k = Convert.ToInt32((sender as Button).Tag);
+                });
+            }
             else
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    k = db.Locations.Select(t=>t.Id).OrderBy(tt => tt).FirstOrDefault();
+                    k = db.Locations.Select(t => t.Id).OrderBy(tt => tt).FirstOrDefault();
                 }
             selectedLocationId = k ?? 1;
             using (ApplicationContext db = new ApplicationContext())
@@ -163,30 +183,31 @@ namespace KafeProject.View.User_Menu
                 {
                     int p = tg.Id;
                     bool checkStatus = methodForResult(p);
-                    Button butt = new Button();
-                    butt.Style = (Style)this.TryFindResource("Button_Dynamik_Stol");
-                    butt.Content = tg.Name;
-                    butt.Tag = "пусто";
-                    butt.Uid = p.ToString();
-                    if (checkStatus)
+                    this.Dispatcher.InvokeOrExecute(() =>
                     {
-                        butt.Tag = usersName;
-                        if (ifItIsHim)
+                        Button butt = new Button();
+                        butt.Style = (Style)this.TryFindResource("Button_Dynamik_Stol");
+                        butt.Content = tg.Name;
+                        butt.Tag = "пусто";
+                        butt.Uid = p.ToString();
+                        if (checkStatus)
                         {
-                            butt.Uid = "-2";
+                            butt.Tag = usersName;
+                            if (ifItIsHim)
+                            {
+                                butt.Uid = "-2";
+                            }
+                            else
+                            {
+                                butt.Uid = "-1";
+                                butt.IsEnabled = false;
+                            }
                         }
-                        else
-                        {
-                            butt.Uid = "-1";
-                            butt.IsEnabled = false;
-                        }
-                    }
-                    butt.Click += new RoutedEventHandler(button_Click);
-                     Stol_Panel.Children.Add(butt);
-                    
+                        butt.Click += new RoutedEventHandler(button_Click);
+                        Stol_Panel.Children.Add(butt);
+                    });
                 }
             }
-            });
         }
     }
 }

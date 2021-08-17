@@ -15,6 +15,7 @@
             <StackPanel>
                 <Button Style="{DynamicResource Menu_Button}" Content="Разделить чек / Гость" Click="Button_Click_2"/>
                 <Button Style="{DynamicResource Menu_Button}" Click="Button_Click" FontSize="19.5" Content="Изменить кол-во гостей" />
+                <Button Style="{DynamicResource Menu_Button}" Click="Button_Click_3" FontSize="19.5" Content="Сменить стол" />
             </StackPanel>
         </Grid>
     </Grid>
