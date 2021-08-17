@@ -86,7 +86,7 @@ namespace KafeProject.View.All_Windows
         {
             using (ApplicationContext db=new ApplicationContext())
             {
-                var cafename = db.CafeName.Select(u => u).OrderByDescending(u => u).LastOrDefault();
+                var cafename = db.CafeName.Select(u => u).OrderBy(u => u).LastOrDefault();
                 if (cafename != null)
                 {
                     CName.Text = cafename.Name.ToString();

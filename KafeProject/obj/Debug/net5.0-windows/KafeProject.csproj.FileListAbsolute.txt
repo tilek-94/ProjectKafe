@@ -1132,3 +1132,4 @@ D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User
 D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\TableChangeWindow.baml
 D:\Project\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\TableChangeWindow.g.cs
 D:\Project\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\TableChangeWindow.baml
+D:\Project\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.csproj.AssemblyReference.cache

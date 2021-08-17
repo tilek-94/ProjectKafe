@@ -52,7 +52,7 @@ namespace KafeProject.All_Windows
                         Itog = (i.CountFood * p.Price).ToString()
                     })
                     );
-                var cafename=db.CafeName.Select(u=>u).OrderByDescending(u=>u).LastOrDefault();
+                var cafename=db.CafeName.Select(u=>u).OrderBy(u=>u).LastOrDefault();
                 db.SaveChanges();
                 var check = db.Checks.Where(i => i.Id == id).Select(i => i).OrderBy(i => i).LastOrDefault();
                 if (cafename!=null)
