@@ -61,7 +61,7 @@ namespace KafeProject
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Error.clsRW += menuStolOpenForEndCheck;
-            MenuFoodViewModel.showMessage += () => MessageBox.Show("!!! нету тов");
+            //  MenuFoodViewModel.showMessage += () => MessageBox.Show("!!! нету тов");
             //
             MenuStol.menuStol_ += menuStolMessage;
             Kolichestvo_Bluda.menuStolForDynamicCheck_ += menuStolForDynamicCheck;
@@ -91,7 +91,7 @@ namespace KafeProject
                 Popup_Ofissiant.IsOpen = false;
             }
         }
-/*        void OpenCheck(int x)
+        void OpenCheck(int x)
         {
             GlawMenu.Children.Clear();
             if (clsd != null)
@@ -100,7 +100,7 @@ namespace KafeProject
             }
             MenuFood m = new MenuFood(x);
             GlawMenu.Children.Add(m);
-           // menuCheck_(x, 0, 0, Id);
+            // menuCheck_(x, 0, 0, Id);
             if (MenuFood.IdCheck != 0)
             {
                 using (ApplicationContext db = new ApplicationContext())
@@ -113,7 +113,7 @@ namespace KafeProject
                 Xheck.Text = "";
             }
 
-        }*/
+        }
         void menuStolOpenForEndCheck()
         {
             GlawMenu.Children.Clear();

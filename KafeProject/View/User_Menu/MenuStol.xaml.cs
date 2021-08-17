@@ -42,15 +42,10 @@ namespace KafeProject.View.User_Menu
             {
                 Thread.Sleep(10);
                 Knopki();
-<<<<<<< Updated upstream
             }
-=======
-            }*/
-            
-                Knopki_kategoryy();
 
 
->>>>>>> Stashed changes
+
         }
         void addCategoryButton()
         {

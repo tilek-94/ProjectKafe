@@ -190,7 +190,7 @@ namespace KafeProject.View.User_Menu
         private void Vse_Tovar_Click(object sender, RoutedEventArgs e)
         {
             Kategory_button_dynamic();
-            glawMenuMethod();
+            Fac();
         }
         private void Dynamik_but(object sender, RoutedEventArgs e)
         {
