@@ -47,6 +47,9 @@
     <Page Update="View\All_Windows\Chasy.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\All_Windows\TableChangeWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\All_Windows\Error.xaml">
       <SubType>Designer</SubType>
     </Page>
