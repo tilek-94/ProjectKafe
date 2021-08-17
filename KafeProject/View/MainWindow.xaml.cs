@@ -63,6 +63,7 @@ namespace KafeProject
             Error.clsRW -= menuStolOpenForEndCheck;
             User_Ofissiant.closeAll_ -= CloseSmena;
         }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Error.clsRW += menuStolOpenForEndCheck;
