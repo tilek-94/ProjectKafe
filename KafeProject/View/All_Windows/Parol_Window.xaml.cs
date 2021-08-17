@@ -2,6 +2,7 @@
 using KafeProject.Date;
 using KafeProject.ViewModels;
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -81,5 +82,16 @@ namespace KafeProject.View.All_Windows
             }*/
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            using (ApplicationContext db=new ApplicationContext())
+            {
+                var cafename = db.CafeName.Select(u => u).OrderByDescending(u => u).LastOrDefault();
+                if (cafename != null)
+                {
+                    CName.Text = cafename.Name.ToString();
+                }
+            }
+        }
     }
 }

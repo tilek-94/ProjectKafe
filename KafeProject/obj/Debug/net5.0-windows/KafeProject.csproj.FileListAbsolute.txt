@@ -964,7 +964,6 @@ D:\project\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\System.Diagnostics.D
 D:\project\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\System.Drawing.Common.dll
 D:\project\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
 D:\project\ProjectKafe\KafeProject\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
-D:\project\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.csproj.AssemblyReference.cache
 D:\project\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon1.baml
 D:\project\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon2.baml
 D:\project\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon3.baml
@@ -1131,3 +1130,5 @@ D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProje
 D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.genruntimeconfig.cache
 D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\TableChangeWindow.g.cs
 D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\TableChangeWindow.baml
+D:\Project\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\TableChangeWindow.g.cs
+D:\Project\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\TableChangeWindow.baml

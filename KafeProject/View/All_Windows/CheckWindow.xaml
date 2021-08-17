@@ -39,8 +39,8 @@
                     <Rectangle Grid.Row="1" Fill="Black" />
                     <StackPanel Orientation="Vertical">
                         <!--<Image HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Source="skymage.png"/>-->
-                        <TextBlock FontSize="20" Text="Кафе Таухид" />
-                        <TextBlock FontSize="12" Text="ул. Курманжан-Датка,282" />
+                        <TextBlock x:Name="CName" FontSize="20" Text="Кафе Таухид" />
+                        <TextBlock x:Name="CAdress" FontSize="12" Text="ул. Курманжан-Датка,282" />
                     </StackPanel>
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>

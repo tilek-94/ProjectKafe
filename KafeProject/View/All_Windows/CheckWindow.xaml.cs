@@ -52,9 +52,14 @@ namespace KafeProject.All_Windows
                         Itog = (i.CountFood * p.Price).ToString()
                     })
                     );
-
+                var cafename=db.CafeName.Select(u=>u).OrderByDescending(u=>u).LastOrDefault();
+                db.SaveChanges();
                 var check = db.Checks.Where(i => i.Id == id).Select(i => i).OrderBy(i => i).LastOrDefault();
-
+                if (cafename!=null)
+                {
+                    CName.Text = cafename.Name.ToString();
+                    CAdress.Text = cafename.Adress.ToString();
+                }
                 CheckDate.Text = check.DateTimeCheck.ToString();
                 CheckName.Text = check.CheckCount.ToString();
                 TableId.Text = db.Tables.Where(o => o.Id == check.TableId)?.Select(l => l.Name)?.OrderBy(p => p)?.LastOrDefault() ?? "";

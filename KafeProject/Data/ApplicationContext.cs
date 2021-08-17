@@ -17,6 +17,7 @@ namespace KafeProject.Date
        public DbSet<Order> Orders { get; set; }
        public DbSet<Options> Options { get; set; }
        public DbSet<Regimes> Regime { get; set; }
+       public DbSet<CafeName> CafeName { get; set; }
         //public DbSet<Options> status { get; set; }
         public ApplicationContext()
         {
