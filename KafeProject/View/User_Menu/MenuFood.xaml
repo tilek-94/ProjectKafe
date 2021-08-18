@@ -152,7 +152,7 @@
                                 <Grid.Effect>
                                     <DropShadowEffect BlurRadius="5" Opacity="0.4" ShadowDepth="5" Direction="272" RenderingBias="Quality"/>
                                 </Grid.Effect>
-                                <Button Style="{DynamicResource Button_Icon}" >
+                                <Button Style="{DynamicResource Button_Icon}" Click="Button_Click_1">
                                     <Image  Height="40" Width="40" Source="/Images/Icon/Percent.png" VerticalAlignment="Center"/>
                                 </Button>
                             </Grid>
@@ -179,12 +179,12 @@
                 <Button/>
             </Grid>
         </Popup>
-        <Popup x:Name="Popup_Menu" AllowsTransparency="True" IsOpen="False"  VerticalOffset="15" HorizontalOffset="-15">
+        <Popup x:Name="Popup_Menu"  AllowsTransparency="True" IsOpen="False"  VerticalOffset="15" HorizontalOffset="-15">
             <Grid>
                 <local:User_Menu1/>
             </Grid>
         </Popup>
-        <Popup x:Name="Popup_Kuxne" AllowsTransparency="True"  VerticalOffset="-71" HorizontalOffset="0" PopupAnimation="Slide">
+        <Popup x:Name="Popup_Kuxne" AllowsTransparency="True" VerticalOffset="-71" HorizontalOffset="0" PopupAnimation="Slide">
             <!--<Grid>
                 <local:NaKuxne/>
                 <Grid Height="80" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,20">
@@ -194,6 +194,11 @@
                     </StackPanel>
                 </Grid>
             </Grid>-->
+        </Popup>
+        <Popup x:Name="Popup_AddGramm" AllowsTransparency="True" IsOpen="False" HorizontalAlignment="Center" VerticalAlignment="Center" Placement="Center">
+            <Grid>
+                <local:AddGramm/>
+            </Grid>
         </Popup>
     </Grid>
 </UserControl>

@@ -1,26 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "D:\\c# Cafe\\Новая\\ProjectKafe\\KafeProject\\KafeProject.csproj": {}
+    "D:\\Project\\ProjectKafe\\KafeProject\\KafeProject.csproj": {}
   },
   "projects": {
-    "D:\\c# Cafe\\Новая\\ProjectKafe\\KafeProject\\KafeProject.csproj": {
+    "D:\\Project\\ProjectKafe\\KafeProject\\KafeProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\c# Cafe\\Новая\\ProjectKafe\\KafeProject\\KafeProject.csproj",
+        "projectUniqueName": "D:\\Project\\ProjectKafe\\KafeProject\\KafeProject.csproj",
         "projectName": "KafeProject",
-        "projectPath": "D:\\c# Cafe\\Новая\\ProjectKafe\\KafeProject\\KafeProject.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\c# Cafe\\Новая\\ProjectKafe\\KafeProject\\obj\\",
+        "projectPath": "D:\\Project\\ProjectKafe\\KafeProject\\KafeProject.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\ProjectKafe\\KafeProject\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0-windows7.0"
