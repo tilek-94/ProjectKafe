@@ -408,5 +408,10 @@ namespace KafeProject.View.User_Menu
                 oplatitwindow.Show();
             }
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Popup_AddGramm.IsOpen = true;
+        }
     }
 }
