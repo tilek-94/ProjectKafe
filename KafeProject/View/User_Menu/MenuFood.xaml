@@ -173,6 +173,12 @@
                 <local:User_Check/>
             </Grid>
         </Popup>
+        <Popup x:Name="Popup_Gramm" AllowsTransparency="True" IsOpen="False"  VerticalOffset="-30" HorizontalOffset="0">
+            <Grid>
+                <TextBox/>
+                <Button/>
+            </Grid>
+        </Popup>
         <Popup x:Name="Popup_Menu" AllowsTransparency="True" IsOpen="False"  VerticalOffset="15" HorizontalOffset="-15">
             <Grid>
                 <local:User_Menu1/>

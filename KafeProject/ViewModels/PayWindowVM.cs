@@ -1,12 +1,9 @@
-﻿using KafeProject.Infrastructure.Commands;
-using KafeProject.Date;
+﻿using KafeProject.Date;
+using KafeProject.Infrastructure.Commands;
+using KafeProject.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using KafeProject.Models;
-using MySql.Data.MySqlClient;
-using System.Windows;
-using System.Threading;
 
 namespace KafeProject.ViewModels
 {
@@ -20,18 +17,18 @@ namespace KafeProject.ViewModels
             ButtonForClear = new LambdaCommand(ClickClear, CanCloseApplicationExecat);
             DateL();
 
-
         }
 
-        
+
         private async void DateL()
         {
-            await Task.Run(()=> {
+            await Task.Run(() =>
+            {
                 using (ApplicationContext db = new ApplicationContext())
                 {
                 }
-            });  
-            
+            });
+
         }
         private string _Password = "";
         public string Password
@@ -43,9 +40,8 @@ namespace KafeProject.ViewModels
                 if (_Password.Length < 5)
                 {
                     Set(ref _Password, value);
-                   
-                    LoadDate();
 
+                    LoadDate();
                 }
 
             }
@@ -55,8 +51,8 @@ namespace KafeProject.ViewModels
         public int M
         {
             get => _M;
-            set => Set(ref _M,value);
-            
+            set => Set(ref _M, value);
+
         }
 
         private string _Password2 = "";
@@ -69,59 +65,49 @@ namespace KafeProject.ViewModels
             set
             {
                 Set(ref _Password2, value);
-                
+
             }
         }
 
         int Id = 0;
         private void ClickButton(object p)
         {
-            
+
             if (p.ToString() == "Удалить")
                 Password = "";
 
             if (p.ToString() != "Удалить")
                 Password += p.ToString();
 
-            
-
         }
-
-        private  void LoadDate()
+        private void LoadDate()
         {
-              if (Password.Length == 4 || Password.Length > 4)
-                {
+            if (Password.Length == 4 || Password.Length > 4)
+            {
                 //Thread.Sleep(1000);
                 using (ApplicationContext db = new ApplicationContext())
+                {
+
+                    Id = db.Waiters.Where(t => t.Pass == Password).Select(t => t.Id).OrderBy(i=>i).FirstOrDefault();
+                    if (Id > 0)
                     {
-
-                        Id = db.Waiters.Where(t => t.Pass == Password).Select(t => t.Id).FirstOrDefault();
-                        if (Id > 0)
+                        //Password = "";
+                        //id = Id;
+                        if (db.Regime.Where(i => i.WaiterId == Id && i.StartTime.Date >= DateTime.Now.Date).Count() == 0)
                         {
-
-                            //Password = "";
-                            //id = Id;
-                            if (db.Regime.Where(i => i.WaiterId == Id && i.StartTime < DateTime.Now).Count() == 0)
-                            {
-                                Regimes regime = new Regimes { StartTime = DateTime.Now, EndTime = DateTime.Now, WaiterId = Id };
-                                db.Regime.Add(regime);
-                                db.SaveChanges();
-                            }
-                            mainWindow = new MainWindow(Id);
-                            mainWindow.Show();
-
-                            CloseAction();
+                            Regimes regime = new Regimes { StartTime = DateTime.Now, EndTime = DateTime.Now, WaiterId = Id };
+                            db.Regime.Add(regime);
+                            db.SaveChanges();
                         }
-                        Password = "";
+                        mainWindow = new MainWindow(Id);
+                        mainWindow.Show();
 
+                        CloseAction();
                     }
-
+                    Password = "";
                 }
-
-           
-
-
-        } 
+            }
+        }
         private void ClickClear(object p)
         {
             if (Password.Length > 0)

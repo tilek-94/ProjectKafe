@@ -67,7 +67,7 @@ namespace KafeProject
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Error.clsRW += menuStolOpenForEndCheck;
-            MenuFoodViewModel.showMessage += () => MessageBox.Show("!!! нету тов");
+            //MenuFoodViewModel.showMessage += () => MessageBox.Show("!!! нету тов");
             //
             MenuStol.menuStol_ += menuStolMessage;
             Kolichestvo_Bluda.menuStolForDynamicCheck_ += menuStolForDynamicCheck;
@@ -249,7 +249,7 @@ namespace KafeProject
             //}
         }
 
-        private async void Stol_Button_Click(object sender, RoutedEventArgs e)
+        private void Stol_Button_Click(object sender, RoutedEventArgs e)
         {
             GlawMenu.Children.Clear(); 
             if (clsd != null)

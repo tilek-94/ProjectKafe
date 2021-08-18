@@ -40,14 +40,14 @@ namespace KafeProject.View.User_Menu
                 }
         }
 
-        private void Button_Click_1(object sender, System.Windows.RoutedEventArgs e)
+        private void Button_Click_3(object sender, System.Windows.RoutedEventArgs e)
         {
             if (cls != null)
                 cls();
             if (MenuFood.IdCheck != 0)
             {
-                TableChangeWindow m = new TableChangeWindow();
-                m.ShowDialog();
+                TableChangeWindow error = new TableChangeWindow();
+                error.ShowDialog();
             }
         }
     }

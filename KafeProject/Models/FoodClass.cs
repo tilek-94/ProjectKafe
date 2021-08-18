@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KafeProject.Models
 {
-    internal class FoodClass
+    public class FoodClass
     {
         public string Name { get; set; }
         public string Status { get; set; }
