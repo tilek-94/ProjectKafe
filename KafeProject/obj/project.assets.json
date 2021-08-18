@@ -1493,11 +1493,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\c# Cafe\\ProjectKafe\\KafeProject\\KafeProject.csproj",
+      "projectUniqueName": "D:\\c# Cafe\\Новая\\ProjectKafe\\KafeProject\\KafeProject.csproj",
       "projectName": "KafeProject",
-      "projectPath": "D:\\c# Cafe\\ProjectKafe\\KafeProject\\KafeProject.csproj",
+      "projectPath": "D:\\c# Cafe\\Новая\\ProjectKafe\\KafeProject\\KafeProject.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\c# Cafe\\ProjectKafe\\KafeProject\\obj\\",
+      "outputPath": "D:\\c# Cafe\\Новая\\ProjectKafe\\KafeProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

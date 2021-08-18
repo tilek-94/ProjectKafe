@@ -22,20 +22,35 @@ namespace KafeProject.ViewModels
             get { return _CheckItems; }
             set { Set(ref _CheckItems, value); }
         }
-/*        private double itog = 0;
-        public double Itog
+        private string _CafeName = "";
+
+        public string CafeName
         {
-            get
-            {
-                if ((itog + ob) % 1 > 0.4)
-                    return Convert.ToInt32(itog + ob + 0.9);
-                else return itog + ob;
-            }
-            set
-            {
-                Set(ref itog, value);
-            }
-        }*/
+            get { return _CafeName; }
+            set { _CafeName = value; }
+        }
+        private string _CafeAdress = "";
+
+        public string CafeAdress
+        {
+            get { return _CafeAdress; }
+            set { _CafeAdress = value; }
+        }
+
+        /*        private double itog = 0;
+                public double Itog
+                {
+                    get
+                    {
+                        if ((itog + ob) % 1 > 0.4)
+                            return Convert.ToInt32(itog + ob + 0.9);
+                        else return itog + ob;
+                    }
+                    set
+                    {
+                        Set(ref itog, value);
+                    }
+                }*/
         /*        private double ob = 0;
                 public double Ob
                 {
@@ -230,6 +245,15 @@ namespace KafeProject.ViewModels
             {
                 foreach (var t in db.Checks.Where(g => g.WaiterId == MainWindow.Id && g.DateTimeCheck > DateTime.Now.Date).OrderBy(i => i.Id))
                     CheckList.Add(new ACheck { CheckDate = t.DateTimeCheck.ToString(), IdCheck = t.Id.ToString(), CheckID = t.CheckCount, CheckTable = t.TableId.ToString(), CheckPrice = checksPrise(t.Id, t.GuestsCount), CheckStatus = t.GuestsCount });
+
+                var cafename = db.CafeName.Select(u => u).OrderBy(u => u).LastOrDefault();
+
+                if (cafename != null)
+                {
+                    CafeName = cafename.Name;
+                    CafeAdress = cafename.Adress;
+                }
+
             }
             Chasy.getDate += changeDate;
             MainWindow.clsd += (t) => Chasy.getDate -= changeDate;
@@ -248,7 +272,7 @@ namespace KafeProject.ViewModels
                 {
                     if (st.SalaryType == "Service")
                     {
-                        x = x + (count*st.Salary);
+                        x = x + (count * st.Salary);
                     }
                     else if (st.SalaryType == "Percent")
                     {
