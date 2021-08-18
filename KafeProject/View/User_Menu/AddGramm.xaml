@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:KafeProject.View.User_Menu"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
-    <Grid>
+    <Grid Height="500" Width="600">
         <Grid Margin="10,10,10,10" Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
