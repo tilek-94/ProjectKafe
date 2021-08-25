@@ -1240,3 +1240,5 @@ D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User
 D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\MessageWindow.baml
 D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\MessageWindow.g.cs
 D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.csprojAssemblyReference.cache
+D:\Project\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\MessageWindow.baml
+D:\Project\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\MessageWindow.g.cs
