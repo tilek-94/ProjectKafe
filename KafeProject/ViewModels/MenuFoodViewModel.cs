@@ -14,14 +14,22 @@ using KafeProject.ViewModels.Base;
 
 namespace KafeProject.ViewModels
 {
-    class MenuFoodViewModel : ViewModel
+    public class MenuFoodViewModel : ViewModel
     {
+
         #region Prop
+        MessageWindow message;
         private ObservableCollection<MenuFoodParams> _FoodList = new ObservableCollection<MenuFoodParams>();
         public ObservableCollection<MenuFoodParams> FoodList
         {
-            get { return _FoodList; }
-            set { Set(ref _FoodList, value); }
+            get
+            {
+                return _FoodList;
+            }
+            set
+            {
+                Set(ref _FoodList, value);
+            }
         }
         private ObservableCollection<MenuFoodParams> _isCancel = new ObservableCollection<MenuFoodParams>();
         public ObservableCollection<MenuFoodParams> isCancel
@@ -51,7 +59,7 @@ namespace KafeProject.ViewModels
                             {
                                 if (MenuFood.IdCheck != 0)
                                 {
-                                    var h = db.Checks.Where(g => g.Id == MenuFood.IdCheck).OrderBy(i=>i).LastOrDefault();
+                                    var h = db.Checks.Where(g => g.Id == MenuFood.IdCheck).LastOrDefault();
                                     return _ItogSum + Convert.ToInt32(h.GuestsCount * f.Salary);
                                 }
                                 else
@@ -99,8 +107,6 @@ namespace KafeProject.ViewModels
         public static string comm = "";
         public delegate void AddNewCheck();
         public static event AddNewCheck openStolWindow;
-        public delegate void ifCountProductNull(int? x);
-        public static event ifCountProductNull showMessage;
         private MenuFoodParams _SelectedFood = new MenuFoodParams();
         public MenuFoodParams SelectedFood
         {
@@ -142,6 +148,7 @@ namespace KafeProject.ViewModels
             ItogSum = 0.00;
             MainWindow.menuCheck_ += MethodForDelegate;
             MenuFood.foodEvent += MethodForAddFood;
+            MenuFood.foodEventGrams += MethodForAddFoodGram;
             MainWindow.fuckAll_ += thisClose;
             MainWindow.clsd += thisClose;
         }
@@ -152,13 +159,25 @@ namespace KafeProject.ViewModels
             {
                 MainWindow.menuCheck_ -= MethodForDelegate;
                 MenuFood.foodEvent -= MethodForAddFood;
+                MenuFood.foodEventGrams -= MethodForAddFoodGram;
                 return;
             }
+            MenuFood.foodEventGrams -= MethodForAddFoodGram;
             MainWindow.menuCheck_ -= MethodForDelegate;
             MenuFood.foodEvent -= MethodForAddFood;
             MainWindow.fuckAll_ -= thisClose;
             MainWindow.clsd -= thisClose;
         }
+
+        void MethodForAddFoodGram(MenuFoodParams x, int id)
+        {
+            var menuOrder = x;
+            ItogSum = _ItogSum + x.Price;
+            PercentSum = 0;
+            ObsSum = 0;
+            FoodList.Add(x);
+        }
+
         void MethodForAddFood(MenuFoodParams x, int id)
         {
             for (int y = 0; y < FoodList.Count; y++)
@@ -254,8 +273,8 @@ namespace KafeProject.ViewModels
             }
             else
             {
-               // MessageWindow messageWindow = new MessageWindow("Отправьте заказ на кухню!");
-                // messageWindow.ShowDialog();
+                MessageWindow messageWindow = new MessageWindow("Отправьте заказ на кухню!");
+                messageWindow.ShowDialog();
             }
         }
         bool CanExecuteSendCheckKuhCommand(object p)
@@ -337,7 +356,8 @@ namespace KafeProject.ViewModels
                                 productStatus = countProd(i.Id, i.Count);
                             if (!productStatus)
                             {
-                                showMessage(null);
+                                message = new MessageWindow("Нету товара!");
+                                message.ShowDialog();
                                 return;
                             }
                         }
@@ -373,7 +393,8 @@ namespace KafeProject.ViewModels
                                 productStatus = countProd(i.Id, i.Count);
                             if (!productStatus)
                             {
-                                showMessage(null);
+                                message = new MessageWindow("Нету товара!");
+                                message.ShowDialog();
                                 return;
                             }
                         }
@@ -391,7 +412,6 @@ namespace KafeProject.ViewModels
 
                         ObservableCollection<Order> o = new ObservableCollection<Order>();
                         foreach (var i in FoodList)
-
                             o.Add(new Order { CountFood = i.Count, CheckId = idCheck, FoodId = i.Id, isCancel = 0 });
                         db.AddRange(o);
                         db.SaveChanges();
