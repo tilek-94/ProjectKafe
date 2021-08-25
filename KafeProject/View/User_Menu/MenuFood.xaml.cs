@@ -443,11 +443,11 @@ namespace KafeProject.View.User_Menu
                         var foodInfo = db.Foods.Where(f => f.Id == imid).Select(i => i);
                         foodEventGrams(new MenuFoodParams
                         {
-                            Name = foodInfo.Select(p => p.Name).OrderBy(p => p).LastOrDefault() + $"({GrammCount.Text}) грамм",
-                            Count = 1,
+                            Name = foodInfo.Select(p => p.Name).OrderBy(p => p).LastOrDefault(),
+                            Count = int.Parse(GrammCount.Text),
                             Price = foodInfo.Select(p => p.Price).OrderBy(p => p).LastOrDefault() * Convert.ToDouble(GrammCount.Text) / 100,
                             Id = imid
-                        }, IdTable);
+                        }, IdTable) ;
                     }
                 }
                 CloseGramm(sender, e);

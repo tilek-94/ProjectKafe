@@ -175,7 +175,7 @@ namespace KafeProject.ViewModels
             ItogSum = _ItogSum + x.Price;
             PercentSum = 0;
             ObsSum = 0;
-            FoodList.Add(x);
+            FoodList.Add(menuOrder);
         }
 
         void MethodForAddFood(MenuFoodParams x, int id)
