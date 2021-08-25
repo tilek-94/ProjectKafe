@@ -1032,7 +1032,6 @@ D:\c# Cafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.pdb
 D:\c# Cafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.genruntimeconfig.cache
 D:\c# Cafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\TableChangeWindow.baml
 D:\c# Cafe\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\TableChangeWindow.g.cs
-D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.csprojAssemblyReference.cache
 D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon1.baml
 D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon2.baml
 D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\Styles_Folder\Topic\Fon3.baml
@@ -1236,3 +1235,8 @@ D:\Project\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.pdb
 D:\Project\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.genruntimeconfig.cache
 D:\Project\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\AddGramm.g.cs
 D:\Project\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\AddGramm.baml
+D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\AddGramm.g.cs
+D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\User_Menu\AddGramm.baml
+D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\MessageWindow.baml
+D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\View\All_Windows\MessageWindow.g.cs
+D:\c# Cafe\Новая\ProjectKafe\KafeProject\obj\Debug\net5.0-windows\KafeProject.csprojAssemblyReference.cache

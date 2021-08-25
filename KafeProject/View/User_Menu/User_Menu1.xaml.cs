@@ -38,6 +38,11 @@ namespace KafeProject.View.User_Menu
                         m.Show();
                     }
                 }
+            else 
+            {
+                MessageWindow message = new MessageWindow("Сначала отправьте заказ на кухню");
+                message.ShowDialog();
+            }
         }
 
         private void Button_Click_3(object sender, System.Windows.RoutedEventArgs e)
@@ -48,6 +53,11 @@ namespace KafeProject.View.User_Menu
             {
                 TableChangeWindow error = new TableChangeWindow();
                 error.ShowDialog();
+            }
+            else
+            {
+                MessageWindow message = new MessageWindow("Сначала отправьте заказ на кухню");
+                message.ShowDialog();
             }
         }
     }

@@ -3,9 +3,10 @@ using System.Windows.Input;
 
 namespace KafeProject.Infrastructure.Commands.Base
 {
-   internal abstract class Command : ICommand
+    public abstract class Command : ICommand
     {
-        public event EventHandler CanExecuteChanged {
+        public event EventHandler CanExecuteChanged
+        {
             add => CommandManager.RequerySuggested += value;
             remove => CommandManager.RequerySuggested -= value;
         }

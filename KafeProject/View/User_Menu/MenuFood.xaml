@@ -173,12 +173,6 @@
                 <local:User_Check/>
             </Grid>
         </Popup>
-        <Popup x:Name="Popup_Gramm" AllowsTransparency="True" IsOpen="False"  VerticalOffset="-30" HorizontalOffset="0">
-            <Grid>
-                <TextBox/>
-                <Button/>
-            </Grid>
-        </Popup>
         <Popup x:Name="Popup_Menu"  AllowsTransparency="True" IsOpen="False"  VerticalOffset="15" HorizontalOffset="-15">
             <Grid>
                 <local:User_Menu1/>
@@ -195,7 +189,7 @@
                 </Grid>
             </Grid>-->
         </Popup>
-        <Popup x:Name="Popup_AddGramm" AllowsTransparency="True" IsOpen="False" HorizontalAlignment="Center" VerticalAlignment="Center" Placement="Center" PopupAnimation="Slide">
+        <Popup x:Name="Popup_AddGramm" AllowsTransparency="True" IsOpen="false" HorizontalAlignment="Center" VerticalAlignment="Center" Placement="Center" PopupAnimation="Slide">
             <Grid>
                 <Grid Height="500" Width="600">
                     <Grid Margin="10,10,10,10" Background="White">
@@ -208,32 +202,32 @@
                         <Grid.Effect>
                             <DropShadowEffect BlurRadius="15" Opacity="0.5" ShadowDepth="7" Direction="272"/>
                         </Grid.Effect>
-                        <TextBlock Text="Shorpo Tabaka 500gr" FontSize="20" VerticalAlignment="Center" MaxWidth="500" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="#FF00A0B0"/>
+                        <TextBlock x:Name="addGramName" FontSize="20" VerticalAlignment="Center" MaxWidth="500" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="#FF00A0B0"/>
                         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,50,0">
                             <TextBlock Text="ГР" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,0"></TextBlock>
-                            <TextBox  TextAlignment="Center" FontSize="25" HorizontalAlignment="Right" Height="40" VerticalAlignment="Center" Width="400" HorizontalContentAlignment="Right"  BorderThickness="0,0,0,3"  BorderBrush="#FFBDBDBD"></TextBox>
+                            <TextBox x:Name="GrammCount" Text="0" TextAlignment="Center" FontSize="25" HorizontalAlignment="Right" Height="40" VerticalAlignment="Center" Width="400" HorizontalContentAlignment="Right"  BorderThickness="0,0,0,3"  BorderBrush="#FFBDBDBD"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="2">
                             <UniformGrid Rows="4" Columns="3" Height="300" HorizontalAlignment="Center" >
-                                <Button Height="50" Width="150" HorizontalAlignment="Left" Content="1" FontSize="35" Opacity="0.4" Style="{DynamicResource Button_Klaviatura}" Margin="5,5,5,5"/>
-                                <Button Height="50" Width="150" HorizontalAlignment="Center" Content="2" FontSize="35" Opacity="0.4"  Style="{DynamicResource Button_Klaviatura}" Margin="5,5,5,5"/>
-                                <Button Height="50" Width="150" HorizontalAlignment="Right" Content="3" FontSize="35" Opacity="0.4"  Style="{DynamicResource Button_Klaviatura}" Margin="5,5,5,5"/>
-                                <Button Height="50" Width="150" HorizontalAlignment="Left" Content="4" FontSize="35" Opacity="0.4" Style="{DynamicResource Button_Klaviatura}" Margin="5,5,5,5"/>
-                                <Button Height="50" Width="150" HorizontalAlignment="Center" Content="5" FontSize="35" Opacity="0.4" Style="{DynamicResource Button_Klaviatura}" Margin="5,5,5,5"/>
-                                <Button Height="50" Width="150" HorizontalAlignment="Right" Content="6" FontSize="35" Opacity="0.4" Style="{DynamicResource Button_Klaviatura}" Margin="5,5,5,5"/>
-                                <Button Height="50" Width="150" HorizontalAlignment="Left" Content="7" FontSize="35" Opacity="0.4"  Style="{DynamicResource Button_Klaviatura}" Margin="5,5,5,5"/>
-                                <Button Height="50" Width="150" HorizontalAlignment="Center" Content="8" FontSize="35" Opacity="0.4" Style="{DynamicResource Button_Klaviatura}" Margin="5,5,5,5"/>
-                                <Button Height="50" Width="150" HorizontalAlignment="Right" Content="9" FontSize="35" Opacity="0.4" Style="{DynamicResource Button_Klaviatura}" Margin="5,5,5,5"/>
-                                <Button Height="50" Width="150" HorizontalAlignment="Left"  FontSize="25" Opacity="0.4" Content="Удалить" Style="{DynamicResource Button_Klaviatura}" Margin="5,5,5,5"/>
-                                <Button Height="50" Width="150" HorizontalAlignment="Center" Content="0" FontSize="35" Opacity="0.4" Style="{DynamicResource Button_Klaviatura}"></Button>
-                                <Button Height="50" Width="150" HorizontalAlignment="Right" FontSize="45" Opacity="0.4" Style="{DynamicResource Button_Klaviatura}" >
+                                <Button Click="AddGram" Style="{DynamicResource Button_Klaviatura}" Margin="5" Opacity="0.4" FontSize="35" Width="150" Height="50" HorizontalAlignment="Left" Content="1" />
+                                <Button Click="AddGram" Style="{DynamicResource Button_Klaviatura}" Margin="5" Opacity="0.4" FontSize="35" Width="150" Height="50" HorizontalAlignment="Center" Content="2" />
+                                <Button Click="AddGram" Style="{DynamicResource Button_Klaviatura}" Margin="5" Opacity="0.4" FontSize="35" Width="150" Height="50" HorizontalAlignment="Right" Content="3" />
+                                <Button Click="AddGram" Style="{DynamicResource Button_Klaviatura}" Margin="5" Opacity="0.4" FontSize="35" Width="150" Height="50" HorizontalAlignment="Left" Content="4"/>
+                                <Button Click="AddGram" Style="{DynamicResource Button_Klaviatura}" Margin="5" Opacity="0.4" FontSize="35" Width="150" Height="50" HorizontalAlignment="Center" Content="5"/>
+                                <Button Click="AddGram" Style="{DynamicResource Button_Klaviatura}" Margin="5" Opacity="0.4" FontSize="35" Width="150" Height="50" HorizontalAlignment="Right" Content="6"/>
+                                <Button Click="AddGram" Style="{DynamicResource Button_Klaviatura}" Margin="5" Opacity="0.4" FontSize="35" Width="150" Height="50" HorizontalAlignment="Left" Content="7"/>
+                                <Button Click="AddGram" Style="{DynamicResource Button_Klaviatura}" Margin="5" Opacity="0.4" FontSize="35" Width="150" Height="50" HorizontalAlignment="Center" Content="8"/>
+                                <Button Click="AddGram" Style="{DynamicResource Button_Klaviatura}" Margin="5" Opacity="0.4" FontSize="35" Width="150" Height="50" HorizontalAlignment="Right" Content="9" />
+                                <Button Click="AddGram" Style="{DynamicResource Button_Klaviatura}" Margin="5" Opacity="0.4" Width="150" Height="50" HorizontalAlignment="Left"  FontSize="25" Content="Удалить" />
+                                <Button Click="AddGram" Style="{DynamicResource Button_Klaviatura}"  Opacity="0.4" FontSize="35" Width="150" Height="50" HorizontalAlignment="Center" Content="0" Margin="0"></Button>
+                                <Button Click="AddGram_2" Style="{DynamicResource Button_Klaviatura}"  Opacity="0.4"  Width="150" Height="50" HorizontalAlignment="Right" FontSize="45" Margin="0">
                                     <Image Source="pack://application:,,,/Images/Icon/Clear.png" HorizontalAlignment="Stretch" Width="117"/>
                                 </Button>
                             </UniformGrid>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center">
-                            <Button Style="{DynamicResource Button_Yellow}"  Content="Принять" FontSize="17" Height="40" Width="220" />
-                            <Button x:Name="Otmena" Style="{DynamicResource Button_B}" Content="Закрыть" FontSize="17" Height="40" Width="220" Margin="10,0,0,0"/>
+                            <Button Style="{DynamicResource Button_Yellow}" Click="AddFoodGramm" Content="Принять" FontSize="17" Height="40" Width="220" />
+                            <Button x:Name="Otmena" Style="{DynamicResource Button_B}" Click="CloseGramm" Content="Закрыть" FontSize="17" Height="40" Width="220" Margin="10,0,0,0"/>
                         </StackPanel>
                     </Grid>
                 </Grid>

@@ -109,6 +109,11 @@ namespace KafeProject.All_Windows
                 MainWindow.timer.Start();
                 this.Close();
             }
+            else 
+            {
+                MessageWindow message = new MessageWindow("Количество гостей должно превышать 0");
+                message.ShowDialog();
+            }
         }
 
     }
