@@ -1,6 +1,7 @@
 ﻿using KafeProject.All_Windows;
 using KafeProject.Date;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 namespace KafeProject.View.User_Menu
 {
@@ -16,8 +17,7 @@ namespace KafeProject.View.User_Menu
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (cls != null)
-                cls();
+            cls?.Invoke();
             if (MenuFood.IdCheck > 0)
             {
                 Kolichestvo_Bluda n = new Kolichestvo_Bluda();
@@ -26,8 +26,7 @@ namespace KafeProject.View.User_Menu
         }
         private void Button_Click_2(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (cls != null)
-                cls();
+            cls?.Invoke();
             if (MenuFood.IdCheck != 0)
                 using (ApplicationContext db = new ApplicationContext())
                 {
@@ -36,6 +35,11 @@ namespace KafeProject.View.User_Menu
                     {
                         Razdelit_Window m = new Razdelit_Window();
                         m.Show();
+                    }
+                    else
+                    {
+                        MessageWindow message = new MessageWindow("Количество гостей должо быть больше 1");
+                        message.ShowDialog();
                     }
                 }
             else 
@@ -47,8 +51,7 @@ namespace KafeProject.View.User_Menu
 
         private void Button_Click_3(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (cls != null)
-                cls();
+            cls?.Invoke();
             if (MenuFood.IdCheck != 0)
             {
                 TableChangeWindow error = new TableChangeWindow();

@@ -13,6 +13,7 @@ namespace KafeProject.Models
         public int Count { get; set; }
         public double Price { get; set; }
         public double Itog { get; set; }
+        public int Gramm { get; set; }
         public string Otmena { get; set; }
 
     }

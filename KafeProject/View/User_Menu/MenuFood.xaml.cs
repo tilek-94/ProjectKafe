@@ -31,6 +31,8 @@ namespace KafeProject.View.User_Menu
         public static int imid = 0;
         public delegate void ButtonClick(MenuFoodParams x, int idTable_ = 0);
         public static event ButtonClick foodEvent;
+        public delegate void ClosePop();
+        public static event ClosePop closePop_;
         public delegate void ButtonClick_1(MenuFoodParams x, int idTable_ = 0);
         public static event ButtonClick_1 foodEventGrams;
         public static int IdTable;
@@ -134,49 +136,71 @@ namespace KafeProject.View.User_Menu
                 TovarMenu.Children.Clear();
             });
 
-            await using (ApplicationContext db = new ApplicationContext())
+            await using ApplicationContext db = new ApplicationContext();
+            foreach (var i in db.Foods.Where(f => f.Id == f.ParentCategoryId))
             {
-                foreach (var i in db.Foods.Where(f => f.Id == f.ParentCategoryId))
+                this.Dispatcher.InvokeOrExecute(() =>
                 {
-                    this.Dispatcher.InvokeOrExecute(() =>
+                    Grid grid = new Grid
                     {
-                        Grid grid = new Grid();
-                        grid.Margin = new Thickness(10, 10, 0, 35);
-                        grid.Height = 155;
-                        grid.Width = double.NaN;
-                        grid.MouseDown += new MouseButtonEventHandler(allCategory);
-                        grid.Uid = i.Id.ToString();
+                        Margin = new Thickness(10, 10, 0, 35),
+                        Height = 155,
+                        Width = double.NaN
+                    };
+                    grid.MouseDown += new MouseButtonEventHandler(FoodAsync);
+                    grid.Uid = i.Id.ToString();
 
-                        Image im = new Image();
-                        im.Style = (Style)this.TryFindResource("Image_Style");
-                        im.Source = new BitmapImage(new Uri("/Images/FoodImage/se.png", UriKind.RelativeOrAbsolute));
-
-                        StackPanel st = new StackPanel();
-                        st.Orientation = Orientation.Vertical;
-                        st.Style = (Style)this.TryFindResource("StackPanel_Style");
-
-                        TextBlock text1 = new TextBlock();
-                        text1.Style = (Style)this.TryFindResource("TextBlock_Style");
-                        text1.Text = i.Name;
-
-                        if (i.Price > 0)
+                    Image im = new Image
+                    {
+                        Style = (Style)this.TryFindResource("Image_Style")
+                    };
+                    if (i.Image != null)
+                        using (MemoryStream memstr = new MemoryStream(i.Image))
                         {
-                            text1.Text = text1.Text + " " + i.Price + "c";
+                            BitmapImage b = new BitmapImage();
+                            b.BeginInit();
+                            b.CacheOption = BitmapCacheOption.OnLoad;
+                            b.StreamSource = memstr;
+                            b.EndInit();
+                            im.Source = b;
                         }
+                    else
+                    {
+                        im.Source = new BitmapImage(new Uri("/Images/FoodImage/se.png", UriKind.RelativeOrAbsolute));
+                    }
 
-                        grid.Children.Add(im);
+                    StackPanel st = new StackPanel
+                    {
+                        Orientation = Orientation.Vertical,
+                        Style = (Style)this.TryFindResource("StackPanel_Style")
+                    };
 
-                        st.Children.Add(text1);
+                    TextBlock text1 = new TextBlock
+                    {
+                        Style = (Style)this.TryFindResource("TextBlock_Style"),
+                        Text = i.Name
+                    };
 
-                        grid.Children.Add(st);
+                    if (i.Price > 0)
+                    {
+                        text1.Text = text1.Text + " " + i.Price + "c";
+                    }
 
-                        TovarMenu.Children.Add(grid);
-                    });
-                }
+                    grid.Children.Add(im);
+
+                    st.Children.Add(text1);
+
+                    grid.Children.Add(st);
+
+                    TovarMenu.Children.Add(grid);
+                });
             }
         }
+
         private void Otpravit_Kuxne_Click(object sender, RoutedEventArgs e)
         {
+            popups();
+            closePop_();
             Popup_Kuxne.PlacementTarget = Prog_Border;
             Popup_Kuxne.Placement = PlacementMode.Center;
             if (Popup_Kuxne.IsOpen == false)
@@ -202,173 +226,200 @@ namespace KafeProject.View.User_Menu
         {
             allCategory(Convert.ToInt32((sender as Button).Uid));
         }
+        string uidImage1 = "0";
+
+        public void Go(object sender = null, RoutedEventArgs e = null)
+        {
+            this.Dispatcher.InvokeOrExecute(() =>
+            {
+                Thread.Sleep(10);
+                allCategory(sender, e);
+            });
+        }
+        public async void FoodAsync(object sender = null, RoutedEventArgs e = null)
+        {
+            await Task.Run(() => Go(sender, e));
+        }
         private async void allCategory(object sender = null, RoutedEventArgs e = null)
         {
-            string uidImage = (sender as Grid).Uid.ToString();
-            await using (ApplicationContext db = new ApplicationContext())
+            this.Dispatcher.InvokeOrExecute(() =>
             {
-                //(sender as Image).Uid.ToString()
-                if (db.Foods.Where(f => Convert.ToInt32(uidImage) == f.ParentCategoryId).Count() <= 1)
+                uidImage1 = (sender as Grid).Uid.ToString();
+            });
+            await using ApplicationContext db = new ApplicationContext();
+
+            //(sender as Image).Uid.ToString()
+            if (db.Foods.Where(f => Convert.ToInt32(uidImage1) == f.ParentCategoryId).Count() <= 1)
+            {
+                //MessageBox.Show("id еды =" + (sender as Image).Uid.ToString());
+                //Kategory_button_dynamic();
+                //glawMenuMethod();
+                var foodInfo = db.Foods.Where(f => f.Id == Convert.ToInt32(uidImage1)).Select(i => i);
+                if (foodInfo.Select(i => i.isCook).OrderBy(i => i).LastOrDefault() == 2)
                 {
-                    //MessageBox.Show("id еды =" + (sender as Image).Uid.ToString());
-                    //Kategory_button_dynamic();
-                    //glawMenuMethod();
-                    var foodInfo = db.Foods.Where(f => f.Id == Convert.ToInt32(uidImage)).Select(i => i);
-                    if (foodInfo.Select(i => i.isCook).OrderBy(i => i).LastOrDefault() == 2)
-                    {
-                        imid = 0;
-                        Popup_AddGramm.IsOpen = true;
-                        addGramName.Text = foodInfo.Select(i => i.Name).OrderBy(i => i).LastOrDefault();
-                        imid = foodInfo.Select(i => i.Id).OrderBy(i => i).LastOrDefault();
-                    }
-                    else
-                        foodEvent(new MenuFoodParams
-                        {
-                            Name = foodInfo.Select(p => p.Name).OrderBy(p => p).LastOrDefault(),
-                            Count = 1,
-                            Price = foodInfo.Select(p => p.Price).OrderBy(p => p).LastOrDefault(),
-                            Id = Convert.ToInt32(uidImage)
-                        }, IdTable);
+                    imid = 0;
+                    Popup_AddGramm.IsOpen = true;
+                    addGramName.Text = foodInfo.Select(i => i.Name).OrderBy(i => i).LastOrDefault();
+                    imid = foodInfo.Select(i => i.Id).OrderBy(i => i).LastOrDefault();
                 }
                 else
+                    foodEvent(new MenuFoodParams
+                    {
+                        Name = foodInfo.Select(p => p.Name).OrderBy(p => p).LastOrDefault(),
+                        Count = 1,
+                        Price = foodInfo.Select(p => p.Price).OrderBy(p => p).LastOrDefault(),
+                        Id = Convert.ToInt32(uidImage1)
+                    }, IdTable);
+            }
+            else
+            {
+                this.Dispatcher.InvokeOrExecute(() =>
+                {
+                    TovarMenu.Children.Clear();
+                });
+                Kategory_button_dynamic();
+                categoryButMethod(Convert.ToInt32(uidImage1));
+
+                foreach (var i in db.Foods.Where(f => Convert.ToInt32(uidImage1) == f.ParentCategoryId && f.Id != f.ParentCategoryId))
                 {
                     this.Dispatcher.InvokeOrExecute(() =>
                     {
-                        TovarMenu.Children.Clear();
-                        Kategory_button_dynamic();
-                        categoryButMethod(Convert.ToInt32(uidImage));
-                    });
-                    foreach (var i in db.Foods.Where(f => Convert.ToInt32(uidImage) == f.ParentCategoryId && f.Id != f.ParentCategoryId))
-                    {
-                        this.Dispatcher.InvokeOrExecute(() =>
+                        Grid grid = new Grid
                         {
-                            Grid grid = new Grid();
-                            grid.Margin = new Thickness(10, 10, 0, 35);
-                            grid.Height = 155;
-                            grid.Width = double.NaN;
-                            grid.MouseDown += new MouseButtonEventHandler(allCategory);
-                            grid.Uid = i.Id.ToString();
+                            Margin = new Thickness(10, 10, 0, 35),
+                            Height = 155,
+                            Width = double.NaN
+                        };
+                        grid.MouseDown += new MouseButtonEventHandler(FoodAsync);
+                        grid.Uid = i.Id.ToString();
 
-                            Image im = new Image();
-
-                            im.Style = (Style)this.TryFindResource("Image_Style");
-                            if (i.Image != null)
-                                using (MemoryStream memstr = new MemoryStream(i.Image))
-                                {
-                                    BitmapImage b = new BitmapImage();
-                                    b.BeginInit();
-                                    b.CacheOption = BitmapCacheOption.OnLoad;
-                                    b.StreamSource = memstr;
-                                    b.EndInit();
-                                    im.Source = b;
-                                }
-                            else
+                        Image im = new Image
+                        {
+                            Style = (Style)this.TryFindResource("Image_Style")
+                        };
+                        if (i.Image != null)
+                            using (MemoryStream memstr = new MemoryStream(i.Image))
                             {
-                                im.Source = new BitmapImage(new Uri("/Images/FoodImage/se.png", UriKind.RelativeOrAbsolute));
+                                BitmapImage b = new BitmapImage();
+                                b.BeginInit();
+                                b.CacheOption = BitmapCacheOption.OnLoad;
+                                b.StreamSource = memstr;
+                                b.EndInit();
+                                im.Source = b;
                             }
+                        else
+                        {
+                            im.Source = new BitmapImage(new Uri("/Images/FoodImage/se.png", UriKind.RelativeOrAbsolute));
+                        }
 
 
-                            StackPanel st = new StackPanel();
-                            st.Style = (Style)this.TryFindResource("StackPanel_Style");
+                        StackPanel st = new StackPanel
+                        {
+                            Style = (Style)this.TryFindResource("StackPanel_Style")
+                        };
 
-                            TextBlock text1 = new TextBlock();
-                            text1.Style = (Style)this.TryFindResource("TextBlock_Style");
-                            text1.Text = i.Name;
-                            if (i.Price > 0)
-                            {
-                                text1.Text = text1.Text + " " + i.Price + "c";
-                            }
-                            grid.Children.Add(im);
-                            st.Children.Add(text1);
-                            grid.Children.Add(st);
-                            TovarMenu.Children.Add(grid);
-                        });
-                    }
+                        TextBlock text1 = new TextBlock
+                        {
+                            Style = (Style)this.TryFindResource("TextBlock_Style"),
+                            Text = i.Name
+                        };
+                        if (i.Price > 0)
+                        {
+                            text1.Text = text1.Text + " " + i.Price + "c";
+                        }
+                        grid.Children.Add(im);
+                        st.Children.Add(text1);
+                        grid.Children.Add(st);
+                        TovarMenu.Children.Add(grid);
+                    });
                 }
             }
         }
         private async void allCategory(int x)
         {
-
             string uidImage = x.ToString();
             //(sender as Image).Uid.ToString();
-            await using (ApplicationContext db = new ApplicationContext())
+            await using ApplicationContext db = new ApplicationContext();
+            //(sender as Image).Uid.ToString()
+            if (db.Foods.Where(f => Convert.ToInt32(uidImage) == f.ParentCategoryId).Count() == 0)
             {
-                //(sender as Image).Uid.ToString()
-                if (db.Foods.Where(f => Convert.ToInt32(uidImage) == f.ParentCategoryId).Count() == 0)
-                {
-                    //MessageBox.Show("id еды =" + (sender as Image).Uid.ToString());
-                    //Kategory_button_dynamic();
-                    //glawMenuMethod();
+                //MessageBox.Show("id еды =" + (sender as Image).Uid.ToString());
+                //Kategory_button_dynamic();
+                //glawMenuMethod();
 
-                }
-                else
+            }
+            else
+            {
+                TovarMenu.Children.Clear();
+                Kategory_button_dynamic();
+                categoryButMethod(Convert.ToInt32(uidImage));
+                foreach (var i in db.Foods.Where(f => Convert.ToInt32(uidImage) == f.ParentCategoryId && f.Id != f.ParentCategoryId))
                 {
-                    TovarMenu.Children.Clear();
-                    Kategory_button_dynamic();
-                    categoryButMethod(Convert.ToInt32(uidImage));
-                    foreach (var i in db.Foods.Where(f => Convert.ToInt32(uidImage) == f.ParentCategoryId && f.Id != f.ParentCategoryId))
+                    this.Dispatcher.InvokeOrExecute(() =>
                     {
-                        this.Dispatcher.InvokeOrExecute(() =>
+                        Grid grid = new Grid
                         {
-                            Grid grid = new Grid();
-                            grid.Margin = new Thickness(10, 10, 0, 35);
-                            grid.Height = 155;
-                            grid.Width = double.NaN;
-                            grid.MouseDown += new MouseButtonEventHandler(allCategory);
-                            grid.Uid = i.Id.ToString();
+                            Margin = new Thickness(10, 10, 0, 35),
+                            Height = 155,
+                            Width = double.NaN
+                        };
+                        grid.MouseDown += new MouseButtonEventHandler(FoodAsync);
+                        grid.Uid = i.Id.ToString();
 
-                            Image im = new Image();
-                            im.Style = (Style)this.TryFindResource("Image_Style");
-                            if (i.Image != null)
-                                using (MemoryStream memstr = new MemoryStream(i.Image))
-                                {
-                                    BitmapImage b = new BitmapImage();
-                                    b.BeginInit();
-                                    b.CacheOption = BitmapCacheOption.OnLoad;
-                                    b.StreamSource = memstr;
-                                    b.EndInit();
-                                    im.Source = b;
-                                }
-                            else
+                        Image im = new Image
+                        {
+                            Style = (Style)this.TryFindResource("Image_Style")
+                        };
+                        if (i.Image != null)
+                            using (MemoryStream memstr = new MemoryStream(i.Image))
                             {
-                                im.Source = new BitmapImage(new Uri("/Images/FoodImage/se.png", UriKind.RelativeOrAbsolute));
-
+                                BitmapImage b = new BitmapImage();
+                                b.BeginInit();
+                                b.CacheOption = BitmapCacheOption.OnLoad;
+                                b.StreamSource = memstr;
+                                b.EndInit();
+                                im.Source = b;
                             }
-                            StackPanel st = new StackPanel();
-                            st.Style = (Style)this.TryFindResource("StackPanel_Style");
+                        else
+                        {
+                            im.Source = new BitmapImage(new Uri("/Images/FoodImage/se.png", UriKind.RelativeOrAbsolute));
 
-                            TextBlock text1 = new TextBlock();
-                            text1.Style = (Style)this.TryFindResource("TextBlock_Style");
-                            text1.Text = i.Name;
-                            if (i.Price > 0)
-                            {
-                                text1.Text = text1.Text + " " + i.Price + "c";
-                            }
-                            grid.Children.Add(im);
-                            st.Children.Add(text1);
-                            grid.Children.Add(st);
-                            TovarMenu.Children.Add(grid);
-                        });
-                    }
+                        }
+                        StackPanel st = new StackPanel
+                        {
+                            Style = (Style)this.TryFindResource("StackPanel_Style")
+                        };
+
+                        TextBlock text1 = new TextBlock
+                        {
+                            Style = (Style)this.TryFindResource("TextBlock_Style"),
+                            Text = i.Name
+                        };
+                        if (i.Price > 0)
+                        {
+                            text1.Text = text1.Text + " " + i.Price + "c";
+                        }
+                        grid.Children.Add(im);
+                        st.Children.Add(text1);
+                        grid.Children.Add(st);
+                        TovarMenu.Children.Add(grid);
+                    });
                 }
             }
         }
         async void categoryButMethod(int idBut)
         {
             //Kategory_button_dynamic();
-            await using (ApplicationContext db = new ApplicationContext())
+            await using ApplicationContext db = new ApplicationContext();
+            categoyButtonId = categoyButtonId + " " + idBut.ToString();
+            categoyButtonName = categoyButtonName + " " + db.Foods.Where(f => f.Id == idBut).Select(l => l.Name).OrderBy(o => o).LastOrDefault();
+            int dynamicId = db.Foods.Where(f => f.Id == idBut).Select(l => l.ParentCategoryId).OrderBy(o => o).LastOrDefault();
+            if (dynamicId == idBut)
             {
-                categoyButtonId = categoyButtonId + " " + idBut.ToString();
-                categoyButtonName = categoyButtonName + " " + db.Foods.Where(f => f.Id == idBut).Select(l => l.Name).OrderBy(o => o).LastOrDefault();
-                int dynamicId = db.Foods.Where(f => f.Id == idBut).Select(l => l.ParentCategoryId).OrderBy(o => o).LastOrDefault();
-                if (dynamicId == idBut)
-                {
-                    creatingButtonsMethod();
-                    return;
-                }
-                categoryButMethod(dynamicId);
+                creatingButtonsMethod();
+                return;
             }
+            categoryButMethod(dynamicId);
         }
         void creatingButtonsMethod()
         {
@@ -377,10 +428,12 @@ namespace KafeProject.View.User_Menu
             //MessageBox.Show(categoyButtonName);
             var idCategoryButtons = categoyButtonId.Split().Select(int.Parse).ToList();
             var nameCategoryButtons = categoyButtonName.Split();
-            for (int i = 0; i < idCategoryButtons.Count(); i++)
+            for (int i = 0; i < idCategoryButtons.Count; i++)
             {
-                Button butt = new Button();
-                butt.Style = (Style)this.TryFindResource("Button_Kategory1");
+                Button butt = new Button
+                {
+                    Style = (Style)this.TryFindResource("Button_Kategory1")
+                };
                 if (nameCategoryButtons[i].Length < 15)
                     for (; nameCategoryButtons[i].Length < 20;)
                         nameCategoryButtons[i] += ". ";
@@ -397,14 +450,16 @@ namespace KafeProject.View.User_Menu
         {
             KategoryMenu.Children.Clear();
             //VerticalAlignment="Center" Height="42" HorizontalAlignment="Left" Width="130.5" Margin="25,0"   Style="{DynamicResource Button_Kategory}" Click="Vse_Tovar_Click"
-            Button butt = new Button();
-            butt.Style = (Style)this.TryFindResource("Button_Kategory");
-            butt.VerticalAlignment = VerticalAlignment.Center;
-            butt.Uid = "0";
-            butt.Height = 42;
-            butt.HorizontalAlignment = HorizontalAlignment.Left;
-            butt.Width = 130.5;
-            butt.Margin = new Thickness(25, 0, 0, 0);
+            Button butt = new Button
+            {
+                Style = (Style)this.TryFindResource("Button_Kategory"),
+                VerticalAlignment = VerticalAlignment.Center,
+                Uid = "0",
+                Height = 42,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Width = 130.5,
+                Margin = new Thickness(25, 0, 0, 0)
+            };
             butt.Click += new RoutedEventHandler(Vse_Tovar_Click);
             KategoryMenu.Children.Add(butt);
         }
@@ -416,13 +471,16 @@ namespace KafeProject.View.User_Menu
         {
             Parol_Window parol = new Parol_Window();
             parol.Show();
-            Popup_Kuxne.IsOpen = false;
+            popups();
+            closePop_();
         }
 
         private void OpenOplatitWindow(object sender, RoutedEventArgs e)
         {
+            popups();
+            closePop_();
             if (IdCheck != 0)
-            {
+            {           
                 Oplatit oplatitwindow = new Oplatit(ItogSumma.Text);
                 oplatitwindow.Show();
             }
@@ -430,25 +488,27 @@ namespace KafeProject.View.User_Menu
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            // Popup_AddGramm.IsOpen = true;
+            popups();
+            closePop_();
         }
         private void AddFoodGramm(object sender, RoutedEventArgs e)
         {
+            popups();
+            closePop_();
             if (GrammCount.Text != "0" && GrammCount.Text.Length >= 1)
             {
                 if (imid != 0)
                 {
-                    using (ApplicationContext db = new ApplicationContext())
+                    using ApplicationContext db = new ApplicationContext();
+                    var foodInfo = db.Foods.Where(f => f.Id == imid).Select(i => i);
+                    foodEventGrams(new MenuFoodParams
                     {
-                        var foodInfo = db.Foods.Where(f => f.Id == imid).Select(i => i);
-                        foodEventGrams(new MenuFoodParams
-                        {
-                            Name = foodInfo.Select(p => p.Name).OrderBy(p => p).LastOrDefault(),
-                            Count = int.Parse(GrammCount.Text),
-                            Price = foodInfo.Select(p => p.Price).OrderBy(p => p).LastOrDefault() * Convert.ToDouble(GrammCount.Text) / 100,
-                            Id = imid
-                        }, IdTable) ;
-                    }
+                        Name = foodInfo.Select(p => p.Name).OrderBy(p => p).LastOrDefault() + $"({GrammCount.Text})грамм",
+                        Gramm = int.Parse(GrammCount.Text),
+                        Count = 1,
+                        Price = foodInfo.Select(p => p.Price).OrderBy(p => p).LastOrDefault() * Convert.ToDouble(GrammCount.Text) / 100,
+                        Id = imid
+                    }, IdTable);
                 }
                 CloseGramm(sender, e);
             }
@@ -489,6 +549,18 @@ namespace KafeProject.View.User_Menu
             addGramName.Text = "";
             GrammCount.Text = "0";
             Popup_AddGramm.IsOpen = false;
+        }
+
+        private void Grid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            popups();
+            closePop_();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            popups();
+            closePop_();
         }
     }
 }

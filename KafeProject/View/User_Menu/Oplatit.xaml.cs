@@ -1,7 +1,9 @@
 ﻿using KafeProject.Date;
+using KafeProject.Models;
 using KafeProject.ViewModels;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,7 +16,7 @@ namespace KafeProject.View.User_Menu
     public partial class Oplatit : Window
     {
         static TextBox text = new TextBox();
-        
+
         double sdacha = 0;
 
         int itogsum = 0;
@@ -30,27 +32,6 @@ namespace KafeProject.View.User_Menu
             if (s != null && s != "")
                 itogsum = int.Parse(s);
             text = NalichText;
-            //using (ApplicationContext db = new ApplicationContext())
-            //{
-
-            //    var f = db.Waiters.Where(t => t.Id == MainWindow.Id).OrderBy(t => t.Id).FirstOrDefault();
-
-            //    if (f != null)
-            //    {
-            //        if (f.SalaryType != null && f.SalaryType == "Percent")
-            //        {
-            //            itogsum = itogsum + Convert.ToInt32(itogsum / 100 * f.Salary);
-            //        }
-            //        else if (f.SalaryType != null && f.SalaryType == "Service")
-            //        {
-            //            if (MenuFood.IdCheck != 0)
-            //            {
-            //                var h = db.Checks.Where(g => g.Id == MenuFood.IdCheck).LastOrDefault();
-            //                itogsum = itogsum + Convert.ToInt32(h.GuestsCount * f.Salary);
-            //            }
-            //        }
-            //    }
-            //}
         }
         private void Zakryt_Oplaty_Click(object sender, RoutedEventArgs e)
         {
@@ -64,11 +45,20 @@ namespace KafeProject.View.User_Menu
                     if (result != null)
                     {
                         if (status1.IsChecked == true)
+                        {
                             result.Status = 4;
+                            SaveInHistory(result, 4);
+                        }
                         else if (status2.IsChecked == true)
+                        {
                             result.Status = 3;
+                            SaveInHistory(result, 3);
+                        }
                         else
+                        {
                             result.Status = 2;
+                            SaveInHistory(result, 2);
+                        }
                         db.SaveChanges();
                     }
                     menuStolOpen();
@@ -89,6 +79,8 @@ namespace KafeProject.View.User_Menu
                             result.Status = 1;
                             db.SaveChanges();
                         }
+
+                        SaveInHistory(result, 1);
                     }
                     menuStolOpen();
                     MainWindow.t = 0;
@@ -96,8 +88,39 @@ namespace KafeProject.View.User_Menu
                     this.Close();
                 }
             }
+        }
 
+        public void SaveInHistory(Check result, int status)
+        {
+           using (ApplicationContext db = new ApplicationContext())
+            {
+                var waiter = db.Waiters.Where(i => i.Id == result.WaiterId).Select(i => i).OrderBy(i => i).FirstOrDefault();
+                HistoryCheck res = new HistoryCheck
+                {
+                    Status = status,
+                    WaiterName = waiter.Name,
+                    Salary = waiter.Salary,
+                    SalaryType = waiter.SalaryType,
+                    GuestCount = result.GuestsCount,
+                    CheckDate = result.DateTimeCheck
+                };
+                db.Add(res);
+                db.SaveChanges();
 
+                var orders = from o in db.Orders
+                             where o.isCancel != 1 && o.CheckId == result.Id
+                             join f in db.Foods on o.FoodId equals f.Id
+                             select new HistoryFood
+                             {
+                                 CheckId = db.HistoryChecks.Select(i => i.Id).OrderBy(i => i).LastOrDefault(),
+                                 FoodCount = o.CountFood,
+                                 FoodName = f.Name,
+                                 FoodPrice = f.Price,
+                                 Gram = o.isGramm,
+                             };
+                 db.AddRangeAsync(orders);
+                 db.SaveChangesAsync();
+            }
         }
 
         private void Otmena_Click(object sender, RoutedEventArgs e)
@@ -136,7 +159,7 @@ namespace KafeProject.View.User_Menu
                         Check();
 
                     }
-                }                
+                }
             }
         }
 

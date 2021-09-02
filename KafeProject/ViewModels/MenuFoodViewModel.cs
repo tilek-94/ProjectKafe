@@ -37,7 +37,7 @@ namespace KafeProject.ViewModels
             get { return _isCancel; }
             set { Set(ref _isCancel, value); }
         }
-        private double _ItogSum = 0.00;
+        private double _ItogSum = 0;
         public double ItogSum
         {
             get
@@ -69,23 +69,23 @@ namespace KafeProject.ViewModels
                             }
                         }
                     }
-                    return _ItogSum;
+                    return Math.Round(_ItogSum, 0);
                 }
                 else
                 {
                     //MessageBox.Show("idtable "+idTable + " idCheck "+idCheck);
-                    return _ItogSum;
+                    return Math.Round(_ItogSum, 0);
                 }
             }
             set { Set(ref _ItogSum, value); }
         }
-        private double _ObsSum = 0.00;
+        private double _ObsSum = 0;
         public double ObsSum
         {
             get { return _ObsSum; }
             set { Set(ref _ObsSum, _ItogSum); }
         }
-        private double _PercentSum = 0.00;
+        private double _PercentSum = 0;
         public double PercentSum
         {
             get { return _PercentSum; }
@@ -143,9 +143,9 @@ namespace KafeProject.ViewModels
         }
         public MenuFoodViewModel()
         {
-            PercentSum = 0.00;
-            ObsSum = 0.00;
-            ItogSum = 0.00;
+            PercentSum = 0;
+            ObsSum = 0;
+            ItogSum = 0;
             MainWindow.menuCheck_ += MethodForDelegate;
             MenuFood.foodEvent += MethodForAddFood;
             MenuFood.foodEventGrams += MethodForAddFoodGram;
@@ -171,11 +171,10 @@ namespace KafeProject.ViewModels
 
         void MethodForAddFoodGram(MenuFoodParams x, int id)
         {
-            var menuOrder = x;
             ItogSum = _ItogSum + x.Price;
             PercentSum = 0;
             ObsSum = 0;
-            FoodList.Add(menuOrder);
+            FoodList.Add(x);
         }
 
         void MethodForAddFood(MenuFoodParams x, int id)
@@ -199,7 +198,7 @@ namespace KafeProject.ViewModels
         }
         void Fa(int idCheck, int idTable, int guestCount, int idWaiter)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(800);
             Application.Current.Dispatcher.Invoke(() =>
             {
                 this.idWaiter = idWaiter;
@@ -220,14 +219,24 @@ namespace KafeProject.ViewModels
                     var result = ord.Join(db.Foods,
                         p => p.FoodId,
                         t => t.Id,
-                        (p, t) => new { id = t.Id, t.Name, Count = p.CountFood, p.CheckId, t.Price });
+                        (p, t) => new { id = t.Id, t.Name, Count = p.CountFood, p.CheckId, t.Price, p.isGramm });
 
                     foreach (var s in result)
                     {
-                        ItogSum = _ItogSum + s.Price * s.Count;
-                        PercentSum = 0;
-                        ObsSum = 0;
-                        FoodList.Add(new MenuFoodParams { Id = s.id, Name = s.Name, Count = s.Count, Price = s.Price });
+                        if (s.isGramm > 0)
+                        {
+                            ItogSum = _ItogSum + (s.Price * s.isGramm / 100);
+                            PercentSum = 0;
+                            ObsSum = 0;
+                            FoodList.Add(new MenuFoodParams { Id = s.id, Name = s.Name + $" ({s.isGramm})грамм", Count = s.Count, Price = (s.Price * s.isGramm / 100),Gramm=s.isGramm });
+                        }
+                        else
+                        {
+                            ItogSum = _ItogSum + s.Price * s.Count;
+                            PercentSum = 0;
+                            ObsSum = 0;
+                            FoodList.Add(new MenuFoodParams { Id = s.id, Name = s.Name, Count = s.Count, Price = s.Price , Gramm = s.isGramm });
+                        }
                     }
                     ItogSum = _ItogSum;
                 }
@@ -248,7 +257,7 @@ namespace KafeProject.ViewModels
         public static event MessageForKitchen paramsForKitchen;
         private LambdaCommand _SendCheckCommand;
         public LambdaCommand SendCheckCommand =>
-            _SendCheckCommand ?? (_SendCheckCommand = new LambdaCommand(ExecuteSendCheckCommand, CanExecuteSendCheckCommand));
+_SendCheckCommand ??= new LambdaCommand(ExecuteSendCheckCommand, CanExecuteSendCheckCommand);
 
         void ExecuteSendCheckCommand(object p)
         {
@@ -262,7 +271,7 @@ namespace KafeProject.ViewModels
         }
         private LambdaCommand _SendCheckKuhCommand;
         public LambdaCommand SendCheckKuhCommand =>
-            _SendCheckKuhCommand ?? (_SendCheckKuhCommand = new LambdaCommand(ExecuteSendCheckKuhCommand, CanExecuteSendCheckKuhCommand));
+_SendCheckKuhCommand ??= new LambdaCommand(ExecuteSendCheckKuhCommand, CanExecuteSendCheckKuhCommand);
 
         void ExecuteSendCheckKuhCommand(object p)
         {
@@ -290,94 +299,89 @@ namespace KafeProject.ViewModels
 
         private LambdaCommand _CheckPrintCommand;
         public LambdaCommand CheckPrintCommand =>
-            _CheckPrintCommand ?? (_CheckPrintCommand = new LambdaCommand(ExecuteCheckPrintCommand, CanExecuteCheckPrintCommand));
+_CheckPrintCommand ??= new LambdaCommand(ExecuteCheckPrintCommand, CanExecuteCheckPrintCommand);
         private bool countProd(int idF, int countF)
         {
 
-            using (ApplicationContext db = new ApplicationContext())
+            using ApplicationContext db = new ApplicationContext();
+            try
             {
-                try
-                {
-                    var result = db.ReceiptGoods.
-                        Where(t => t.ProductId == db.Recipes.
-                            Where(a => a.FoodId == idF).
-                            Select(u => u.ProductId).OrderBy(o => o).LastOrDefault() && t.Count != 0).
-                        OrderBy(g => g.Id).
-                        FirstOrDefault() ?? db.ReceiptGoods.
-                        Where(t => t.ProductId == db.Recipes.
-                            Where(a => a.FoodId == idF).
-                            Select(u => u.ProductId).OrderBy(o => o).LastOrDefault() && t.Count == 0).
-                        OrderBy(g => g.Id).
-                        FirstOrDefault();
-                    var last = db.Orders.Where(t => t.CheckId == MenuFood.IdCheck && t.FoodId == idF && t.isCancel == 0).Select(l => l.CountFood)?.OrderBy(p => p)?.LastOrDefault() ?? 0;
+                var result = db.ReceiptGoods.
+                    Where(t => t.ProductId == db.Recipes.
+                        Where(a => a.FoodId == idF).
+                        Select(u => u.ProductId).OrderBy(o => o).LastOrDefault() && t.Count != 0).
+                    OrderBy(g => g.Id).
+                    FirstOrDefault() ?? db.ReceiptGoods.
+                    Where(t => t.ProductId == db.Recipes.
+                        Where(a => a.FoodId == idF).
+                        Select(u => u.ProductId).OrderBy(o => o).LastOrDefault() && t.Count == 0).
+                    OrderBy(g => g.Id).
+                    FirstOrDefault();
+                var last = db.Orders.Where(t => t.CheckId == MenuFood.IdCheck && t.FoodId == idF && t.isCancel == 0).Select(l => l.CountFood)?.OrderBy(p => p)?.LastOrDefault() ?? 0;
 
-                    if (result != null)
-                    {
-                        if (result.Count - (countF - last) < 0)
-                        {
-                            result.Count = result.Count;
-                            db.SaveChanges();
-                            return false;
-                        }
-                        else if (result.Count - (countF - last) == 0)
-                        {
-                            result.Count = 0;
-                            db.SaveChanges();
-                            return true;
-                        }
-                        else
-                        {
-                            result.Count -= countF - last;
-                            db.SaveChanges();
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-                catch
+                if (result != null)
                 {
-                    return false;
+                    if (result.Count - (countF - last) < 0)
+                    {
+                        result.Count = result.Count;
+                        db.SaveChanges();
+                        return false;
+                    }
+                    else if (result.Count - (countF - last) == 0)
+                    {
+                        result.Count = 0;
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        result.Count -= countF - last;
+                        db.SaveChanges();
+                        return true;
+                    }
                 }
+                return false;
+            }
+            catch
+            {
+                return false;
             }
         }
         void ExecuteCheckPrintCommand(object p)
         {
             if (idCheck == 0)
             {
-                using (ApplicationContext db = new ApplicationContext())
+                using ApplicationContext db = new ApplicationContext();
+                try
                 {
-                    try
+                    bool productStatus = false;
+                    string product = db.Options.Where(t => t.Key == "product").Select(g => g.Value).OrderBy(b => b).LastOrDefault() ?? "0";
+                    if (product == "1")
                     {
-                        bool productStatus = false;
-                        string product = db.Options.Where(t => t.Key == "product").Select(g => g.Value).OrderBy(b => b).LastOrDefault() ?? "0";
-                        if (product == "1")
-                        {
-                            foreach (var i in FoodList)
-                                productStatus = countProd(i.Id, i.Count);
-                            if (!productStatus)
-                            {
-                                message = new MessageWindow("Нету товара!");
-                                message.ShowDialog();
-                                return;
-                            }
-                        }
-
-                        int x = db.Checks?.Where(b => b.DateTimeCheck > DateTime.Now.Date)?.Select(p => p.CheckCount).OrderBy(a => a)?.LastOrDefault() ?? 0;
-                        x += 1;
-                        db.Checks.Add(new Check { comment = comm, Status = 5, DateTimeCheck = DateTime.Now, CheckCount = x, GuestsCount = guestCount, TableId = idTable, WaiterId = idWaiter });
-                        db.SaveChanges();
-                        MenuFood.IdCheck = db.Checks.Select(i => i.Id).OrderBy(i => i).LastOrDefault();
-                        int idC = db.Checks.Select(l => l.Id).OrderBy(p => p).LastOrDefault();
-                        ObservableCollection<Order> o = new ObservableCollection<Order>();
                         foreach (var i in FoodList)
-                            o.Add(new Order { CountFood = i.Count, CheckId = idC, FoodId = i.Id, isCancel = 0 });
-                        db.Orders.AddRange(o);
+                            productStatus = countProd(i.Id, i.Count);
+                        if (!productStatus)
+                        {
+                            message = new MessageWindow("Нету товара!");
+                            message.ShowDialog();
+                            return;
+                        }
+                    }
 
-                        db.SaveChanges();
-                    }
-                    catch
-                    {
-                    }
+                    int x = db.Checks?.Where(b => b.DateTimeCheck > DateTime.Now.Date)?.Select(p => p.CheckCount).OrderBy(a => a)?.LastOrDefault() ?? 0;
+                    x += 1;
+                    db.Checks.Add(new Check { comment = comm, Status = 5, DateTimeCheck = DateTime.Now, CheckCount = x, GuestsCount = guestCount, TableId = idTable, WaiterId = idWaiter });
+                    db.SaveChanges();
+                    MenuFood.IdCheck = db.Checks.Select(i => i.Id).OrderBy(i => i).LastOrDefault();
+                    int idC = db.Checks.Select(l => l.Id).OrderBy(p => p).LastOrDefault();
+                    ObservableCollection<Order> o = new ObservableCollection<Order>();
+                    foreach (var i in FoodList)
+                        o.Add(new Order { CountFood = i.Count, CheckId = idC, FoodId = i.Id, isCancel = 0, isGramm = i.Gramm });
+                    db.Orders.AddRange(o);
+                    db.SaveChanges();
+                }
+                catch
+                {
                 }
             }
             else
@@ -412,7 +416,7 @@ namespace KafeProject.ViewModels
 
                         ObservableCollection<Order> o = new ObservableCollection<Order>();
                         foreach (var i in FoodList)
-                            o.Add(new Order { CountFood = i.Count, CheckId = idCheck, FoodId = i.Id, isCancel = 0 });
+                            o.Add(new Order { CountFood = i.Count, CheckId = idCheck, FoodId = i.Id, isCancel = 0, isGramm = i.Gramm });
                         db.AddRange(o);
                         db.SaveChanges();
 
@@ -431,37 +435,37 @@ namespace KafeProject.ViewModels
         void filtr()
         {
             isCancel.OrderBy(p => p.Id);
-            for (int t = 0; t < isCancel.Count(); t++)
+            for (int t = 0; t < isCancel.Count; t++)
             {
-                using (ApplicationContext db = new ApplicationContext())
+                using ApplicationContext db = new ApplicationContext();
+                try
                 {
-                    try
+                    var result = db.Orders.Where(p => p.CheckId == idCheck && p.FoodId == isCancel[t].Id && p.isCancel == 1).Select(p => p).OrderBy(p => p.Id).LastOrDefault();
+                    var res2 = db.Orders.Where(p => p.CheckId == idCheck && p.FoodId == isCancel[t].Id && p.isCancel == 0).Select(p => p).OrderBy(p => p.Id).LastOrDefault();
+                    if (result != null)
                     {
-                        var result = db.Orders.Where(p => p.CheckId == idCheck && p.FoodId == isCancel[t].Id && p.isCancel == 1).Select(p => p).OrderBy(p => p.Id).LastOrDefault();
-                        var res2 = db.Orders.Where(p => p.CheckId == idCheck && p.FoodId == isCancel[t].Id && p.isCancel == 0).Select(p => p).OrderBy(p => p.Id).LastOrDefault();
-                        if (result != null)
-                        {
-                            result.CountFood = result.CountFood + 1;//ошибка вычисления
-                            res2.CountFood -= 1;
-                            db.SaveChanges();
-                        }
-                        else
-                        {
-                            Order o = new Order { CountFood = 1, CheckId = idCheck, FoodId = isCancel[t].Id, isCancel = 1 };
-                            db.Orders.Add(o);
-                            res2.CountFood -= 1;
-                            db.SaveChanges();
-                        }
+                        result.CountFood += 1;//ошибка вычисления
+                        res2.CountFood -= 1;
+                        db.SaveChanges();
                     }
-                    catch
-                    { }
+                    else
+                    {
+                        Order o = new Order { CountFood = 1, CheckId = idCheck, FoodId = isCancel[t].Id, isCancel = 1};
+                        db.Orders.Add(o);
+                        res2.CountFood -= 1;
+                        db.SaveChanges();
+                    }
                 }
+                catch
+                { }
             }
         }
 
         bool CanExecuteCheckPrintCommand(object p)
         {
-            return true;
+            if (FoodList.Count > 0)
+                return true;
+            return false;
         }
 
         #endregion

@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using KafeProject.Date;
 using System;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace KafeProject.All_Windows
 {
@@ -15,70 +16,138 @@ namespace KafeProject.All_Windows
     {
         List<Params> paramses = new List<Params>();
         List<Params> paramses1 = new List<Params>();
+        public string firstPrinter;
+        public string secondPrinter;
         int checkid = 0;
         public CheckWindow(int id, int d)
         {
             InitializeComponent();
             MainWindow.timer.Stop();
-            paramses = new List<Params>();
-            paramses1 = new List<Params>();
             checkid = d;
-            paramses.Add(new Params { Name = "Наименование", Count = "Кол-во", Price = "Цена", Itog = "Итог" });
-            paramses1.Add(new Params { Name = "Наименование", Count = "Кол-во" });
+            CheckOpenAsync(id);
+        }
+
+        public async void CheckOpenAsync(int id) 
+        {
+            Thread.Sleep(50);
+            await Task.Run(()=> 
+            {
+                GetCafeName();
+                GetItogSumAsync(id);
+                GetPrinterName();
+                GetFoodForCheckAsync(id);
+                GetFoodForSecCheckAsync(id);
+            });
+        }
+
+        public async void GetItogSumAsync(int id) 
+        {
+            //Thread.Sleep(10);
+            await Task.Run(()=>
+            {
+                this.Dispatcher.Invoke(()=> GetItogSum(id));
+            });
+        }  
+        public async void GetFoodForCheckAsync(int id)
+        {
+            //Thread.Sleep(10);
+            await Task.Run(() => GetFoodForCheck(id));
+        }
+        public async void GetFoodForSecCheckAsync(int id)
+        {
+           // Thread.Sleep(10);
+            await Task.Run(() => GetFoodForSecCheck(id));
+        }
+
+        async void GetPrinterName()
+        {
+            //Thread.Sleep(10);
+            await Task.Run(() =>
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    firstPrinter = db.Options.Where(i => i.Key == "Printer-1").Select(i => i.Value).OrderBy(i => i).LastOrDefault();
+                    secondPrinter = db.Options.Where(i => i.Key == "Printer-2").Select(i => i.Value).OrderBy(i => i).LastOrDefault();
+                }
+            });
+        }
+
+        void GetFoodForCheck(int id)
+        {
             using (ApplicationContext db = new ApplicationContext())
             {
+                paramses = new List<Params>();
+                // paramses.Add(new Params { Name = "Наименование", Count = "Кол-во", Price = "Цена", Itog = "Итог" });
                 paramses.AddRange(
                     db.Orders.Where(i => i.CheckId == id && i.isCancel == 0).Join(db.Foods,
                     i => i.FoodId,
                     p => p.Id,
                     (i, p) => new Params
                     {
-                        Name = p.Name,
+                        Gramm = i.isGramm.ToString(),
+                        Name = i.isGramm > 0 ? p.Name + $"({i.isGramm})гр" : p.Name,
                         Count = (i.CountFood).ToString(),
-                        Price = p.Price.ToString(),
-                        Itog = (i.CountFood * p.Price).ToString()
+                        Price = i.isGramm > 0 ? (p.Price * i.isGramm / 100) : p.Price,
+                        Itog = (i.CountFood * (i.isGramm > 0 ? (p.Price * i.isGramm / 100) : p.Price))
                     })
                     );
 
+            }
+            this.Dispatcher.Invoke(() =>
+            {
+                list.ItemsSource = paramses;
+            });
+        }
+        public void GetFoodForSecCheck(int id)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                paramses1 = new List<Params>();
+                paramses1.Add(new Params { Name = "Наименование", Count = "Кол-во" });
                 paramses1.AddRange(
                     db.Orders.Where(i => i.CheckId == id && i.isCancel == 0).Join(db.Foods.Where(i => i.isCook == 1),
                     i => i.FoodId,
                     p => p.Id,
                     (i, p) => new Params
                     {
-                        Name = p.Name,
+                        Name = i.isGramm > 0 ? p.Name + $"({i.isGramm})гр" : p.Name,
                         Count = (i.CountFood).ToString(),
-                        Price = p.Price.ToString(),
-                        Itog = (i.CountFood * p.Price).ToString()
                     })
                     );
-                var cafename=db.CafeName.Select(u=>u).OrderBy(u=>u).LastOrDefault();
-                db.SaveChanges();
+            }
+            this.Dispatcher.Invoke(() =>
+            {
+                list1.ItemsSource = paramses1;
+            });
+        }
+        public void GetItogSum(int id)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
                 var check = db.Checks.Where(i => i.Id == id).Select(i => i).OrderBy(i => i).LastOrDefault();
-                if (cafename!=null)
-                {
-                    CName.Text = cafename.Name.ToString();
-                    CAdress.Text = cafename.Adress.ToString();
-                }
                 CheckDate.Text = check.DateTimeCheck.ToString();
                 CheckName.Text = check.CheckCount.ToString();
                 TableId.Text = db.Tables.Where(o => o.Id == check.TableId)?.Select(l => l.Name)?.OrderBy(p => p)?.LastOrDefault() ?? "";
                 WaiterName.Text = db.Waiters.Where(p => p.Id == check.WaiterId)?.Select(p => p.Name)?.OrderBy(p => p)?.LastOrDefault() ?? "";
 
-
                 CheckName1.Text = check.CheckCount.ToString();
                 TableId1.Text = db.Tables.Where(o => o.Id == check.TableId)?.Select(l => l.Name)?.OrderBy(p => p)?.LastOrDefault() ?? "";
                 WaiterName1.Text = db.Waiters.Where(p => p.Id == check.WaiterId)?.Select(p => p.Name)?.OrderBy(p => p)?.LastOrDefault() ?? "";
 
-                #region MyRegion
+                double x = 0;
+                foreach (var item in paramses)
+                {
+                    x += item.Itog;
+                }
+                // MessageBox.Show(paramses.Select(r => r.Itog == "Итог" ? 0 : Math.Round(Convert.ToDouble(r.Itog), 1)).OrderBy(i => i).Sum().ToString());
+                //double x = paramses.Select(r => r.Itog == "Итог" ? 0 : Math.Round(Convert.ToDouble(r.Itog), 1)).OrderBy(i => i).Sum();
 
-                double x = paramses.Select(r => r.Itog == "Итог" ? 0 : Convert.ToDouble(r.Itog)).OrderBy(i => i).Sum();
                 Itog.Text = "Цена еды " + (x).ToString();
                 if (db.Checks.Where(i => i.Id == id).Select(i => i.TableId).OrderBy(i => i).LastOrDefault() != 0)
                 {
                     var re = db.Waiters.Where(i => i.Id == check.WaiterId).Select(i => i).OrderBy(i => i).LastOrDefault();
                     if (re.SalaryType == "Percent")
-                        Obsluz.Text = "Обслуживание " + (Convert.ToDouble(Itog.Text.Split()[2]) / 100 * re.Salary).ToString();
+                        Obsluz.Text = "Обслуживание " + Convert.ToInt32((Convert.ToDouble(Itog.Text.Split()[2]) / 100 * re.Salary)).ToString();
                     else if (re.SalaryType == "Service")
                         Obsluz.Text = "Обслуживание " + (Convert.ToInt32(check.GuestsCount) * re.Salary).ToString();
                     else
@@ -91,15 +160,25 @@ namespace KafeProject.All_Windows
                     Obsluz.Text = "Обслуживание 0";
                 }
 
-                ObshItog.Text = "Итого " + (Convert.ToDouble(Itog.Text.Split()[2]) + (Convert.ToDouble(Obsluz.Text.Split()[1]))).ToString();
-
-                #endregion
-
+                ObshItog.Text = "Итого " + Math.Round((Convert.ToDouble(Itog.Text.Split()[2]) + (Convert.ToDouble(Obsluz.Text.Split()[1]))), 1).ToString();
             }
-            list1.ItemsSource = paramses1;
-            list.ItemsSource = paramses;
         }
-
+        public async void GetCafeName()
+        {
+            await Task.Run(() =>
+            {
+                using ApplicationContext db = new ApplicationContext();
+                var cafename = db.CafeName.Select(u => u).OrderBy(u => u).LastOrDefault();
+                if (cafename != null)
+                {
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        CName.Text = cafename.Name.ToString();
+                        CAdress.Text = cafename.Adress.ToString();
+                    });
+                }
+            });
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -108,7 +187,7 @@ namespace KafeProject.All_Windows
                 {
                     PrintDialog printDialog = new PrintDialog();
 
-                    myPrinters.SetDefaultPrinter("XP-80C");
+                    myPrinters.SetDefaultPrinter(firstPrinter);
 
                     grd.Measure(new System.Windows.Size(printDialog.PrintableAreaWidth, printDialog.PrintableAreaHeight));
 
@@ -128,7 +207,7 @@ namespace KafeProject.All_Windows
                     {
                         PrintDialog printDialog = new PrintDialog();
 
-                        myPrinters.SetDefaultPrinter("XP-80C (copy 1)");
+                        myPrinters.SetDefaultPrinter(secondPrinter);
 
                         grd1.Measure(new System.Windows.Size(printDialog.PrintableAreaWidth, printDialog.PrintableAreaHeight));
 
@@ -160,8 +239,10 @@ namespace KafeProject.All_Windows
         {
             public string Name { get; set; }
             public string Count { get; set; }
-            public string Price { get; set; }
-            public string Itog { get; set; }
+            public double Price { get; set; }
+            public double Itog { get; set; }
+            public string Gramm { get; set; }
+
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

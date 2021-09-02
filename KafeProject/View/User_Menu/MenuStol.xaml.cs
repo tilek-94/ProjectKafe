@@ -20,9 +20,12 @@ namespace KafeProject.View.User_Menu
         string usersName;
         bool ifItIsHim;
         int selectedLocationId;
-        string err;
         public delegate void Message1(int x);
         public static event Message1 menuStol_;
+
+        public delegate void ClosePopups();
+        public static event ClosePopups closePopups_;
+
         public MenuStol(int x = 0)// чтобы узнать какой официант
         {
             InitializeComponent();
@@ -31,7 +34,7 @@ namespace KafeProject.View.User_Menu
             MenuFood.IdTable = 0;
             MenuFood.GuestCount = 0;
         }
-        void addBut(object sender = null)
+        void AddBut(object sender = null)
         {
             if (sender != null)
             {
@@ -43,11 +46,8 @@ namespace KafeProject.View.User_Menu
                 Thread.Sleep(10);
                 Knopki();
             }
-
-
-
         }
-        void addCategoryButton()
+        void AddCategoryButton()
         {
             Thread.Sleep(10);
             this.Dispatcher.Invoke(new Action(() =>
@@ -58,18 +58,17 @@ namespace KafeProject.View.User_Menu
         async void Fac(object sender = null) => await Task.Run(() =>
         {
             if (sender != null)
-                addBut(sender);
+                AddBut(sender);
             else
-                addBut();
+                AddBut();
         });
-
-        async void CategoryAdd() => await Task.Run(() => addCategoryButton());
+        async void CategoryAdd() => await Task.Run(() => AddCategoryButton());
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            closePopups_();
             Parol_Window parol_Window = new Parol_Window();
             parol_Window.Show();
         }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             CategoryAdd();
@@ -77,6 +76,7 @@ namespace KafeProject.View.User_Menu
         }
         async void button_Click(object sender, RoutedEventArgs e)
         {
+            closePopups_();
             if ((sender as Button).Uid == "-2")
             {
                 int checkIdForTable = 0;
@@ -98,10 +98,10 @@ namespace KafeProject.View.User_Menu
             Kolichestvo_Bluda kolichestvo_Bluda = new Kolichestvo_Bluda(Convert.ToInt32((sender as Button).Uid));
             kolichestvo_Bluda.ShowDialog();
         }
-
         void button_Category_Click(object sender, RoutedEventArgs e)
         {
             Fac(sender);
+            closePopups_();
         }
         public void Knopki(object sender = null)
         {
@@ -109,55 +109,56 @@ namespace KafeProject.View.User_Menu
         }
         public async void Knopki_kategoryy()
         {
-            await using (ApplicationContext db = new ApplicationContext())
+            closePopups_();
+            await using ApplicationContext db = new ApplicationContext();
+            foreach (var t in db.Locations)
             {
-                foreach (var t in db.Locations)
+                Button button = new Button
                 {
-                    Button button = new Button();
-                    button.Style = (Style)this.TryFindResource("Button_Kategory1");
-                    string catName = t.Name;
-                    if (catName.Length < 10)
-                        for (; catName.Length < 15;)
-                            catName += ". ";
-                    button.Tag = t.Id;
-                    button.Content = catName;
-                    button.Click += new RoutedEventHandler(button_Category_Click);
-                    Stol_Category.Children.Add(button);
-                }
+                    Style = (Style)this.TryFindResource("Button_Kategory1")
+                };
+                button.Click += new RoutedEventHandler(button_Category_Click);
+                button.Tag = t.Id;
+                string catName = t.Name;
+                if (catName.Length < 10)
+                    for (; catName.Length < 15;)
+                        catName += ". ";
+
+                button.Content = catName;
+
+                Stol_Category.Children.Add(button);
             }
+
         }
         private bool methodForResult(int p)
         {
             int g = 0;
-            using (ApplicationContext db = new ApplicationContext())
+            using ApplicationContext db = new ApplicationContext();
+            try
             {
-                try
-                {
-                    g = db.Checks?.
-                        Where(b => b.TableId == p && b.DateTimeCheck > DateTime.Now.Date && b.Status == 5)?.
-                        Select(p => p.Id).
-                        OrderBy(a => a)?.
-                        LastOrDefault() ?? 0;
+                g = db.Checks?.
+                    Where(b => b.TableId == p && b.DateTimeCheck > DateTime.Now.Date && b.Status == 5)?.
+                    Select(p => p.Id).
+                    OrderBy(a => a)?.
+                    LastOrDefault() ?? 0;
 
-                    g = db.Checks?.Where(b => b.Id == g && b.DateTimeCheck > DateTime.Now.Date && b.Status == 5)?.
-                        Select(p => p.Status).
-                        OrderBy(a => a)?.
-                        LastOrDefault() ?? 0;
-                    usersName = db.Waiters.Where(rt => rt.Id == db.Checks.Where(b => b.TableId == p && b.DateTimeCheck > DateTime.Now.Date && b.Status == 5).Select(l => l.WaiterId).OrderBy(t => t).LastOrDefault()).OrderBy(t => t.Id).Last().Name;
+                g = db.Checks?.Where(b => b.Id == g && b.DateTimeCheck > DateTime.Now.Date && b.Status == 5)?.
+                    Select(p => p.Status).
+                    OrderBy(a => a)?.
+                    LastOrDefault() ?? 0;
+                usersName = db.Waiters.Where(rt => rt.Id == db.Checks.Where(b => b.TableId == p && b.DateTimeCheck > DateTime.Now.Date && b.Status == 5).Select(l => l.WaiterId).OrderBy(t => t).LastOrDefault()).OrderBy(t => t.Id).Last().Name;
 
-                    if (db.Checks.Where(b => b.TableId == p && b.DateTimeCheck > DateTime.Now.Date && b.Status == 5).Select(s => s.WaiterId).OrderBy(t => t).LastOrDefault() == currentWaiter)
-                        ifItIsHim = true;
-                    else
-                        ifItIsHim = false;
-                    if (g != 0)
-                        return true;
-                    return false;
-                }
-                catch (Exception ex)
-                {
-                    err = usersName + " " + ex.Message;
-                    return false;
-                }
+                if (db.Checks.Where(b => b.TableId == p && b.DateTimeCheck > DateTime.Now.Date && b.Status == 5).Select(s => s.WaiterId).OrderBy(t => t).LastOrDefault() == currentWaiter)
+                    ifItIsHim = true;
+                else
+                    ifItIsHim = false;
+                if (g != 0)
+                    return true;
+                return false;
+            }
+            catch
+            {
+                return false;
             }
         }
         void dynamicButton(object sender = null)
@@ -188,11 +189,13 @@ namespace KafeProject.View.User_Menu
                     bool checkStatus = methodForResult(p);
                     this.Dispatcher.InvokeOrExecute(() =>
                     {
-                        Button butt = new Button();
-                        butt.Style = (Style)this.TryFindResource("Button_Dynamik_Stol");
-                        butt.Content = tg.Name;
-                        butt.Tag = "пусто";
-                        butt.Uid = p.ToString();
+                        Button butt = new Button
+                        {
+                            Style = (Style)this.TryFindResource("Button_Dynamik_Stol"),
+                            Content = tg.Name,
+                            Tag = "пусто",
+                            Uid = p.ToString()
+                        };
                         if (checkStatus)
                         {
                             butt.Tag = usersName;
@@ -211,6 +214,11 @@ namespace KafeProject.View.User_Menu
                     });
                 }
             }
+        }
+
+        private void Grid_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            closePopups_();
         }
     }
 }

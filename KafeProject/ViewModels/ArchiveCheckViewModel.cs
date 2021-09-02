@@ -32,7 +32,7 @@ namespace KafeProject.ViewModels
         {
             get
             {
-                if ((itog + ob) % 1 > 0.4)
+                if ((itog + ob) % 1 > 0.1)
                     return Convert.ToInt32(itog + ob + 0.9);
                 else return itog + ob;
             }
@@ -50,7 +50,7 @@ namespace KafeProject.ViewModels
                 double x = ob;
                 using (ApplicationContext db = new ApplicationContext())
                 {
-                    if (SelectedCheck.CheckTable != "0")
+                    if (SelectedCheck.CheckTable != "0" || SelectedCheck.CheckTable != "Без услуги")
                     {
                         //x = db.Orders.Where(i => i.CheckId == Convert.ToInt32(_SelectedCheck.IdCheck)).Select(h => db.Foods.Where(l => l.Id == h.FoodId).OrderBy(o => o.Id).Select(n => n.Price).LastOrDefault() * h.CountFood).OrderBy(p => p).Sum();
                         var st = db.Waiters.Where(i => i.Id == MainWindow.Id).OrderBy(l => l.Id).LastOrDefault();
@@ -58,11 +58,11 @@ namespace KafeProject.ViewModels
                         {
                             if (st.SalaryType == "Service")
                             {
-                                x = x + Convert.ToInt32(_SelectedCheck.CheckStatus);
+                                x += Convert.ToInt32(_SelectedCheck.CheckStatus);
                             }
                             else if (st.SalaryType == "Percent")
                             {
-                                x = x + (x / 100 * st.Salary);
+                                x += (x / 100 * st.Salary);
                             }
                         }
                     }
@@ -87,7 +87,7 @@ namespace KafeProject.ViewModels
                     Set(ref _SelectedCheck, value);
                     Itog = 0;
                     Ob = 0;
-                    CreateCheck(Convert.ToInt32(value.IdCheck));
+                    CreateCheckAsync(Convert.ToInt32(value.IdCheck));
                     _SelectedCheck = value;
                 }
                 else
@@ -99,6 +99,9 @@ namespace KafeProject.ViewModels
                 //OnPropertyChanged(nameof(SelectedChecks));
             }
         }
+
+        async void CreateCheckAsync(int id) => await Task.Run(() => { CreateCheck(id); });
+
         void CreateCheck(int id)
         {
             Itog = 0;
@@ -108,16 +111,36 @@ namespace KafeProject.ViewModels
             {
                 foreach (var h in db.Orders.Where(g => g.CheckId == id).OrderBy(o => o.Id))
                 {
-                    double x = priceF(h.FoodId);
-                    if (h.isCancel == 0)
+                    Application.Current.Dispatcher.Invoke(() =>
                     {
-                        CheckItems.Add(new FoodClass { Count = h.CountFood, Price = x, Itog = Convert.ToInt32(x * h.CountFood), Name = nameF(h.FoodId), Otmena = "" });
-                    }
-                    else
-                    {
-                        CheckItems.Add(new FoodClass { Count = h.CountFood, Price = x, Itog = Convert.ToInt32(x * h.CountFood), Name = nameF(h.FoodId), Otmena = "Отменнено" });
-                    }
-                    Itog += x * h.CountFood;
+                        double x = priceF(h.FoodId);
+                        if (h.isCancel == 0)
+                        {
+                            if (h.isGramm > 0)
+                            {
+                                CheckItems.Add(new FoodClass { Count = h.CountFood, Price = (x * h.isGramm / 100), Itog = Convert.ToInt32((x * h.isGramm / 100) * h.CountFood), Name = nameF(h.FoodId) + $"({h.isGramm})грамм", Otmena = "" });
+                                Itog += (x * h.isGramm / 100) * h.CountFood;
+                            }
+                            else
+                            {
+                                CheckItems.Add(new FoodClass { Count = h.CountFood, Price = x, Itog = Convert.ToInt32(x * h.CountFood), Name = nameF(h.FoodId), Otmena = "" });
+                                Itog += x * h.CountFood;
+                            }
+                        }
+                        else
+                        {
+                            if (h.isGramm > 0)
+                            {
+                                CheckItems.Add(new FoodClass { Count = h.CountFood, Price = (x * h.isGramm / 100), Itog = Convert.ToInt32((x * h.isGramm / 100) * h.CountFood), Name = nameF(h.FoodId) + $"({h.isGramm})грамм", Otmena = "Отменнено" });
+                            }
+                            else
+                            {
+                                CheckItems.Add(new FoodClass { Count = h.CountFood, Price = x, Itog = Convert.ToInt32(x * h.CountFood), Name = nameF(h.FoodId), Otmena = "Отменнено" });
+
+                            }
+                        }
+                    });
+
                 }
             }
             Ob = 0;
@@ -133,21 +156,23 @@ namespace KafeProject.ViewModels
         }
         string nameF(int h)
         {
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                return db.Foods.Where(k => k.Id == h).OrderBy(p => p).LastOrDefault().Name;
-            }
+            using ApplicationContext db = new ApplicationContext();
+            return db.Foods.Where(k => k.Id == h).OrderBy(p => p).LastOrDefault().Name;
         }
         public ArchiveCheckViewModel()
         {
-
+            GetFirstChecksAsync();
+            Chasy.getDate += changeDateAsync;
+            MainWindow.clsd += (t) => Chasy.getDate -= changeDate;
+        }
+        public async void GetFirstChecksAsync() => await Task.Run(() => { GetFirstChecks(); });
+        public void GetFirstChecks()
+        {
             using (ApplicationContext db = new ApplicationContext())
             {
                 foreach (var t in db.Checks.Where(g => g.WaiterId == MainWindow.Id && g.DateTimeCheck > DateTime.Now.Date).OrderBy(i => i.Id))
-                    CheckList.Add(new ACheck { IdCheck = t.Id.ToString(), CheckID = t.CheckCount, CheckTable = t.TableId.ToString() == "0" ? ("C собой") : t.TableId.ToString(), CheckDate = t.DateTimeCheck.ToString(), CheckPrice = checksPrise(t.Id, t.GuestsCount), CheckStatus = t.TableId.ToString() == "0" ? "Без услуги" : returnStatus(t.Status) });
+                    Application.Current.Dispatcher.Invoke(() => { CheckList.Add(new ACheck { IdCheck = t.Id.ToString(), CheckID = t.CheckCount, CheckTable = t.TableId.ToString() == "0" ? ("C собой") : t.TableId.ToString(), CheckDate = t.DateTimeCheck.ToString(), CheckPrice = checksPrise(t.Id, t.GuestsCount), CheckStatus = t.TableId.ToString() == "0" ? "Без услуги" : returnStatus(t.Status) }); });
             }
-            Chasy.getDate += changeDate;
-            MainWindow.clsd += (t) => Chasy.getDate -= changeDate;
         }
         private string returnStatus(int status)
         {
@@ -168,8 +193,15 @@ namespace KafeProject.ViewModels
             double x = 0;
             using (ApplicationContext db = new ApplicationContext())
             {
-
-                x = db.Orders.Where(i => i.CheckId == id && i.isCancel == 0).Select(h => db.Foods.Where(l => l.Id == h.FoodId).OrderBy(o => o.Id).Select(n => n.Price).LastOrDefault() * h.CountFood).OrderBy(p => p).Sum();
+                // x = db.Orders.Where(i => i.CheckId == id && i.isCancel == 0).Select(h => db.Foods.Where(l => l.Id == h.FoodId).OrderBy(o => o.Id).Select(n => n.Price).LastOrDefault() * h.CountFood).OrderBy(p => p).Sum();
+                foreach (var item in db.Orders.Where(i => i.CheckId == id && i.isCancel == 0).Select(i => i))
+                {
+                    double pl = priceF(item.FoodId);
+                    if (item.isGramm > 0)
+                        x += item.isGramm * pl / 100;
+                    else
+                        x += item.CountFood * pl;
+                }
                 if (db.Checks.Where(i => i.Id == id).Select(i => i.TableId).OrderBy(i => i).LastOrDefault() == 0)
                     return x.ToString();
                 var st = db.Waiters.Where(i => i.Id == MainWindow.Id).OrderBy(l => l.Id).LastOrDefault();
@@ -177,7 +209,7 @@ namespace KafeProject.ViewModels
                 {
                     if (st.SalaryType == "Service")
                     {
-                        x = x + count;
+                        x += count;
                     }
                     else if (st.SalaryType == "Percent")
                     {
@@ -185,19 +217,20 @@ namespace KafeProject.ViewModels
                     }
                 }
             }
-
+             
             return x.ToString();
         }
+        async void changeDateAsync(DateTime i) => await Task.Run(() => { changeDate(i); });
         void changeDate(DateTime i)
         {
-            using (ApplicationContext db = new ApplicationContext())
+            using ApplicationContext db = new ApplicationContext();
+            Application.Current.Dispatcher.Invoke(() =>
             {
                 CheckList = new ObservableCollection<ACheck>();
                 foreach (var t in db.Checks.Where(g => g.WaiterId == MainWindow.Id && g.DateTimeCheck.Date == i.Date).OrderBy(i => i.Id))
                     CheckList.Add(new ACheck { IdCheck = t.Id.ToString(), CheckID = t.CheckCount, CheckDate = t.DateTimeCheck.ToString(), CheckTable = t.TableId.ToString(), CheckPrice = checksPrise(t.Id, t.GuestsCount), CheckStatus = t.GuestsCount.ToString() });
                 CheckList = new ObservableCollection<ACheck>(CheckList.OrderBy(i => i.IdCheck));
-            }
-
+            });
         }
     }
 }

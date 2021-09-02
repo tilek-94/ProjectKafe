@@ -11,10 +11,18 @@ namespace KafeProject.All_Windows
     {
         public delegate void DateForArhiv(DateTime i);
         public static event DateForArhiv getDate;
-        public Chasy()
+        public delegate void DateForArhiv2(DateTime i,int co);
+        public static event DateForArhiv2 getDate2;
+
+        public static DateTime returnedDate;
+
+        public static int valell = 0;
+        public Chasy(int vale = 0)
         {
             InitializeComponent();
             MainWindow.timer.Stop();
+            valell = vale;
+            returnedDate = DateTime.Now;
         }
         private void Decrement_button_Click(object sender, RoutedEventArgs e)
         {
@@ -261,6 +269,7 @@ namespace KafeProject.All_Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+           
             this.Close();
         }
 
@@ -268,8 +277,8 @@ namespace KafeProject.All_Windows
         {
             DateTime dateTime = DateTime.Now;
             Date_Year.Text = dateTime.Year.ToString();
-            Date_Month.Text = dateTime.Month.ToString();
-            Date_Day.Text = dateTime.Day.ToString();
+            Date_Month.Text = dateTime.Month.ToString().Length>1 ? dateTime.Month.ToString() : "0"+dateTime.Month.ToString();
+            Date_Day.Text = dateTime.Day.ToString().Length > 1 ? dateTime.Day.ToString() : "0" + dateTime.Day.ToString();
             Hourse_Text.Text = dateTime.Hour.ToString();
             Minuta_Text.Text = dateTime.Minute.ToString();  
         }
@@ -277,9 +286,31 @@ namespace KafeProject.All_Windows
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             string dateTime =Date_Year.Text + "/" + Date_Month.Text +"/"+ Date_Day.Text +" "+ Hourse_Text.Text +":"+ Minuta_Text.Text;
+            try
+            {
+                if (valell == 0)
+                {
+                    getDate(DateTime.Parse(dateTime));
+                    this.Close();
+                }
+                else if (valell == 1)
+                {
+                    // returnedDate = DateTime.Parse(dateTime);
+                    getDate2(DateTime.Parse(dateTime),1);
+                    this.Close();
+                }
+                else 
+                {
+                    getDate2(DateTime.Parse(dateTime),2);
+                    this.Close();
+                }
+            }
+            catch 
+            {
+                MessageWindow messageWindow = new MessageWindow("Неправильная дата");
+                messageWindow.ShowDialog();
+            }
 
-            getDate(DateTime.Parse(dateTime));
-            this.Close();
         }
     }
 }

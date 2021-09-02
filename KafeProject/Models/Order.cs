@@ -15,6 +15,7 @@ namespace KafeProject.Models
         public Check check { get; set; }
         public int CountFood { get; set; }
         public int isCancel { get; set; }
+        public int isGramm { get; set; }
 
     }
 }

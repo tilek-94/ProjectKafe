@@ -18,14 +18,15 @@ namespace KafeProject.Date
        public DbSet<Options> Options { get; set; }
        public DbSet<Regimes> Regime { get; set; }
        public DbSet<CafeName> CafeName { get; set; }
-        //public DbSet<Options> status { get; set; }
+       public DbSet<HistoryFood> HistoryFoods { get; set; }
+       public DbSet<HistoryCheck> HistoryChecks { get; set; }
         public ApplicationContext()
         {
                   Database.EnsureCreated();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=192.168.0.105;user=kafe;password=1;database=BasaKafe;",
+            optionsBuilder.UseMySql("server=localhost;user=kafe;password=1;database=BasaKafe;",
                  new MySqlServerVersion(new Version(5, 7, 29))
              );
         } 

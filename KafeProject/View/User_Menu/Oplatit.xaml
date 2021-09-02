@@ -23,7 +23,10 @@
                             <TextBlock Text="Наличными" FontSize="25" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"></TextBlock>
                             <TextBox Text="0" x:Name="NalichText" Focusable="True" FontSize="25" HorizontalAlignment="Right" Height="40" VerticalAlignment="Top" Width="200" HorizontalContentAlignment="Right"  BorderThickness="0,0,0,3"  BorderBrush="#FFBDBDBD" PreviewMouseDown="TextBox_MouseDoubleClick" TextChanged="TextBox_TextChanged"></TextBox>
                         </Grid>
-                        <Grid Height="60">
+                        <!--<Grid  Height="60">
+                              
+                        </Grid>-->
+                        <Grid Visibility="Collapsed" Height="60">
                             <TextBlock Text="Карточкой" FontSize="25" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"></TextBlock>
                             <TextBox Text="0" x:Name="CardText" FontSize="25"  HorizontalAlignment="Right" Height="40" VerticalAlignment="Top" Width="200" HorizontalContentAlignment="Right"  BorderThickness="0,0,0,3"  BorderBrush="#FFBDBDBD" PreviewMouseDown="TextBox_MouseDoubleClick" TextChanged="TextBox_TextChanged"></TextBox>
                         </Grid>

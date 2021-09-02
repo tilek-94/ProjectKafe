@@ -67,7 +67,7 @@
                 
             </Grid>
         </Grid>
-        <Popup x:Name="Popup_Ofissiant" AllowsTransparency="True" IsOpen="False" VerticalOffset="-30" HorizontalOffset="-105">
+        <Popup x:Name="Popup_Ofissiant" AllowsTransparency="True" IsOpen="False" VerticalOffset="-30" HorizontalOffset="105">
             <Grid>
                 <local:User_Ofissiant/>
             </Grid>

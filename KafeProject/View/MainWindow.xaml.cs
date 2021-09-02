@@ -20,22 +20,23 @@ namespace KafeProject
     public partial class MainWindow : Window
     {
 
-        public static DispatcherTimer timer = new DispatcherTimer();
-        public static int t = 0,timeNull = 0;
+        public static DispatcherTimer timer;
+        public static int t = 0, timeNull = 0;
 
-        public delegate void MessageForCheck(int checkId, int tableId, int guestCount,int idWaiter);
+        public delegate void MessageForCheck(int checkId, int tableId, int guestCount, int idWaiter);
         public static event MessageForCheck menuCheck_;
-        public delegate void CloseAll(int i=0);
+        public delegate void CloseAll(int i = 0);
         public static event CloseAll fuckAll_;
         public delegate void CloseAllDel(int i = 0);
         public static event CloseAllDel clsd;
-        
+
         public static int Id { get; set; }
 
-        
-        public MainWindow(int id=0)
+
+        public MainWindow(int id = 0)
         {
             InitializeComponent();
+            timer = new DispatcherTimer();
             //MessageBox.Show(DateTime.Now.ToString());
             Id = id;
             MenuStol menuFood = new MenuStol(id);
@@ -45,16 +46,16 @@ namespace KafeProject
         }
         void NameoF()
         {
-            using (ApplicationContext db = new ApplicationContext()) 
-            {
-               OffName.Text = db.Waiters.Where(i => i.Id == Id).Select(i=>i.Name).OrderBy(i => i).LastOrDefault();
-            }  
+            using ApplicationContext db = new ApplicationContext();
+            OffName.Text = db.Waiters.Where(i => i.Id == Id).Select(i => i.Name).OrderBy(i => i).LastOrDefault();
 
         }
         ~MainWindow() => clearingDelegatesFromBaktiar();
         void clearingDelegatesFromBaktiar()
         {
             MenuStol.menuStol_ -= menuStolMessage;
+            MenuFood.closePop_ -= closePopups;
+            MenuStol.closePopups_ -= closePopups;
             Kolichestvo_Bluda.menuStolForDynamicCheck_ -= menuStolForDynamicCheck;
             Oplatit.menuStolOpen -= menuStolOpenForEndCheck;
             ChecksLogic.menuStol_ -= OpenCheck;
@@ -64,11 +65,20 @@ namespace KafeProject
             TableChangeWindow.closeChange -= menuStolOpenForEndCheck;
             User_Ofissiant.closeAll_ -= CloseSmena;
         }
+
+        void closePopups()
+        {
+            if (Popup_Ofissiant.IsOpen)
+                Popup_Ofissiant.IsOpen = false;
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Error.clsRW += menuStolOpenForEndCheck;
             //MenuFoodViewModel.showMessage += () => MessageBox.Show("!!! нету тов");
-            //
+            // 
+            MenuStol.closePopups_ += closePopups;
+            MenuFood.closePop_ += closePopups;
             MenuStol.menuStol_ += menuStolMessage;
             Kolichestvo_Bluda.menuStolForDynamicCheck_ += menuStolForDynamicCheck;
             Oplatit.menuStolOpen += menuStolOpenForEndCheck;
@@ -83,39 +93,34 @@ namespace KafeProject
             timer.Tick += new EventHandler(timer_Tick);
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Start();
-            
-            
-        }
-        async void  timeCheck()
-        {
-            await Task.Run(()=> {
-                using (ApplicationContext connetc = new ApplicationContext())
-                {
-                    timeNull = Convert.ToInt32(connetc.Options.Where(a => a.Key == "TimeValue").Select(s => s.Value).FirstOrDefault());
 
-                }
-            });   
+
+        }
+        async void timeCheck()
+        {
+            await Task.Run(() =>
+            {
+                using ApplicationContext connetc = new ApplicationContext();
+                timeNull = Convert.ToInt32(connetc.Options.Where(a => a.Key == "TimeValue").Select(s => s.Value).FirstOrDefault());
+            });
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
             t += 1;
-           /* OffName1.Text = t.ToString();*/
+            /* OffName1.Text = t.ToString();*/
             if (t == timeNull)
             {
-                Button_Click_1(sender,new RoutedEventArgs());
+                Button_Click_1(sender, new RoutedEventArgs());
                 timer.Stop();
             }
         }
 
-        void CloseSmena(int i) 
+        void CloseSmena(int i)
         {
-            if (i==1)
+            if (i == 1)
             {
-                if (clsd != null)
-                {
-                    clsd();
-                }
+                clsd?.Invoke();
                 clearingDelegatesFromBaktiar();
                 Parol_Window parol_Window = new Parol_Window();
                 parol_Window.Show();
@@ -130,84 +135,63 @@ namespace KafeProject
         void OpenCheck(int x)
         {
             GlawMenu.Children.Clear();
-            if (clsd != null)
-            {
-                clsd();
-            }
+            clsd?.Invoke();
             MenuFood m = new MenuFood(x);
             GlawMenu.Children.Add(m);
             menuCheck_(x, 0, 0, Id);
             if (MenuFood.IdCheck != 0)
             {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    Xheck.Text = db.Checks.Where(i => i.Id == MenuFood.IdCheck).Select(i => i.CheckCount)?.OrderBy(i => i)?.LastOrDefault().ToString() ?? "";
-                }
+                using ApplicationContext db = new ApplicationContext();
+                Xheck.Text = db.Checks.Where(i => i.Id == MenuFood.IdCheck).Select(i => i.CheckCount)?.OrderBy(i => i)?.LastOrDefault().ToString() ?? "";
             }
             else
             {
                 Xheck.Text = "";
             }
-            
+
         }
         void menuStolOpenForEndCheck()
         {
             GlawMenu.Children.Clear();
-            if (clsd!=null)
-            {
-                clsd();
-            }
-            if (fuckAll_!=null)
-            {
-                fuckAll_(1);
-            }    
-            
+            clsd?.Invoke();
+            fuckAll_?.Invoke(1);
+
             MenuStol menuFood = new MenuStol(Id);
             GlawMenu.Children.Add(menuFood);
             Xheck.Text = "";
-            
+
         }
-        void menuStolForDynamicCheck(int tableId,int guestCount) 
+        void menuStolForDynamicCheck(int tableId, int guestCount)
         {
             GlawMenu.Children.Clear();
-            if (clsd!=null)
-            {
-                clsd();
-            }
-            
-            MenuFood m = new MenuFood(0,tableId, guestCount);
+            clsd?.Invoke();
+
+            MenuFood m = new MenuFood(0, tableId, guestCount);
             GlawMenu.Children.Add(m);
-            menuCheck_(0, tableId, guestCount,Id);
+            menuCheck_(0, tableId, guestCount, Id);
             if (MenuFood.IdCheck != 0)
             {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    Xheck.Text = db.Checks.Where(i => i.Id == MenuFood.IdCheck).Select(i => i.CheckCount)?.OrderBy(i => i)?.LastOrDefault().ToString() ?? "";
-                }
+                using ApplicationContext db = new ApplicationContext();
+                Xheck.Text = db.Checks.Where(i => i.Id == MenuFood.IdCheck).Select(i => i.CheckCount)?.OrderBy(i => i)?.LastOrDefault().ToString() ?? "";
             }
             else
             {
                 Xheck.Text = "";
             }
-            
+
         }
-        void menuStolMessage(int checkIdForMainWindow) 
+        void menuStolMessage(int checkIdForMainWindow)
         {
             GlawMenu.Children.Clear();
-            if (clsd!=null)
-            {
-                clsd();
-            }
-            
+            clsd?.Invoke();
+
             MenuFood m = new MenuFood(checkIdForMainWindow);
             GlawMenu.Children.Add(m);
-            menuCheck_(checkIdForMainWindow,0,0, Id);
+            menuCheck_(checkIdForMainWindow, 0, 0, Id);
             if (MenuFood.IdCheck != 0)
             {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    Xheck.Text = db.Checks.Where(i => i.Id == MenuFood.IdCheck).Select(i => i.CheckCount)?.OrderBy(i => i)?.LastOrDefault().ToString() ?? "";
-                }
+                using ApplicationContext db = new ApplicationContext();
+                Xheck.Text = db.Checks.Where(i => i.Id == MenuFood.IdCheck).Select(i => i.CheckCount)?.OrderBy(i => i)?.LastOrDefault().ToString() ?? "";
             }
             else
             {
@@ -216,8 +200,7 @@ namespace KafeProject
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(fuckAll_!=null) 
-                fuckAll_();
+            fuckAll_?.Invoke();
             clearingDelegatesFromBaktiar();
             timer.Stop();
             this.Close();
@@ -225,8 +208,7 @@ namespace KafeProject
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             timer.Tick -= new EventHandler(timer_Tick);
-            if (fuckAll_!=null)
-                fuckAll_();
+            fuckAll_?.Invoke();
             clearingDelegatesFromBaktiar();
             Parol_Window parol_Window = new Parol_Window();
             parol_Window.Show();
@@ -251,43 +233,35 @@ namespace KafeProject
 
         private void Stol_Button_Click(object sender, RoutedEventArgs e)
         {
-            GlawMenu.Children.Clear(); 
-            if (clsd != null)
-            {
-                clsd();
-            }
+            GlawMenu.Children.Clear();
+            clsd?.Invoke();
             MenuStol menuFood = new MenuStol(Id);
-            
+
             GlawMenu.Children.Add(menuFood);
-            
-            
-           
+
+
+
             Xheck.Text = "";
-            
+
         }
 
-        private  void Ofissiant_Button1111_Click(object sender, RoutedEventArgs e)
+        private void Ofissiant_Button1111_Click(object sender, RoutedEventArgs e)
         {
-            if (clsd!=null)
-            {
-                clsd();
-            }
+            clsd?.Invoke();
             GlawMenu.Children.Clear();
             MenuFood m = new MenuFood(0, 0, 1);
             GlawMenu.Children.Add(m);
             menuCheck_(0, 0, 1, Id);
             if (MenuFood.IdCheck != 0)
             {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    Xheck.Text = db.Checks.Where(i => i.Id == MenuFood.IdCheck).Select(i => i.CheckCount)?.OrderBy(i => i)?.LastOrDefault().ToString() ?? "";
-                }
+                using ApplicationContext db = new ApplicationContext();
+                Xheck.Text = db.Checks.Where(i => i.Id == MenuFood.IdCheck).Select(i => i.CheckCount)?.OrderBy(i => i)?.LastOrDefault().ToString() ?? "";
             }
             else
             {
                 Xheck.Text = "";
             }
-            
+
         }
         private void Ofissiant_Button_Click(object sender, RoutedEventArgs e)
         {
